@@ -72,9 +72,9 @@
       <Project>{3949790D-8591-4101-9E4D-CE7A758E7409}</Project>
       <Name>Pipes</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BlueprintPipes.NET\BlueprintPipes.NET.csproj">
-      <Project>{F60A10D8-4967-46E2-9C05-6292240C6E6B}</Project>
-      <Name>BlueprintPipes.NET</Name>
+    <ProjectReference Include="..\BlueprintPipes\BlueprintPipes.csproj">
+      <Project>{6BDAAB41-73D0-4899-A184-F10B3403BAFD}</Project>
+      <Name>BlueprintPipes</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

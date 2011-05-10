@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F60A10D8-4967-46E2-9C05-6292240C6E6B}</ProjectGuid>
+    <ProjectGuid>{6BDAAB41-73D0-4899-A184-F10B3403BAFD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BlueprintPipes.NET</RootNamespace>
-    <AssemblyName>BlueprintPipes.NET</AssemblyName>
+    <RootNamespace>BlueprintPipes</RootNamespace>
+    <AssemblyName>BlueprintPipes</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,7 +40,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EdgePropertyPipe.cs" />
+    <Compile Include="EdgeVertexPipe.cs" />
+    <Compile Include="ExtensionMethods\EdgeVertexPipeExtensions.cs" />
+    <Compile Include="ExtensionMethods\Filters\EdgePropertyPipeExtensions.cs" />
+    <Compile Include="ExtensionMethods\Foaf.cs" />
+    <Compile Include="ExtensionMethods\LabelFilterPipeExtensions.cs" />
+    <Compile Include="ExtensionMethods\Neighbors.cs" />
+    <Compile Include="ExtensionMethods\PropertyPipeExtensions.cs" />
+    <Compile Include="ExtensionMethods\VertexEdgePipeExtensions.cs" />
+    <Compile Include="ExtensionMethods\VertexPropertyPipeExtensions.cs" />
+    <Compile Include="Filters\EdgeIdFilterPipe.cs" />
+    <Compile Include="Filters\IdFilterPipe.cs" />
+    <Compile Include="Filters\LabelFilterPipe.cs" />
+    <Compile Include="Filters\PropertyFilterPipe.cs" />
+    <Compile Include="Filters\VertexIdFilterPipe.cs" />
+    <Compile Include="GraphElementPipe.cs" />
+    <Compile Include="IdEdgePipe.cs" />
+    <Compile Include="IdPipe.cs" />
+    <Compile Include="IdVertexPipe.cs" />
+    <Compile Include="LabelPipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyMapPipe.cs" />
+    <Compile Include="PropertyPipe.cs" />
+    <Compile Include="Steps.cs" />
+    <Compile Include="VertexEdgePipe.cs" />
+    <Compile Include="VertexPropertyPipe.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\blueprints.NET\blueprints\blueprints.csproj">
