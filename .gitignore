@@ -1,0 +1,8 @@
+*.pidb
+*.VisualState.xml
+*.suo
+/BlueprintPipes.NET/obj
+/BlueprintPipes.NET/bin
+/UnitTests/bin
+/UnitTests/obj
+/UnitTests/TestResult.xml
