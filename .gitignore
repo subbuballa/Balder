@@ -6,3 +6,5 @@
 /UnitTests/bin
 /UnitTests/obj
 /UnitTests/TestResult.xml
+/PipesShell/bin
+/PipesShell/obj

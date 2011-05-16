@@ -41,16 +41,16 @@ namespace de.ahzf.Pipes.ExtensionMethods
         /// <param name="myComparisonFilter">The filter to use.</param>
         /// <returns>A filtered collection of objects implementing IPropertyEdge.</returns>
         public static IEnumerable<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>>
+                                                TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
 
                       LabelFilterPipe<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                      TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                      TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>(
+                                      TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                      TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(
             
                                       this IEnumerable<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                                     TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                                     TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>> myIEnumerable,
+                                                                     TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                                     TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> myIEnumerable,
 
                                       String           myLabel,
                                       ComparisonFilter myComparisonFilter)
@@ -70,8 +70,8 @@ namespace de.ahzf.Pipes.ExtensionMethods
         {
 
             var _Pipe = new LabelFilterPipe<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                            TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                            TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>(myLabel, myComparisonFilter);
+                                            TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                            TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(myLabel, myComparisonFilter);
 
             _Pipe.SetSourceCollection(myIEnumerable);
 
@@ -91,16 +91,16 @@ namespace de.ahzf.Pipes.ExtensionMethods
         /// <param name="myLabel">The edge label.</param>
         /// <returns>A filtered collection of objects implementing IPropertyEdge.</returns>
         public static IEnumerable<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>>
+                                                TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
 
                       LabelEquals<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                  TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                  TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>(
+                                  TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                  TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(
 
                                   this IEnumerable<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                                 TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                                 TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>> myIEnumerable,
+                                                                 TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                                 TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> myIEnumerable,
 
                                   String myLabel)
 
@@ -119,8 +119,8 @@ namespace de.ahzf.Pipes.ExtensionMethods
         {
 
             var _Pipe = new LabelFilterPipe<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                            TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                            TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>(myLabel, ComparisonFilter.NOT_EQUAL);
+                                            TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                            TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(myLabel, ComparisonFilter.NOT_EQUAL);
 
             _Pipe.SetSourceCollection(myIEnumerable);
 
@@ -142,16 +142,16 @@ namespace de.ahzf.Pipes.ExtensionMethods
         /// <param name="myComparisonFilter">The filter to use.</param>
         /// <returns>A filtered collection of objects implementing IPropertyEdge.</returns>
         public static IEnumerable<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>>
+                                                TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
 
                       LabelFilterPipe<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                      TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                      TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>(
+                                      TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                      TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(
             
                                       this IEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                                     TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                                     TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>> myIEnumerator,
+                                                                     TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                                     TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> myIEnumerator,
 
                                       String           myLabel,
                                       ComparisonFilter myComparisonFilter)
@@ -171,8 +171,8 @@ namespace de.ahzf.Pipes.ExtensionMethods
         {
 
             var _Pipe = new LabelFilterPipe<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                            TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                            TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>(myLabel, myComparisonFilter);
+                                            TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                            TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(myLabel, myComparisonFilter);
 
             _Pipe.SetSource(myIEnumerator);
 
@@ -192,16 +192,16 @@ namespace de.ahzf.Pipes.ExtensionMethods
         /// <param name="myLabel">The edge label.</param>
         /// <returns>A filtered collection of objects implementing IPropertyEdge.</returns>
         public static IEnumerable<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>>
+                                                TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
 
                       LabelEquals<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                  TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                  TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>(
+                                  TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                  TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(
 
                                   this IEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                                 TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                                 TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>> myIEnumerator,
+                                                                 TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                                 TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> myIEnumerator,
 
                                   String myLabel)
 
@@ -220,8 +220,8 @@ namespace de.ahzf.Pipes.ExtensionMethods
         {
 
             var _Pipe = new LabelFilterPipe<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                            TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                            TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>(myLabel, ComparisonFilter.NOT_EQUAL);
+                                            TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                            TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(myLabel, ComparisonFilter.NOT_EQUAL);
 
             _Pipe.SetSource(myIEnumerator);
 

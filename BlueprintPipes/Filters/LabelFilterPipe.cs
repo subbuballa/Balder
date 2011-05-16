@@ -31,10 +31,10 @@ namespace de.ahzf.Pipes
     /// Edges that have the provided label.
     /// </summary>
     public class LabelFilterPipe<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                 TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                 TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge> : AbstractComparisonFilterPipe<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                                                                                                                  TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                                                                                                                  TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>, String>
+                                 TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                 TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> : AbstractComparisonFilterPipe<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
+                                                                                                                                                  TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                                                                                                                  TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>, String>
 
         where TKeyVertex              : IEquatable<TKeyVertex>,           IComparable<TKeyVertex>,           IComparable
         where TKeyEdge                : IEquatable<TKeyEdge>,             IComparable<TKeyEdge>,             IComparable

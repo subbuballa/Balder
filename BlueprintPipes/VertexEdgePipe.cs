@@ -32,18 +32,18 @@ namespace de.ahzf.Pipes
     /// outgoing edges of the given vertex.
     /// </summary>
     public class VertexEdgePipe<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>
+                                TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
 
                                 : AbstractPipe<
 
                                     IPropertyVertex<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                    TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                    TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>,
+                                                    TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                    TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>,
 
                                     IPropertyEdge  <TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                    TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                    TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>>
+                                                    TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                    TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
 
         where TKeyVertex              : IEquatable<TKeyVertex>,           IComparable<TKeyVertex>,           IComparable
         where TKeyEdge                : IEquatable<TKeyEdge>,             IComparable<TKeyEdge>,             IComparable
@@ -67,8 +67,8 @@ namespace de.ahzf.Pipes
         /// Stores all edges not yet visited.
         /// </summary>
         protected IEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                            TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                            TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>> _StoredEdges;
+                                            TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                            TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> _StoredEdges;
 
         #endregion
 
@@ -128,8 +128,8 @@ namespace de.ahzf.Pipes
                             case Steps.VertexEdgeStep.OUT_EDGES:
                                 
                                 _StoredEdges = _InternalEnumerator.Current.OutEdges.GetEnumerator() as IEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                                                                                                 TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                                                                                                 TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>>;
+                                                                                                                                 TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                                                                                                 TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>;
 
                                 if (_StoredEdges.MoveNext())
                                 {
@@ -143,8 +143,8 @@ namespace de.ahzf.Pipes
                             case Steps.VertexEdgeStep.IN_EDGES:
 
                                 _StoredEdges = _InternalEnumerator.Current.InEdges.GetEnumerator() as IEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                                                                                                TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                                                                                                TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>>;
+                                                                                                                                TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                                                                                                TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>;
 
                                 if (_StoredEdges.MoveNext())
                                 {
@@ -160,16 +160,16 @@ namespace de.ahzf.Pipes
                                 var _IPropertyVertex = _InternalEnumerator.Current;
 
                                 _StoredEdges = new MultiEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                                                 TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                                                 TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>>(
+                                                                                 TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                                                 TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>(
                                                                                  
                                                                                  _IPropertyVertex.InEdges.GetEnumerator()  as IEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                                                                                                                        TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                                                                                                                        TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>>,
+                                                                                                                                                        TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                                                                                                                        TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>,
 
                                                                                  _IPropertyVertex.OutEdges.GetEnumerator() as IEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                                                                                                                        TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                                                                                                                        TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>>);
+                                                                                                                                                        TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                                                                                                                        TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>);
 
                                 if (_StoredEdges.MoveNext())
                                 {

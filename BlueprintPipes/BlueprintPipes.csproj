@@ -68,9 +68,9 @@
     <Compile Include="VertexPropertyPipe.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\blueprints.NET\blueprints\blueprints.csproj">
+    <ProjectReference Include="..\..\Blueprints.NET\Blueprints\Blueprints.csproj">
       <Project>{B9DE4181-416E-4DE4-A983-B90FC9412774}</Project>
-      <Name>blueprints</Name>
+      <Name>Blueprints</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\pipes.NET\Pipes\Pipes.csproj">
       <Project>{3949790D-8591-4101-9E4D-CE7A758E7409}</Project>

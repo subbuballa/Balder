@@ -78,24 +78,24 @@ namespace de.ahzf.Pipes.UnitTests.Pipes
 
             var _Marko = _Graph.GetVertex(new VertexId("1"));
             
-            var _Pipe1 = new VertexEdgePipe<VertexId,    RevisionId, String, Object,
-                                            EdgeId,      RevisionId, String, Object,
-                                            HyperEdgeId, RevisionId, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+            var _Pipe1 = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
+                                            EdgeId,      RevisionId, String, String, Object,
+                                            HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
 
-            var _Pipe2 = new EdgeVertexPipe<VertexId,    RevisionId, String, Object,
-                                            EdgeId,      RevisionId, String, Object,
-                                            HyperEdgeId, RevisionId, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
+            var _Pipe2 = new EdgeVertexPipe<VertexId,    RevisionId,         String, Object,
+                                            EdgeId,      RevisionId, String, String, Object,
+                                            HyperEdgeId, RevisionId, String, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
 
-            var _Pipe3 = new PropertyPipe<VertexId, RevisionId, String, Object,  IPropertyVertex<VertexId,    RevisionId, String, Object,
-                                                                                                 EdgeId,      RevisionId, String, Object,
-                                                                                                 HyperEdgeId, RevisionId, String, Object>, String>("name");
+            var _Pipe3 = new PropertyPipe<VertexId, RevisionId, String, Object,  IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                                                                                                 EdgeId,      RevisionId, String, String, Object,
+                                                                                                 HyperEdgeId, RevisionId, String, String, Object>, String>("name");
 
             _Pipe3.SetSource(_Pipe2);
             _Pipe2.SetSource(_Pipe1);
 
-            var _MarkoList = new List<IPropertyVertex<VertexId,    RevisionId, String, Object,
-                                                      EdgeId,      RevisionId, String, Object,
-                                                      HyperEdgeId, RevisionId, String, Object>>() { _Marko };
+            var _MarkoList = new List<IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                                                      EdgeId,      RevisionId, String, String, Object,
+                                                      HyperEdgeId, RevisionId, String, String, Object>>() { _Marko };
 
             _Pipe1.SetSource(_MarkoList.GetEnumerator());
 
@@ -105,12 +105,12 @@ namespace de.ahzf.Pipes.UnitTests.Pipes
                 var path = _Pipe3.Path;
 
                 Assert.AreEqual(_Marko,                 path[0]);
-                Assert.AreEqual(typeof(IPropertyEdge<VertexId,    RevisionId, String, Object,
-                                                     EdgeId,      RevisionId, String, Object,
-                                                     HyperEdgeId, RevisionId, String, Object>),   path[1].GetType());
-                Assert.AreEqual(typeof(IPropertyVertex<VertexId,    RevisionId, String, Object,
-                                                       EdgeId,      RevisionId, String, Object,
-                                                       HyperEdgeId, RevisionId, String, Object>), path[2].GetType());
+                Assert.AreEqual(typeof(IPropertyEdge<VertexId,    RevisionId,         String, Object,
+                                                     EdgeId,      RevisionId, String, String, Object,
+                                                     HyperEdgeId, RevisionId, String, String, Object>),   path[1].GetType());
+                Assert.AreEqual(typeof(IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                                                       EdgeId,      RevisionId, String, String, Object,
+                                                       HyperEdgeId, RevisionId, String, String, Object>), path[2].GetType());
                 Assert.AreEqual(typeof(String),         path[3].GetType());
 
                 if (_Name == "vadas")

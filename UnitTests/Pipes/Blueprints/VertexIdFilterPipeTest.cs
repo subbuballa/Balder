@@ -43,29 +43,29 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
             var _Graph    = TinkerGraphFactory.CreateTinkerGraph();
             var _Marko    = _Graph.GetVertex(new VertexId("1"));
 
-            var _Pipe1    = new VertexEdgePipe<VertexId,    RevisionId, String, Object,
-                                               EdgeId,      RevisionId, String, Object,
-                                               HyperEdgeId, RevisionId, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+            var _Pipe1    = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
+                                               EdgeId,      RevisionId, String, String, Object,
+                                               HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
 
-            var _Pipe2    = new EdgeVertexPipe<VertexId,    RevisionId, String, Object,
-                                               EdgeId,      RevisionId, String, Object,
-                                               HyperEdgeId, RevisionId, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
+            var _Pipe2    = new EdgeVertexPipe<VertexId,    RevisionId,         String, Object,
+                                               EdgeId,      RevisionId, String, String, Object,
+                                               HyperEdgeId, RevisionId, String, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
 
-            var _Pipe3    = new VertexIdFilterPipe<VertexId,    RevisionId, String, Object,
-                                                   EdgeId,      RevisionId, String, Object,
-                                                   HyperEdgeId, RevisionId, String, Object>(new VertexId("3"), ComparisonFilter.NOT_EQUAL);
+            var _Pipe3    = new VertexIdFilterPipe<VertexId,    RevisionId,         String, Object,
+                                                   EdgeId,      RevisionId, String, String, Object,
+                                                   HyperEdgeId, RevisionId, String, String, Object>(new VertexId("3"), ComparisonFilter.NOT_EQUAL);
 
-            var _Pipeline = new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, Object,
-                                                         EdgeId,      RevisionId, String, Object,
-                                                         HyperEdgeId, RevisionId, String, Object>,
+            var _Pipeline = new Pipeline<IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                                                         EdgeId,      RevisionId, String, String, Object,
+                                                         HyperEdgeId, RevisionId, String, String, Object>,
 
-                                         IPropertyVertex<VertexId,    RevisionId, String, Object,
-                                                         EdgeId,      RevisionId, String, Object,
-                                                         HyperEdgeId, RevisionId, String, Object>>(_Pipe1, _Pipe2, _Pipe3);
+                                         IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                                                         EdgeId,      RevisionId, String, String, Object,
+                                                         HyperEdgeId, RevisionId, String, String, Object>>(_Pipe1, _Pipe2, _Pipe3);
 
-            _Pipeline.SetSourceCollection(new List<IPropertyVertex<VertexId,    RevisionId, String, Object,
-                                                                   EdgeId,      RevisionId, String, Object,
-                                                                   HyperEdgeId, RevisionId, String, Object>>() { _Marko });
+            _Pipeline.SetSourceCollection(new List<IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                                                                   EdgeId,      RevisionId, String, String, Object,
+                                                                   HyperEdgeId, RevisionId, String, String, Object>>() { _Marko });
 
             var _Counter = 0;
             while (_Pipeline.MoveNext())
@@ -90,29 +90,29 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
             var _Graph    = TinkerGraphFactory.CreateTinkerGraph();
             var _Marko    = _Graph.GetVertex(new VertexId("1"));
 
-            var _Pipe1    = new VertexEdgePipe<VertexId,    RevisionId, String, Object,
-                                               EdgeId,      RevisionId, String, Object,
-                                               HyperEdgeId, RevisionId, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+            var _Pipe1    = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
+                                               EdgeId,      RevisionId, String, String, Object,
+                                               HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
             
-            var _Pipe2    = new EdgeVertexPipe<VertexId,    RevisionId, String, Object,
-                                               EdgeId,      RevisionId, String, Object,
-                                               HyperEdgeId, RevisionId, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
+            var _Pipe2    = new EdgeVertexPipe<VertexId,    RevisionId,         String, Object,
+                                               EdgeId,      RevisionId, String, String, Object,
+                                               HyperEdgeId, RevisionId, String, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
             
-            var _Pipe3    = new VertexIdFilterPipe<VertexId,    RevisionId, String, Object,
-                                                   EdgeId,      RevisionId, String, Object,
-                                                   HyperEdgeId, RevisionId, String, Object>(new VertexId("3"), ComparisonFilter.EQUAL);
+            var _Pipe3    = new VertexIdFilterPipe<VertexId,    RevisionId,         String, Object,
+                                                   EdgeId,      RevisionId, String, String, Object,
+                                                   HyperEdgeId, RevisionId, String, String, Object>(new VertexId("3"), ComparisonFilter.EQUAL);
 
-            var _Pipeline = new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, Object,
-                                                         EdgeId,      RevisionId, String, Object,
-                                                         HyperEdgeId, RevisionId, String, Object>,
+            var _Pipeline = new Pipeline<IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                                                         EdgeId,      RevisionId, String, String, Object,
+                                                         HyperEdgeId, RevisionId, String, String, Object>,
 
-                                         IPropertyVertex<VertexId,    RevisionId, String, Object,
-                                                         EdgeId,      RevisionId, String, Object,
-                                                         HyperEdgeId, RevisionId, String, Object>>(_Pipe1, _Pipe2, _Pipe3);
+                                         IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                                                         EdgeId,      RevisionId, String, String, Object,
+                                                         HyperEdgeId, RevisionId, String, String, Object>>(_Pipe1, _Pipe2, _Pipe3);
 
-            _Pipeline.SetSourceCollection(new List<IPropertyVertex<VertexId,    RevisionId, String, Object,
-                                                                   EdgeId,      RevisionId, String, Object,
-                                                                   HyperEdgeId, RevisionId, String, Object>>() { _Marko });
+            _Pipeline.SetSourceCollection(new List<IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                                                                   EdgeId,      RevisionId, String, String, Object,
+                                                                   HyperEdgeId, RevisionId, String, String, Object>>() { _Marko });
 
             var _Counter = 0;
             while (_Pipeline.MoveNext())

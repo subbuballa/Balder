@@ -35,8 +35,8 @@
 //    /// <typeparam name="E">The type of the emitting objects.</typeparam>
 //    public class VertexPropertyPipe<TIdVertex, TRevisionIdVertex, TKeyVertex, TValueVertex, TDatastructureVertex, E>
 //                    : PropertyPipe<TId, TRevisionId, TKey, TValue, TDatastructure, IPropertyVertex<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,    TDatastructureVertex,
-//                                                                                                   TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,      TDatastructureEdge,
-//                                                                                                   TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge, TDatastructureHyperEdge>, E>
+//                                                                                                   TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,      TDatastructureEdge,
+//                                                                                                   TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge, TDatastructureHyperEdge>, E>
 
 //        where TId  : IEquatable<TId>,  IComparable<TId>,  IComparable
 //        where TKey : IEquatable<TKey>, IComparable<TKey>, IComparable

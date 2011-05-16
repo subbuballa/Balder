@@ -31,10 +31,10 @@ namespace de.ahzf.Pipes
     /// The IdPipe will return the Id of the given graph element.
     /// </summary>
     public class VertexIdFilterPipe<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                    TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                    TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge> : AbstractComparisonFilterPipe<IPropertyVertex<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
-                                                                                                                                                       TIdEdge,      TRevisionIdEdge,      TKeyEdge,      TValueEdge,
-                                                                                                                                                       TIdHyperEdge, TRevisionIdHyperEdge, TKeyHyperEdge, TValueHyperEdge>, TIdVertex>
+                                    TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                    TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> : AbstractComparisonFilterPipe<IPropertyVertex<TIdVertex,    TRevisionIdVertex,    TKeyVertex,    TValueVertex,
+                                                                                                                                                       TIdEdge,      TRevisionIdEdge,      TEdgeLabel, TKeyEdge,      TValueEdge,
+                                                                                                                                                       TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>, TIdVertex>
 
         where TKeyVertex              : IEquatable<TKeyVertex>,           IComparable<TKeyVertex>,           IComparable
         where TKeyEdge                : IEquatable<TKeyEdge>,             IComparable<TKeyEdge>,             IComparable

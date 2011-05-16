@@ -43,9 +43,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
 
             var _Marko = _Graph.GetVertex(new VertexId("1"));
 
-            var _LFP   = new LabelFilterPipe<VertexId,    RevisionId, String, Object,
-                                             EdgeId,      RevisionId, String, Object,
-                                             HyperEdgeId, RevisionId, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
+            var _LFP   = new LabelFilterPipe<VertexId,    RevisionId,         String, Object,
+                                             EdgeId,      RevisionId, String, String, Object,
+                                             HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
 
             _LFP.SetSourceCollection(_Marko.OutEdges);
 
@@ -61,9 +61,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
             Assert.AreEqual(2, _Counter);
 
 
-            _LFP = new LabelFilterPipe<VertexId,    RevisionId, String, Object,
-                                       EdgeId,      RevisionId, String, Object,
-                                       HyperEdgeId, RevisionId, String, Object>("knows", ComparisonFilter.EQUAL);
+            _LFP = new LabelFilterPipe<VertexId,    RevisionId,         String, Object,
+                                       EdgeId,      RevisionId, String, String, Object,
+                                       HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.EQUAL);
 
             _LFP.SetSourceCollection(_Marko.OutEdges);
 
