@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DB930840-8D08-4D62-8D81-C14528B46FC4}</ProjectGuid>
+    <ProjectGuid>{4D91B472-9ED3-4AAB-ADE3-B14ED1BCF780}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PipesShell</RootNamespace>
-    <AssemblyName>PipesShell</AssemblyName>
+    <RootNamespace>BlueprintPipesShell</RootNamespace>
+    <AssemblyName>BlueprintPipesShell</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -34,12 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.CSharp">
-      <HintPath>..\libs\Mono.CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\libs\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,27 +43,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mono\getline.cs" />
-    <Compile Include="Mono\repl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Blueprints.NET\Blueprints\Blueprints.csproj">
+      <Project>{B9DE4181-416E-4DE4-A983-B90FC9412774}</Project>
+      <Name>Blueprints</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\blueprints.NET\InMemoryGraph\InMemoryGraph.csproj">
       <Project>{D4D2ACAD-FF2E-44AD-9D4A-6E332C246FAD}</Project>
       <Name>InMemoryGraph</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\pipes.NET\Pipes\Pipes.csproj">
+    <ProjectReference Include="..\..\MonoCompilerAsAService\MonoCompilerAsAService\MonoCompilerAsAService.csproj">
+      <Project>{A2ABC2B4-28D1-47B1-8EF9-6E8C60215515}</Project>
+      <Name>MonoCompilerAsAService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MonoCompilerAsAService\MonoCSharp\MonoCSharp.csproj">
+      <Project>{322FD822-7722-4176-A7D7-CD8D36488DB9}</Project>
+      <Name>MonoCSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Pipes.NET\Pipes\Pipes.csproj">
       <Project>{3949790D-8591-4101-9E4D-CE7A758E7409}</Project>
       <Name>Pipes</Name>
     </ProjectReference>
     <ProjectReference Include="..\BlueprintPipes\BlueprintPipes.csproj">
       <Project>{6BDAAB41-73D0-4899-A184-F10B3403BAFD}</Project>
       <Name>BlueprintPipes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UnitTests\UnitTests.csproj">
-      <Project>{4BF95036-986A-47EE-B48E-CF8C2B0E7841}</Project>
-      <Name>UnitTests</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

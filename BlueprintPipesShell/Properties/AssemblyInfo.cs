@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PipesShell")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("BlueprintPipesShell")]
+[assembly: AssemblyDescription("A graph-based data flow framework for property graph models (LINQ to graphs) written in .NET/Mono")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("PipesShell")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
+[assembly: AssemblyCompany("ahzf.de")]
+[assembly: AssemblyProduct("BlueprintPipesShell")]
+[assembly: AssemblyCopyright("Copyright © Achim Friedland 2010-2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9bebf7cb-84a2-44c8-a6b2-9b19a1963af9")]
+[assembly: Guid("215a43aa-ea2e-4a07-8b3f-6eeaef05f221")]
 
 // Version information for an assembly consists of the following four values:
 //
