@@ -20,8 +20,8 @@
 using System;
 using System.Collections.Generic;
 
-using de.ahzf.blueprints.PropertyGraph;
-using de.ahzf.blueprints.GenericGraph;
+using de.ahzf.Blueprints.PropertyGraph;
+using de.ahzf.Blueprints.GenericGraph;
 
 #endregion
 

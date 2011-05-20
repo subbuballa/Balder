@@ -22,8 +22,8 @@ using System.Collections.Generic;
 
 using NUnit.Framework;
 using RunCSharp;
-using de.ahzf.blueprints;
-using de.ahzf.blueprints.PropertyGraph;
+using de.ahzf.Blueprints;
+using de.ahzf.Blueprints.PropertyGraph;
 
 #endregion
 

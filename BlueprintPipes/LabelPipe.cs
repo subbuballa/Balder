@@ -19,7 +19,7 @@
 
 using System;
 
-using de.ahzf.blueprints.PropertyGraph;
+using de.ahzf.Blueprints.PropertyGraph;
 
 #endregion
 

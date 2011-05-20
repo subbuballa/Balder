@@ -19,7 +19,7 @@
 
 //using NUnit.Framework;
 
-//using de.ahzf.blueprints.Datastructures;
+//using de.ahzf.Blueprints.Datastructures;
 //using System;
 
 //#endregion

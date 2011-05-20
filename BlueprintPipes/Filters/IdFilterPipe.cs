@@ -19,8 +19,8 @@
 
 //using System;
 
-//using de.ahzf.blueprints;
-//using de.ahzf.blueprints.Datastructures;
+//using de.ahzf.Blueprints;
+//using de.ahzf.Blueprints.Datastructures;
 
 //#endregion
 

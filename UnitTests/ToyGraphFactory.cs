@@ -17,9 +17,9 @@
 
 #region Usings
 
-using de.ahzf.blueprints;
-using de.ahzf.blueprints.PropertyGraph;
-using de.ahzf.blueprints.PropertyGraph.InMemory;
+using de.ahzf.Blueprints;
+using de.ahzf.Blueprints.PropertyGraph;
+using de.ahzf.Blueprints.PropertyGraph.InMemory;
 
 #endregion
 

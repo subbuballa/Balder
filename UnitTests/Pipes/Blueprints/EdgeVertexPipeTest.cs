@@ -19,8 +19,8 @@
 
 using System;
 
-using de.ahzf.blueprints;
-using de.ahzf.blueprints.PropertyGraph;
+using de.ahzf.Blueprints;
+using de.ahzf.Blueprints.PropertyGraph;
 
 using NUnit.Framework;
 

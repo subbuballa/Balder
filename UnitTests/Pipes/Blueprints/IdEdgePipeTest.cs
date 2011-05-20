@@ -22,8 +22,8 @@
 
 //using NUnit.Framework;
 
-//using de.ahzf.blueprints.Datastructures;
-//using de.ahzf.blueprints;
+//using de.ahzf.Blueprints.Datastructures;
+//using de.ahzf.Blueprints;
 
 //#endregion
 
