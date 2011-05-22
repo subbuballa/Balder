@@ -77,7 +77,7 @@ namespace de.ahzf.Pipes
         /// <summary>
         /// This pipe is useful for processing all edges of a graph.
         /// </summary>
-        /// <param name="EdgeFilter">A delegate for edge filtering.</param>
+        /// <param name="EdgeFilter">A optional delegate for edge filtering.</param>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
         public AllEdgesPipe(Func<IPropertyEdge<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,

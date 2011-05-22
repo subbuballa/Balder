@@ -77,7 +77,7 @@ namespace de.ahzf.Pipes
         /// <summary>
         /// This pipe is useful for processing all of the vertices (or edges) of a graph.
         /// </summary>
-        /// <param name="VertexFilter">A delegate for vertex filtering.</param>
+        /// <param name="VertexFilter">An optional delegate for vertex filtering.</param>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
         public AllVerticesPipe(Func<IPropertyVertex<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,

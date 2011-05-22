@@ -41,8 +41,8 @@ namespace de.ahzf.Pipes
         /// <summary>
         /// Creates a new IdPipe emitting the Ids of the given identifiable elements.
         /// </summary>
-        /// <param name="IEnumerable">An optional IEnumerable&lt;IIdentifier&lt;TId&gt&gt; as element source.</param>
-        /// <param name="IEnumerator">An optional IEnumerator&lt;IIdentifier&lt;TId&gt&gt; as element source.</param>
+        /// <param name="IEnumerable">An optional IEnumerable&lt;IIdentifier&lt;TId&gt;&gt; as element source.</param>
+        /// <param name="IEnumerator">An optional IEnumerator&lt;IIdentifier&lt;TId&gt;&gt; as element source.</param>
         public IdPipe(IEnumerable<IIdentifier<TId>> IEnumerable = null,
                       IEnumerator<IIdentifier<TId>> IEnumerator = null)
             : base(IEnumerable, IEnumerator)

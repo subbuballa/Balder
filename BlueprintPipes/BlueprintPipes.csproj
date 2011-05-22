@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\BlueprintPipes.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,12 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllEdgesPipe.cs" />
+    <Compile Include="ExtensionMethods\IPropertyVertexExtensions.cs" />
+    <Compile Include="ExtensionMethods\IPropertyGraphExtensions.cs" />
     <Compile Include="ExtensionMethods\Filters\EdgePropertyPipeExtensions.cs" />
-    <Compile Include="ExtensionMethods\Foaf.cs" />
+    <Compile Include="ExtensionMethods\HigherOrderRelations\Foaf.cs" />
     <Compile Include="ExtensionMethods\LabelFilterPipeExtensions.cs" />
-    <Compile Include="ExtensionMethods\IsComplicatedExtensions.cs" />
+    <Compile Include="ExtensionMethods\HigherOrderRelations\IsComplicatedExtensions.cs" />
     <Compile Include="ExtensionMethods\PropertyPipeExtensions.cs" />
-    <Compile Include="ExtensionMethods\VertexPropertyPipeExtensions.cs" />
     <Compile Include="Filters\EdgeIdFilterPipe.cs" />
     <Compile Include="Filters\LabelFilterPipe.cs" />
     <Compile Include="Filters\PropertyFilterPipe.cs" />

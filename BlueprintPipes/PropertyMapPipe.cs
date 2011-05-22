@@ -39,7 +39,6 @@ namespace de.ahzf.Pipes
         where TRevisionId    : IEquatable<TRevisionId>, IComparable<TRevisionId>, IComparable, TValue
         where S              : IPropertyElement<TId, TRevisionId, TKey, TValue, TDatastructure>
 
-
     {
 
         #region MoveNext()

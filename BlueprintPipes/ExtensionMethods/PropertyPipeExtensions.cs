@@ -28,7 +28,7 @@ namespace de.ahzf.Pipes.ExtensionMethods
 {
 
     /// <summary>
-    /// Pipes extensions.
+    /// PropertyPipeExtensions.
     /// </summary>
     public static class PropertyPipeExtensions
     {
