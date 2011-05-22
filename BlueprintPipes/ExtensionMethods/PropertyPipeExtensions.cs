@@ -24,7 +24,7 @@ using de.ahzf.Blueprints.PropertyGraph;
 
 #endregion
 
-namespace de.ahzf.Pipes.ExtensionMethods
+namespace de.ahzf.BlueprintPipes.ExtensionMethods
 {
 
     /// <summary>

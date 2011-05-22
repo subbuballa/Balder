@@ -18,43 +18,37 @@
 #region Usings
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using NUnit.Framework;
-using RunCSharp;
+
 using de.ahzf.Blueprints;
 using de.ahzf.Blueprints.PropertyGraph;
 
+using de.ahzf.BlueprintPipes.ExtensionMethods;
+
 #endregion
 
-namespace de.ahzf.BlueprintPipes.UnitTests.MonoCSharp
+namespace de.ahzf.BlueprintPipes.UnitTests.Pipes
 {
 
     [TestFixture]
-    public class MonoCSharpTest
+    public class GremlinTests
     {
-        
-        #region BaseTest()
+
+        #region Gremlin01()
 
         [Test]
-        public void BaseTest()
+        public void Gremlin01()
         {
 
-            var _Compiler = new Runner();
-            
-            var a = _Compiler.Execute("Math.Abs(-42);");
-            Assert.AreEqual(42, a);
-            
-            var b = _Compiler.Execute("class Fact { public int Run(int n) { return n <= 0 ? 1 : n*Run(n-1); } }");
-            var c = _Compiler.Execute("new Fact().Run(5);");
-            Assert.AreEqual(120, c);
+            var _ToyGraph = ToyGraphFactory.CreateToyGraph();
 
-            var d = _Compiler.Execute("\"abcdefgh\".Substring(1, 2);");
-            Assert.AreEqual("bc", d);
+            var _AllEdges01 = _ToyGraph.V().OutE().ToList();
+            var _AllEdges02 = _ToyGraph.V().OutE("loves").ToList();
 
-            var e = _Compiler.Execute("var test = 123;");
-            Assert.AreEqual("bc", e);
-
+            var a = _ToyGraph.GetVertex(new VertexId(1)).OutE("knows");
 
         }
 

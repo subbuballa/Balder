@@ -27,7 +27,7 @@ using NUnit.Framework;
 
 #endregion
 
-namespace de.ahzf.Pipes.UnitTests.Blueprints
+namespace de.ahzf.BlueprintPipes.UnitTests.Blueprints
 {
 
     [TestFixture]
@@ -45,7 +45,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
                                             EdgeId,      RevisionId, String, String, Object,
                                             HyperEdgeId, RevisionId, String, String, Object>();
 
-            _Pipe.SetSource(new SingleEnumerator<IPropertyGraph>(_Graph));
+            _Pipe.SetSource(new SingleEnumerator<IPropertyGraph<VertexId,    RevisionId,         String, Object,
+                                                                EdgeId,      RevisionId, String, String, Object,
+                                                                HyperEdgeId, RevisionId, String, String, Object>>(_Graph));
             
             var _Counter = 0;
             var _Vertices = new HashSet<IPropertyVertex<VertexId,    RevisionId,         String, Object,
@@ -78,7 +80,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
                                          EdgeId,      RevisionId, String, String, Object,
                                          HyperEdgeId, RevisionId, String, String, Object>();
             
-            _Pipe.SetSource(new SingleEnumerator<IPropertyGraph>(_Graph));
+            _Pipe.SetSource(new SingleEnumerator<IPropertyGraph<VertexId,    RevisionId,         String, Object,
+                                                                EdgeId,      RevisionId, String, String, Object,
+                                                                HyperEdgeId, RevisionId, String, String, Object>>(_Graph));
 
             var _Counter = 0;
             var _Edges = new HashSet<IPropertyEdge<VertexId,    RevisionId,         String, Object,
@@ -111,7 +115,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
                                          EdgeId,      RevisionId, String, String, Object,
                                          HyperEdgeId, RevisionId, String, String, Object>();
 
-            _Pipe.SetSourceCollection(new List<IPropertyGraph>() { _Graph, _Graph, _Graph });
+            _Pipe.SetSourceCollection(new List<IPropertyGraph<VertexId,    RevisionId,         String, Object,
+                                                              EdgeId,      RevisionId, String, String, Object,
+                                                              HyperEdgeId, RevisionId, String, String, Object>>() { _Graph, _Graph, _Graph });
             
             var _Counter = 0;
             var _Edges = new HashSet<IPropertyEdge<VertexId,    RevisionId,         String, Object,

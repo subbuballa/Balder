@@ -17,22 +17,32 @@
 
 #region Usings
 
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
 using de.ahzf.Blueprints;
 using de.ahzf.Blueprints.PropertyGraph;
 using de.ahzf.Blueprints.PropertyGraph.InMemory;
 
+using de.ahzf.BlueprintPipes.ExtensionMethods;
+
 #endregion
 
-namespace de.ahzf.Pipes.UnitTests
+namespace de.ahzf.BlueprintPipes.UnitTests
 {
 
     public static class ToyGraphFactory
     {
 
-        public static IPropertyGraph CreateToyGraph()
+        public static IPropertyGraph<VertexId,    RevisionId,         String, Object,
+                                     EdgeId,      RevisionId, String, String, Object,
+                                     HyperEdgeId, RevisionId, String, String, Object> CreateToyGraph()
         {
 
-            var _ToyGraph    = new InMemoryPropertyGraph() as IPropertyGraph;
+            var _ToyGraph    = new InMemoryPropertyGraph() as IPropertyGraph<VertexId,    RevisionId,         String, Object,
+                                                                             EdgeId,      RevisionId, String, String, Object,
+                                                                             HyperEdgeId, RevisionId, String, String, Object>;
 
             var _Alice       = _ToyGraph.AddVertex(new VertexId("1"), v => v.SetProperty("name", "Alice").    SetProperty("age", 29));
             var _Bob         = _ToyGraph.AddVertex(new VertexId("2"), v => v.SetProperty("name", "Bob").      SetProperty("age", 27));
@@ -55,6 +65,8 @@ namespace de.ahzf.Pipes.UnitTests
             _ToyGraph.AddEdge(_Eve,   _Alice, new EdgeId("10"), "spies"); 
             _ToyGraph.AddEdge(_Eve,   _Bob,   new EdgeId("11"), "knows");            
             _ToyGraph.AddEdge(_Eve,   _Bob,   new EdgeId("12"), "spies");
+
+            var a = _ToyGraph.V().OutE().ToList();
 
             return _ToyGraph;
 

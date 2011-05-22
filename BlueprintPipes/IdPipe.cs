@@ -24,7 +24,7 @@ using System.Collections.Generic;
 
 #endregion
 
-namespace de.ahzf.Pipes
+namespace de.ahzf.BlueprintPipes
 {
 
     /// <summary>

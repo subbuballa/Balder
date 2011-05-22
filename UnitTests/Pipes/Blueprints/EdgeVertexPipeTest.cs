@@ -26,7 +26,7 @@ using NUnit.Framework;
 
 #endregion
 
-namespace de.ahzf.Pipes.UnitTests.Blueprints
+namespace de.ahzf.BlueprintPipes.UnitTests.Blueprints
 {
 
     [TestFixture]
@@ -103,7 +103,7 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
                     _TmpEdge = _Edge;
             }
 
-            var _Pipe = new BothVertices<VertexId,    RevisionId,         String, Object,
+            var _Pipe = new BothVerticesPipe<VertexId,    RevisionId,         String, Object,
                                          EdgeId,      RevisionId, String, String, Object,
                                          HyperEdgeId, RevisionId, String, String, Object>();
 

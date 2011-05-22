@@ -25,7 +25,7 @@ using de.ahzf.Blueprints.GenericGraph;
 
 #endregion
 
-namespace de.ahzf.Pipes
+namespace de.ahzf.BlueprintPipes
 {
 
     /// <summary>

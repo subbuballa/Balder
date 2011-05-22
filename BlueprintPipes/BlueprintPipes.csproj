@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllEdgesPipe.cs" />
+    <Compile Include="ExtensionMethods\IPropertyEdgeExtensions.cs" />
     <Compile Include="ExtensionMethods\IPropertyVertexExtensions.cs" />
     <Compile Include="ExtensionMethods\IPropertyGraphExtensions.cs" />
     <Compile Include="ExtensionMethods\Filters\EdgePropertyPipeExtensions.cs" />

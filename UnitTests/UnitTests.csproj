@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
+    <Compile Include="Extensions\GremlinTests.cs" />
     <Compile Include="MonoCSharp\MonoCSharpTest.cs" />
     <Compile Include="Pipes\AbstractPipeTest.cs" />
     <Compile Include="Pipes\Blueprints\EdgeVertexPipeTest.cs" />

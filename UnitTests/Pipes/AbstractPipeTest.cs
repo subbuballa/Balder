@@ -26,7 +26,7 @@ using de.ahzf.Blueprints.PropertyGraph;
 
 #endregion
 
-namespace de.ahzf.Pipes.UnitTests.Pipes
+namespace de.ahzf.BlueprintPipes.UnitTests.Pipes
 {
 
     [TestFixture]

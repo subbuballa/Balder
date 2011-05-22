@@ -27,7 +27,7 @@ using NUnit.Framework;
 
 #endregion
 
-namespace de.ahzf.Pipes.UnitTests.Blueprints
+namespace de.ahzf.BlueprintPipes.UnitTests.Blueprints
 {
 
     [TestFixture]
@@ -186,7 +186,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
                                                 EdgeId,      RevisionId, String, String, Object,
                                                 HyperEdgeId, RevisionId, String, String, Object>();
 
-            _Vertices.SetSource(new SingleEnumerator<IPropertyGraph>(_Graph));
+            _Vertices.SetSource(new SingleEnumerator<IPropertyGraph<VertexId,    RevisionId,         String, Object,
+                                                                    EdgeId,      RevisionId, String, String, Object,
+                                                                    HyperEdgeId, RevisionId, String, String, Object>>(_Graph));
 
             var _OutEdges = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
                                              EdgeId,      RevisionId, String, String, Object,
