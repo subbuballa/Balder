@@ -43,9 +43,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
             var _Marko = _Graph.GetVertex(new VertexId("1"));
 
-            var _VSF   = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                            EdgeId,      RevisionId, String, String, Object,
-                                            HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+            var _VSF   = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                          EdgeId,      RevisionId, String, String, Object,
+                                          HyperEdgeId, RevisionId, String, String, Object>();
 
             _VSF.SetSource(new List<IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                     EdgeId,      RevisionId, String, String, Object,
@@ -66,9 +66,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
             
             var _Josh = _Graph.GetVertex(new VertexId("4"));
 
-            _VSF = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                      EdgeId,      RevisionId, String, String, Object,
-                                      HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+            _VSF = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                    EdgeId,      RevisionId, String, String, Object,
+                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             _VSF.SetSource(new List<IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                     EdgeId,      RevisionId, String, String, Object,
@@ -89,9 +89,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
 
             var _Lop = _Graph.GetVertex(new VertexId("3"));
 
-            _VSF = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                      EdgeId,      RevisionId, String, String, Object,
-                                      HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+            _VSF = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                    EdgeId,      RevisionId, String, String, Object,
+                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             _VSF.SetSource(new List<IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                     EdgeId,      RevisionId, String, String, Object,
@@ -118,9 +118,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
             var _Josh  = _Graph.GetVertex(new VertexId("4"));
             
-            var _Pipe = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                           EdgeId,      RevisionId, String, String, Object,
-                                           HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.IN_EDGES);
+            var _Pipe = new InEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                        EdgeId,      RevisionId, String, String, Object,
+                                        HyperEdgeId, RevisionId, String, String, Object>();
 
             _Pipe.SetSource(new SingleEnumerator<IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                  EdgeId,      RevisionId, String, String, Object,
@@ -149,9 +149,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
             var _Josh  = _Graph.GetVertex(new VertexId("4"));
 
-            var _Pipe = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                           EdgeId,      RevisionId, String, String, Object,
-                                           HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.BOTH_EDGES);
+            var _Pipe = new BothEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                          EdgeId,      RevisionId, String, String, Object,
+                                          HyperEdgeId, RevisionId, String, String, Object>();
 
             _Pipe.SetSource(new SingleEnumerator<IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                  EdgeId,      RevisionId, String, String, Object,
@@ -182,15 +182,15 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
             for (var i = 0; i < 100000; i++)
                 _Graph.AddVertex(null);
 
-            var _Vertices = new GraphElementPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId,         String, Object,
-                                                                                                       EdgeId,      RevisionId, String, String, Object,
-                                                                                                       HyperEdgeId, RevisionId, String, String, Object>>(Steps.ElementType.VERTEX);
+            var _Vertices = new AllVerticesPipe<VertexId,    RevisionId,         String, Object,
+                                                EdgeId,      RevisionId, String, String, Object,
+                                                HyperEdgeId, RevisionId, String, String, Object>();
 
             _Vertices.SetSource(new SingleEnumerator<IPropertyGraph>(_Graph));
 
-            var _OutEdges = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                               EdgeId,      RevisionId, String, String, Object,
-                                               HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+            var _OutEdges = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                             EdgeId,      RevisionId, String, String, Object,
+                                             HyperEdgeId, RevisionId, String, String, Object>();
 
             _OutEdges.SetSource(_Vertices);
 

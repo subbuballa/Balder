@@ -72,9 +72,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
             var _Graph    = TinkerGraphFactory.CreateTinkerGraph();
             var _Marko    = _Graph.GetVertex(new VertexId("1"));
             
-            var _EVP      = new EdgeVertexPipe<VertexId,    RevisionId,         String, Object,
-                                               EdgeId,      RevisionId, String, String, Object,
-                                               HyperEdgeId, RevisionId, String, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
+            var _EVP      = new InVertexPipe<VertexId,    RevisionId,         String, Object,
+                                             EdgeId,      RevisionId, String, String, Object,
+                                             HyperEdgeId, RevisionId, String, String, Object>();
 
             var _PPipe    = new PropertyPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                                                    EdgeId,      RevisionId, String, String, Object,

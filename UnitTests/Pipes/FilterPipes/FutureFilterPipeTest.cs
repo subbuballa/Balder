@@ -89,13 +89,13 @@ namespace de.ahzf.Pipes.UnitTests.FilterPipes
 			var _Graph 				= TinkerGraphFactory.CreateTinkerGraph();
 	        var _Marko 				= _Graph.GetVertex(new VertexId(1));
 
-	        var _OutEPipe 			= new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                                         EdgeId,      RevisionId, String, String, Object,
-                                                         HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+	        var _OutEPipe 			= new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                                       EdgeId,      RevisionId, String, String, Object,
+                                                       HyperEdgeId, RevisionId, String, String, Object>();
 
-	        var _InVPipe 			= new EdgeVertexPipe<VertexId,    RevisionId,         String, Object,
-                                                         EdgeId,      RevisionId, String, String, Object,
-                                                         HyperEdgeId, RevisionId, String, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
+	        var _InVPipe 			= new InVertexPipe<VertexId,    RevisionId,         String, Object,
+                                                       EdgeId,      RevisionId, String, String, Object,
+                                                       HyperEdgeId, RevisionId, String, String, Object>();
 
 	        var _PropertyFilterPipe = new PropertyFilterPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                                                                    EdgeId,      RevisionId, String, String, Object,

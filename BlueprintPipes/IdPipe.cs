@@ -20,6 +20,7 @@
 using System;
 
 using de.ahzf.Blueprints;
+using System.Collections.Generic;
 
 #endregion
 
@@ -27,11 +28,30 @@ namespace de.ahzf.Pipes
 {
 
     /// <summary>
-    /// The IdPipe will return the Id of the given graph element.
+    /// The IdPipe will return the Id of the given identifiable elements.
     /// </summary>
     public class IdPipe<TId> : AbstractPipe<IIdentifier<TId>, TId>
         where TId : IEquatable<TId>, IComparable<TId>, IComparable
     {
+
+        #region Constructor(s)
+
+        #region IdPipe(IEnumerable = null, IEnumerator = null)
+
+        /// <summary>
+        /// Creates a new IdPipe emitting the Ids of the given identifiable elements.
+        /// </summary>
+        /// <param name="IEnumerable">An optional IEnumerable&lt;IIdentifier&lt;TId&gt&gt; as element source.</param>
+        /// <param name="IEnumerator">An optional IEnumerator&lt;IIdentifier&lt;TId&gt&gt; as element source.</param>
+        public IdPipe(IEnumerable<IIdentifier<TId>> IEnumerable = null,
+                      IEnumerator<IIdentifier<TId>> IEnumerator = null)
+            : base(IEnumerable, IEnumerator)
+        { }
+
+        #endregion
+
+        #endregion
+
 
         #region MoveNext()
 

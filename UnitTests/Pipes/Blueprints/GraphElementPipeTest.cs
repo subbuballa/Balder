@@ -41,9 +41,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
         {
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
-            var _Pipe = new GraphElementPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId,         String, Object,
-                                                                                                   EdgeId,      RevisionId, String, String, Object,
-                                                                                                   HyperEdgeId, RevisionId, String, String, Object>>(Steps.ElementType.VERTEX);
+            var _Pipe = new AllVerticesPipe<VertexId,    RevisionId,         String, Object,
+                                            EdgeId,      RevisionId, String, String, Object,
+                                            HyperEdgeId, RevisionId, String, String, Object>();
 
             _Pipe.SetSource(new SingleEnumerator<IPropertyGraph>(_Graph));
             
@@ -74,9 +74,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
             
-            var _Pipe = new GraphElementPipe<EdgeId, RevisionId, String, Object, IPropertyEdge<VertexId,    RevisionId,         String, Object,
-                                                                                               EdgeId,      RevisionId, String, String, Object,
-                                                                                               HyperEdgeId, RevisionId, String, String, Object>>(Steps.ElementType.EDGE);
+            var _Pipe = new AllEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                         EdgeId,      RevisionId, String, String, Object,
+                                         HyperEdgeId, RevisionId, String, String, Object>();
             
             _Pipe.SetSource(new SingleEnumerator<IPropertyGraph>(_Graph));
 
@@ -107,9 +107,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
             
-            var _Pipe = new GraphElementPipe<EdgeId, RevisionId, String, Object, IPropertyEdge<VertexId,    RevisionId,         String, Object,
-                                                                                               EdgeId,      RevisionId, String, String, Object,
-                                                                                               HyperEdgeId, RevisionId, String, String, Object>>(Steps.ElementType.EDGE);
+            var _Pipe = new AllEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                         EdgeId,      RevisionId, String, String, Object,
+                                         HyperEdgeId, RevisionId, String, String, Object>();
 
             _Pipe.SetSourceCollection(new List<IPropertyGraph>() { _Graph, _Graph, _Graph });
             

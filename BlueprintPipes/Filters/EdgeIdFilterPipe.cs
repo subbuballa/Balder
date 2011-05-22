@@ -28,7 +28,7 @@ namespace de.ahzf.Pipes
 {
 
     /// <summary>
-    /// The IdPipe will return the Id of the given graph element.
+    /// EdgeIdFilterPipe.
     /// </summary>
     public class EdgeIdFilterPipe<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
                                   TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,

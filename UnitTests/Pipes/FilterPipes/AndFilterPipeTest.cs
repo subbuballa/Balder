@@ -88,9 +88,9 @@ namespace de.ahzf.Pipes.UnitTests.FilterPipes
 		    var _Marko 			= _Graph.GetVertex(new VertexId("1"));
 		    var _Peter 			= _Graph.GetVertex(new VertexId("6"));
 
-		    var _Pipe0 			= new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                                     EdgeId,      RevisionId, String, String, Object,
-                                                     HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+		    var _Pipe0 			= new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                                   EdgeId,      RevisionId, String, String, Object,
+                                                   HyperEdgeId, RevisionId, String, String, Object>();
 
 		    var _Pipe1 			= new LabelFilterPipe<VertexId,    RevisionId,         String, Object,
                                                       EdgeId,      RevisionId, String, String, Object,

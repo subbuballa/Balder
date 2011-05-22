@@ -45,13 +45,13 @@ namespace de.ahzf.Pipes.UnitTests.util
 
             var _Marko    = _Graph.GetVertex(new VertexId("1"));
 
-            var _Pipe1 = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                            EdgeId,      RevisionId, String, String, Object,
-                                            HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+            var _Pipe1    = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                             EdgeId,      RevisionId, String, String, Object,
+                                             HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _Pipe2    = new EdgeVertexPipe<VertexId,    RevisionId,         String, Object,
-                                               EdgeId,      RevisionId, String, String, Object,
-                                               HyperEdgeId, RevisionId, String, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
+            var _Pipe2    = new InVertexPipe<VertexId,    RevisionId,         String, Object,
+                                             EdgeId,      RevisionId, String, String, Object,
+                                             HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe3    = new PathPipe<IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                          EdgeId,      RevisionId, String, String, Object,

@@ -41,9 +41,9 @@ namespace de.ahzf.Pipes.UnitTests.Blueprints
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
             
-            var _Pipe  = new LabelPipe<VertexId,    RevisionId,         String, Object,
-                                       EdgeId,      RevisionId, String, String, Object,
-                                       HyperEdgeId, RevisionId, String, String, Object>();
+            var _Pipe  = new EdgeLabelPipe<VertexId,    RevisionId,         String, Object,
+                                           EdgeId,      RevisionId, String, String, Object,
+                                           HyperEdgeId, RevisionId, String, String, Object>();
 
             _Pipe.SetSourceCollection(_Graph.GetVertex(new VertexId("1")).OutEdges);
 

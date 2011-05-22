@@ -72,9 +72,9 @@ namespace de.ahzf.Pipes.UnitTests.FilterPipes
 	        var _Marko 			= _Graph.GetVertex(new VertexId("1"));
 	        var _Peter 			= _Graph.GetVertex(new VertexId("6"));
 
-	        var _Pipe0 			= new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                                     EdgeId,      RevisionId, String, String, Object,
-                                                     HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+	        var _Pipe0 			= new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                                   EdgeId,      RevisionId, String, String, Object,
+                                                   HyperEdgeId, RevisionId, String, String, Object>();
 	        
             var _Pipe1 			= new LabelFilterPipe<VertexId,    RevisionId,         String, Object,
                                                       EdgeId,      RevisionId, String, String, Object,
@@ -134,9 +134,9 @@ namespace de.ahzf.Pipes.UnitTests.FilterPipes
 	        var _Graph 		= TinkerGraphFactory.CreateTinkerGraph();
 	        var _Marko 		= _Graph.GetVertex(new VertexId("1"));
 	        
-            var _Pipe1 		= new VertexEdgePipe <VertexId,    RevisionId,         String, Object,
+            var _Pipe1 		= new OutEdgesPipe   <VertexId,    RevisionId,         String, Object,
                                                   EdgeId,      RevisionId, String, String, Object,
-                                                  HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+                                                  HyperEdgeId, RevisionId, String, String, Object>();
 
 	        var _PipeA 		= new LabelFilterPipe<VertexId,    RevisionId,         String, Object,
                                                   EdgeId,      RevisionId, String, String, Object,
@@ -237,17 +237,17 @@ namespace de.ahzf.Pipes.UnitTests.FilterPipes
             var _Graph      = TinkerGraphFactory.CreateTinkerGraph();
             var _Marko      = _Graph.GetVertex(new VertexId("1"));
 
-            var _PipeA      = new VertexEdgePipe <VertexId,    RevisionId,         String, Object,
+            var _PipeA      = new OutEdgesPipe   <VertexId,    RevisionId,         String, Object,
                                                   EdgeId,      RevisionId, String, String, Object,
-                                                  HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+                                                  HyperEdgeId, RevisionId, String, String, Object>();
 
             var _PipeB      = new LabelFilterPipe<VertexId,    RevisionId,         String, Object,
                                                   EdgeId,      RevisionId, String, String, Object,
                                                   HyperEdgeId, RevisionId, String, String, Object>("created", ComparisonFilter.NOT_EQUAL);
 
-            var _PipeC      = new EdgeVertexPipe <VertexId,    RevisionId,         String, Object,
+            var _PipeC      = new InVertexPipe   <VertexId,    RevisionId,         String, Object,
                                                   EdgeId,      RevisionId, String, String, Object,
-                                                  HyperEdgeId, RevisionId, String, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
+                                                  HyperEdgeId, RevisionId, String, String, Object>();
 
             var _PipeD      = new PropertyFilterPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                                                            EdgeId,      RevisionId, String, String, Object,
@@ -306,17 +306,17 @@ namespace de.ahzf.Pipes.UnitTests.FilterPipes
             var _Graph      = TinkerGraphFactory.CreateTinkerGraph();
             var _Marko      = _Graph.GetVertex(new VertexId("1"));
 
-            var _PipeA      = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                                 EdgeId,      RevisionId, String, String, Object,
-                                                 HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+            var _PipeA      = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                               EdgeId,      RevisionId, String, String, Object,
+                                               HyperEdgeId, RevisionId, String, String, Object>();
             
             var _PipeB      = new PropertyFilterPipe<EdgeId, RevisionId, String, Object, IPropertyEdge<VertexId,    RevisionId,         String, Object,
                                                                                                        EdgeId,      RevisionId, String, String, Object,
                                                                                                        HyperEdgeId, RevisionId, String, String, Object>, Double>("weight", 0.5, ComparisonFilter.LESS_THAN_EQUAL);
 
-            var _PipeC      = new EdgeVertexPipe<VertexId,    RevisionId,         String, Object,
-                                                 EdgeId,      RevisionId, String, String, Object,
-                                                 HyperEdgeId, RevisionId, String, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
+            var _PipeC      = new InVertexPipe<VertexId,    RevisionId,         String, Object,
+                                               EdgeId,      RevisionId, String, String, Object,
+                                               HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe1      = new AndFilterPipe<IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                 EdgeId,      RevisionId, String, String, Object,
@@ -334,13 +334,13 @@ namespace de.ahzf.Pipes.UnitTests.FilterPipes
                                                                    EdgeId,      RevisionId, String, String, Object,
                                                                    HyperEdgeId, RevisionId, String, String, Object>>(_PipeA, _PipeB, _PipeC)));
 
-            var _Pipe2      = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                                 EdgeId,      RevisionId, String, String, Object,
-                                                 HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+            var _Pipe2      = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                               EdgeId,      RevisionId, String, String, Object,
+                                               HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _Pipe3      = new EdgeVertexPipe<VertexId,    RevisionId,         String, Object,
-                                                 EdgeId,      RevisionId, String, String, Object,
-                                                 HyperEdgeId, RevisionId, String, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
+            var _Pipe3      = new InVertexPipe<VertexId,    RevisionId,         String, Object,
+                                               EdgeId,      RevisionId, String, String, Object,
+                                               HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe4      = new PropertyPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                                                      EdgeId,      RevisionId, String, String, Object,
@@ -379,13 +379,13 @@ namespace de.ahzf.Pipes.UnitTests.FilterPipes
             var _Graph      = TinkerGraphFactory.CreateTinkerGraph();
             var _Marko      = _Graph.GetVertex(new VertexId("1"));
 
-            var _PipeA      = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                                 EdgeId,      RevisionId, String, String, Object,
-                                                 HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+            var _PipeA      = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                               EdgeId,      RevisionId, String, String, Object,
+                                               HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _PipeB      = new EdgeVertexPipe<VertexId,    RevisionId,         String, Object,
-                                                 EdgeId,      RevisionId, String, String, Object,
-                                                 HyperEdgeId, RevisionId, String, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
+            var _PipeB      = new InVertexPipe<VertexId,    RevisionId,         String, Object,
+                                               EdgeId,      RevisionId, String, String, Object,
+                                               HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe1      = new OrFilterPipe<IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                EdgeId,      RevisionId, String, String, Object,
@@ -403,9 +403,9 @@ namespace de.ahzf.Pipes.UnitTests.FilterPipes
                                                                    EdgeId,      RevisionId, String, String, Object,
                                                                    HyperEdgeId, RevisionId, String, String, Object>>(_PipeA, _PipeB)));
 
-            var _PipeC      = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                                 EdgeId,      RevisionId, String, String, Object,
-                                                 HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+            var _PipeC      = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                               EdgeId,      RevisionId, String, String, Object,
+                                               HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe2      = new OrFilterPipe<IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                EdgeId,      RevisionId, String, String, Object,
@@ -415,13 +415,13 @@ namespace de.ahzf.Pipes.UnitTests.FilterPipes
                                                                   EdgeId,      RevisionId, String, String, Object,
                                                                   HyperEdgeId, RevisionId, String, String, Object>>(_PipeC));
 
-            var _Pipe3      = new VertexEdgePipe<VertexId,    RevisionId,         String, Object,
-                                                 EdgeId,      RevisionId, String, String, Object,
-                                                 HyperEdgeId, RevisionId, String, String, Object>(Steps.VertexEdgeStep.OUT_EDGES);
+            var _Pipe3      = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+                                               EdgeId,      RevisionId, String, String, Object,
+                                               HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _Pipe4      = new EdgeVertexPipe<VertexId,    RevisionId,         String, Object,
-                                                 EdgeId,      RevisionId, String, String, Object,
-                                                 HyperEdgeId, RevisionId, String, String, Object>(Steps.EdgeVertexStep.IN_VERTEX);
+            var _Pipe4      = new InVertexPipe<VertexId,    RevisionId,         String, Object,
+                                               EdgeId,      RevisionId, String, String, Object,
+                                               HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe5      = new PropertyPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                                                      EdgeId,      RevisionId, String, String, Object,
