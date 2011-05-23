@@ -25,6 +25,7 @@ using de.ahzf.Blueprints;
 using de.ahzf.Blueprints.PropertyGraph;
 using de.ahzf.Blueprints.PropertyGraph.InMemory;
 
+using de.ahzf.Pipes;
 using de.ahzf.BlueprintPipes.ExtensionMethods;
 
 #endregion
@@ -57,16 +58,47 @@ namespace de.ahzf.BlueprintPipes.UnitTests
             _ToyGraph.AddDoubleEdge(_Alice, _Carol, new EdgeId("3a"), new EdgeId("3b"), "knows");
             _ToyGraph.AddDoubleEdge(_Carol, _Dave,  new EdgeId("4a"), new EdgeId("4b"), "knows");
 
-            _ToyGraph.AddEdge(_Carol, _Bob,   new EdgeId("5"), "knows");
-            _ToyGraph.AddEdge(_Carol, _Bob,   new EdgeId("6"), "loves");
-            _ToyGraph.AddEdge(_Dave,  _Carol, new EdgeId("7"), "loves");
+            _ToyGraph.AddEdge(_Carol, _Bob,   new EdgeId("5"),  "knows");
+            _ToyGraph.AddEdge(_Carol, _Bob,   new EdgeId("6"),  "loves");
+            _ToyGraph.AddEdge(_Dave,  _Carol, new EdgeId("7"),  "loves");
             _ToyGraph.AddEdge(_Eve,   _Alice, new EdgeId("8"),  "knows");
             _ToyGraph.AddEdge(_Eve,   _Alice, new EdgeId("9"),  "loves");
-            _ToyGraph.AddEdge(_Eve,   _Alice, new EdgeId("10"), "spies"); 
-            _ToyGraph.AddEdge(_Eve,   _Bob,   new EdgeId("11"), "knows");            
+            _ToyGraph.AddEdge(_Eve,   _Alice, new EdgeId("10"), "spies");
+            _ToyGraph.AddEdge(_Eve,   _Bob,   new EdgeId("11"), "knows");
             _ToyGraph.AddEdge(_Eve,   _Bob,   new EdgeId("12"), "spies");
 
             var a = _ToyGraph.V().OutE().ToList();
+
+            // What are the names of Alice friends who are also friends with Bob?
+            // gremlin> a.outE[[label:'kennt']].inV.outE[[label:'kennt']].inV[[id:'1']].back(4).Name
+            // ==>Carol
+            var AliceFriendsWithBob = _Alice.OutE("knows").InV().OutE("knows").InV();
+
+            var Pipeline = new Pipeline<IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                                                        EdgeId,      RevisionId, String, String, Object,
+                                                        HyperEdgeId, RevisionId, String, String, Object>,
+                                        IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                                                        EdgeId,      RevisionId, String, String, Object,
+                                                        HyperEdgeId, RevisionId, String, String, Object>>(
+                               (v) => v.OutE("knows").InV().OutE("knows").InV());
+
+            var _FirendFriends = Pipeline.SetSource(_Alice);
+
+            // What's still missing?
+            //  - OutE map filter
+            //  - InV map filter
+            //  - back(n)
+            //  - Simple access of properties
+            
+            // just a test
+            var xx = new { Name = "Alice", Alter = 18 };
+
+
+            // What are Alice's friends’friends’ names who are not Bob's friends?
+            // gremlin> x = []
+            // gremlin> a.outE[[label:'kennt']].inV.aggregate(x).outE[[label:'kennt']].inV.except(x).Name
+            // ==> Dave
+            
 
             return _ToyGraph;
 

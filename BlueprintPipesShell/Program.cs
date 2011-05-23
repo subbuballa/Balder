@@ -18,9 +18,17 @@
 #region Usings
 
 using System;
+using System.Linq;
+
 using Mono;
 using Mono.CSharp;
 using RunCSharp;
+
+using de.ahzf.Blueprints;
+using de.ahzf.Blueprints.PropertyGraph;
+using de.ahzf.Blueprints.PropertyGraph.InMemory;
+using de.ahzf.Pipes;
+using de.ahzf.BlueprintPipes.ExtensionMethods;
 
 #endregion
 
