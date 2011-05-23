@@ -20,6 +20,8 @@
 using System;
 using System.Collections.Generic;
 
+using de.ahzf.Pipes;
+
 using NUnit.Framework;
 
 #endregion

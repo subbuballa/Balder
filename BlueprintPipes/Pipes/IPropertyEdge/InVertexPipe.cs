@@ -18,9 +18,10 @@
 #region Usings
 
 using System;
+using System.Collections.Generic;
 
 using de.ahzf.Blueprints.PropertyGraph;
-using System.Collections.Generic;
+using de.ahzf.Pipes;
 
 #endregion
 
@@ -28,19 +29,19 @@ namespace de.ahzf.BlueprintPipes
 {
 
     /// <summary>
-    /// OutVertexPipe emits the tail/source vertex of an edge.
+    /// InVertexPipe emits the incoming/target/head vertex of an edge.
     /// </summary>
-    public class OutVertexPipe<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
-                               TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                               TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
+    public class InVertexPipe<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
+                              TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                              TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
 
-                               : AbstractPipe<
-                                    IPropertyEdge  <TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
-                                                    TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                    TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>,
-                                    IPropertyVertex<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
-                                                    TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                    TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
+                              : AbstractPipe<
+                                   IPropertyEdge  <TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
+                                                   TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                   TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>,
+                                   IPropertyVertex<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
+                                                   TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                   TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
 
         where TKeyVertex              : IEquatable<TKeyVertex>,           IComparable<TKeyVertex>,           IComparable
         where TKeyEdge                : IEquatable<TKeyEdge>,             IComparable<TKeyEdge>,             IComparable
@@ -61,20 +62,20 @@ namespace de.ahzf.BlueprintPipes
 
         #region Constructor(s)
 
-        #region OutVertexPipe(IEnumerable = null, IEnumerator = null)
+        #region InVertexPipe(IEnumerable = null, IEnumerator = null)
 
         /// <summary>
-        /// Creates a new OutVertexPipe emitting the
-        /// tail/source vertex of an edge.
+        /// Creates a new InVertexPipe emitting the incoming/target/head
+        /// vertex of an edge.
         /// </summary>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
-        public OutVertexPipe(IEnumerable<IPropertyEdge<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
-                                                       TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                       TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable = null,
-                             IEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
-                                                       TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                       TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
+        public InVertexPipe(IEnumerable<IPropertyEdge<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
+                                                      TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                      TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable = null,
+                            IEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
+                                                      TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                      TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
             : base(IEnumerable, IEnumerator)
         { }
 
@@ -101,7 +102,7 @@ namespace de.ahzf.BlueprintPipes
 
             if (_InternalEnumerator.MoveNext())
             {
-                _CurrentElement = _InternalEnumerator.Current.OutVertex;
+                _CurrentElement = _InternalEnumerator.Current.InVertex;
                 return true;
             }
 

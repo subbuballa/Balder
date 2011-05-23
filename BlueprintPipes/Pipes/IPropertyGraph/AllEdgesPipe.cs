@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 
 using de.ahzf.Blueprints.PropertyGraph;
+using de.ahzf.Pipes;
 
 #endregion
 
@@ -28,16 +29,16 @@ namespace de.ahzf.BlueprintPipes
 {
 
     /// <summary>
-    /// This pipe is useful for processing all of the vertices (or edges) of a graph.
+    /// This pipe is useful for processing all edges of a graph.
     /// </summary>
-    public class AllVerticesPipe<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
-                                 TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                 TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
+    public class AllEdgesPipe<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
+                              TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                              TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
 
                  : AbstractPipe<IPropertyGraph <TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
                                                 TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                 TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>,
-                                IPropertyVertex<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
+                                IPropertyEdge  <TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
                                                 TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                 TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
 
@@ -60,29 +61,29 @@ namespace de.ahzf.BlueprintPipes
 
         #region Data
 
-        private Func<IPropertyVertex<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
-                                     TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                     TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>, Boolean> _VertexFilter;
+        private Func<IPropertyEdge<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
+                                   TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                   TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>, Boolean> _EdgeFilter;
 
-        private IEnumerator<IPropertyVertex<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
-                                            TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                            TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> _VertexIterator;
+        private IEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
+                                          TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                          TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> _EdgeIterator;
 
         #endregion
 
         #region Constructor(s)
 
-        #region AllVerticesPipe(VertexFilter = null, IEnumerable = null, IEnumerator = null)
+        #region AllEdgesPipe(EdgeFilter = null, IEnumerable = null, IEnumerator = null)
 
         /// <summary>
-        /// This pipe is useful for processing all of the vertices (or edges) of a graph.
+        /// This pipe is useful for processing all edges of a graph.
         /// </summary>
-        /// <param name="VertexFilter">An optional delegate for vertex filtering.</param>
+        /// <param name="EdgeFilter">A optional delegate for edge filtering.</param>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
-        public AllVerticesPipe(Func<IPropertyVertex<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
-                                                    TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                    TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>, Boolean> VertexFilter = null,
+        public AllEdgesPipe(Func<IPropertyEdge<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
+                                               TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                               TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>, Boolean> EdgeFilter = null,
                                IEnumerable<IPropertyGraph<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
                                                           TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                           TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable = null,
@@ -91,7 +92,7 @@ namespace de.ahzf.BlueprintPipes
                                                           TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
             : base(IEnumerable, IEnumerator)
         {
-            _VertexFilter = VertexFilter;
+            _EdgeFilter = EdgeFilter;
         }
 
         #endregion
@@ -118,14 +119,14 @@ namespace de.ahzf.BlueprintPipes
             while (true)
             {
 
-                if (_VertexIterator != null && _VertexIterator.MoveNext())
+                if (_EdgeIterator != null && _EdgeIterator.MoveNext())
                 {
-                    _CurrentElement = _VertexIterator.Current;
+                    _CurrentElement = _EdgeIterator.Current;
                     return true;
                 }
 
                 else if (_InternalEnumerator.MoveNext())
-                    _VertexIterator = _InternalEnumerator.Current.GetVertices(_VertexFilter).GetEnumerator();
+                    _EdgeIterator = _InternalEnumerator.Current.GetEdges(_EdgeFilter).GetEnumerator();
 
                 else
                     return false;

@@ -22,6 +22,7 @@ using System.Text;
 using System.Collections.Generic;
 
 using de.ahzf.Blueprints.PropertyGraph;
+using de.ahzf.Pipes;
 
 #endregion
 

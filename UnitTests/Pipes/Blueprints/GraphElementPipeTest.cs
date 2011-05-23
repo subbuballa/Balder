@@ -24,6 +24,7 @@ using de.ahzf.Blueprints;
 using de.ahzf.Blueprints.PropertyGraph;
 
 using NUnit.Framework;
+using de.ahzf.Pipes;
 
 #endregion
 

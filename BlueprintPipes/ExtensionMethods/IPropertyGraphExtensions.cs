@@ -28,7 +28,7 @@ namespace de.ahzf.BlueprintPipes.ExtensionMethods
 {
 
     /// <summary>
-    /// Some extension methods on IPropertyGraph&lt;...&gt;
+    /// Extension methods for pipes consuming PropertyGraphs.
     /// </summary>
     public static class IPropertyGraphExtensions
     {
@@ -36,25 +36,27 @@ namespace de.ahzf.BlueprintPipes.ExtensionMethods
         #region V(this IPropertyGraph<...>, VertexFilter = null)
 
         /// <summary>
-        /// This pipe is useful for processing all vertices of a graph.
+        /// Returns all vertices of a the given PropertyGraph.
         /// </summary>
-        /// <typeparam name="TIdVertex"></typeparam>
-        /// <typeparam name="TRevisionIdVertex"></typeparam>
-        /// <typeparam name="TKeyVertex"></typeparam>
-        /// <typeparam name="TValueVertex"></typeparam>
-        /// <typeparam name="TIdEdge"></typeparam>
-        /// <typeparam name="TRevisionIdEdge"></typeparam>
-        /// <typeparam name="TEdgeLabel"></typeparam>
-        /// <typeparam name="TKeyEdge"></typeparam>
-        /// <typeparam name="TValueEdge"></typeparam>
-        /// <typeparam name="TIdHyperEdge"></typeparam>
-        /// <typeparam name="TRevisionIdHyperEdge"></typeparam>
-        /// <typeparam name="THyperEdgeLabel"></typeparam>
-        /// <typeparam name="TKeyHyperEdge"></typeparam>
-        /// <typeparam name="TValueHyperEdge"></typeparam>
-        /// <param name="IPropertyGraph"></param>
+        /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
+        /// <typeparam name="TRevisionIdVertex">The type of the vertex revision identifiers.</typeparam>
+        /// <typeparam name="TKeyVertex">The type of the vertex property keys.</typeparam>
+        /// <typeparam name="TValueVertex">The type of the vertex property values.</typeparam>
+        /// 
+        /// <typeparam name="TIdEdge">The type of the edge identifiers.</typeparam>
+        /// <typeparam name="TRevisionIdEdge">The type of the edge revision identifiers.</typeparam>
+        /// <typeparam name="TEdgeLabel">The type of the edge label.</typeparam>
+        /// <typeparam name="TKeyEdge">The type of the edge property keys.</typeparam>
+        /// <typeparam name="TValueEdge">The type of the edge property values.</typeparam>
+        /// 
+        /// <typeparam name="TIdHyperEdge">The type of the hyperedge identifiers.</typeparam>
+        /// <typeparam name="TRevisionIdHyperEdge">The type of the hyperedge revision identifiers.</typeparam>
+        /// <typeparam name="THyperEdgeLabel">The type of the hyperedge label.</typeparam>
+        /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
+        /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
+        /// <param name="IPropertyGraph">A PropertyGraph.</param>
         /// <param name="VertexFilter">An optional delegate for vertex filtering.</param>
-        /// <returns></returns>
+        /// <returns>All vertices of a the given PropertyGraph.</returns>
         public static AllVerticesPipe<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
                                       TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                       TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
@@ -104,25 +106,27 @@ namespace de.ahzf.BlueprintPipes.ExtensionMethods
         #region V(this IEnumerable<IPropertyGraph<...>>, VertexFilter = null)
 
         /// <summary>
-        /// This pipe is useful for processing all vertices of a graph.
+        /// Returns all vertices of a the given PropertyGraphs.
         /// </summary>
-        /// <typeparam name="TIdVertex"></typeparam>
-        /// <typeparam name="TRevisionIdVertex"></typeparam>
-        /// <typeparam name="TKeyVertex"></typeparam>
-        /// <typeparam name="TValueVertex"></typeparam>
-        /// <typeparam name="TIdEdge"></typeparam>
-        /// <typeparam name="TRevisionIdEdge"></typeparam>
-        /// <typeparam name="TEdgeLabel"></typeparam>
-        /// <typeparam name="TKeyEdge"></typeparam>
-        /// <typeparam name="TValueEdge"></typeparam>
-        /// <typeparam name="TIdHyperEdge"></typeparam>
-        /// <typeparam name="TRevisionIdHyperEdge"></typeparam>
-        /// <typeparam name="THyperEdgeLabel"></typeparam>
-        /// <typeparam name="TKeyHyperEdge"></typeparam>
-        /// <typeparam name="TValueHyperEdge"></typeparam>
-        /// <param name="IEnumerable"></param>
+        /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
+        /// <typeparam name="TRevisionIdVertex">The type of the vertex revision identifiers.</typeparam>
+        /// <typeparam name="TKeyVertex">The type of the vertex property keys.</typeparam>
+        /// <typeparam name="TValueVertex">The type of the vertex property values.</typeparam>
+        /// 
+        /// <typeparam name="TIdEdge">The type of the edge identifiers.</typeparam>
+        /// <typeparam name="TRevisionIdEdge">The type of the edge revision identifiers.</typeparam>
+        /// <typeparam name="TEdgeLabel">The type of the edge label.</typeparam>
+        /// <typeparam name="TKeyEdge">The type of the edge property keys.</typeparam>
+        /// <typeparam name="TValueEdge">The type of the edge property values.</typeparam>
+        /// 
+        /// <typeparam name="TIdHyperEdge">The type of the hyperedge identifiers.</typeparam>
+        /// <typeparam name="TRevisionIdHyperEdge">The type of the hyperedge revision identifiers.</typeparam>
+        /// <typeparam name="THyperEdgeLabel">The type of the hyperedge label.</typeparam>
+        /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
+        /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
+        /// <param name="IEnumerable">An enumeration of PropertyGraphs.</param>
         /// <param name="VertexFilter">An optional delegate for vertex filtering.</param>
-        /// <returns></returns>
+        /// <returns>All vertices of a the given PropertyGraphs.</returns>
         public static AllVerticesPipe<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
                                       TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                       TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
@@ -168,25 +172,27 @@ namespace de.ahzf.BlueprintPipes.ExtensionMethods
         #region E(this IPropertyGraph<...>, EdgeFilter = null)
 
         /// <summary>
-        /// This pipe is useful for processing all edges of a graph.
+        /// Returns all edges of a the given PropertyGraph.
         /// </summary>
-        /// <typeparam name="TIdVertex"></typeparam>
-        /// <typeparam name="TRevisionIdVertex"></typeparam>
-        /// <typeparam name="TKeyVertex"></typeparam>
-        /// <typeparam name="TValueVertex"></typeparam>
-        /// <typeparam name="TIdEdge"></typeparam>
-        /// <typeparam name="TRevisionIdEdge"></typeparam>
-        /// <typeparam name="TEdgeLabel"></typeparam>
-        /// <typeparam name="TKeyEdge"></typeparam>
-        /// <typeparam name="TValueEdge"></typeparam>
-        /// <typeparam name="TIdHyperEdge"></typeparam>
-        /// <typeparam name="TRevisionIdHyperEdge"></typeparam>
-        /// <typeparam name="THyperEdgeLabel"></typeparam>
-        /// <typeparam name="TKeyHyperEdge"></typeparam>
-        /// <typeparam name="TValueHyperEdge"></typeparam>
-        /// <param name="IPropertyGraph"></param>
-        /// <param name="EdgeFilter">An optional delegate for edge filtering.</param>
-        /// <returns></returns>
+        /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
+        /// <typeparam name="TRevisionIdVertex">The type of the vertex revision identifiers.</typeparam>
+        /// <typeparam name="TKeyVertex">The type of the vertex property keys.</typeparam>
+        /// <typeparam name="TValueVertex">The type of the vertex property values.</typeparam>
+        /// 
+        /// <typeparam name="TIdEdge">The type of the edge identifiers.</typeparam>
+        /// <typeparam name="TRevisionIdEdge">The type of the edge revision identifiers.</typeparam>
+        /// <typeparam name="TEdgeLabel">The type of the edge label.</typeparam>
+        /// <typeparam name="TKeyEdge">The type of the edge property keys.</typeparam>
+        /// <typeparam name="TValueEdge">The type of the edge property values.</typeparam>
+        /// 
+        /// <typeparam name="TIdHyperEdge">The type of the hyperedge identifiers.</typeparam>
+        /// <typeparam name="TRevisionIdHyperEdge">The type of the hyperedge revision identifiers.</typeparam>
+        /// <typeparam name="THyperEdgeLabel">The type of the hyperedge label.</typeparam>
+        /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
+        /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
+        /// <param name="IPropertyGraph">A PropertyGraph.</param>
+        /// <param name="EdgeFilter">An optional delegate for vertex filtering.</param>
+        /// <returns>All edges of a the given PropertyGraph.</returns>
         public static AllEdgesPipe<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
                                    TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                    TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
@@ -236,25 +242,27 @@ namespace de.ahzf.BlueprintPipes.ExtensionMethods
         #region E(this IEnumerable<IPropertyGraph<...>>, EdgeFilter = null)
 
         /// <summary>
-        /// This pipe is useful for processing all edges of a graph.
+        /// Returns all vertices of a the given PropertyGraphs.
         /// </summary>
-        /// <typeparam name="TIdVertex"></typeparam>
-        /// <typeparam name="TRevisionIdVertex"></typeparam>
-        /// <typeparam name="TKeyVertex"></typeparam>
-        /// <typeparam name="TValueVertex"></typeparam>
-        /// <typeparam name="TIdEdge"></typeparam>
-        /// <typeparam name="TRevisionIdEdge"></typeparam>
-        /// <typeparam name="TEdgeLabel"></typeparam>
-        /// <typeparam name="TKeyEdge"></typeparam>
-        /// <typeparam name="TValueEdge"></typeparam>
-        /// <typeparam name="TIdHyperEdge"></typeparam>
-        /// <typeparam name="TRevisionIdHyperEdge"></typeparam>
-        /// <typeparam name="THyperEdgeLabel"></typeparam>
-        /// <typeparam name="TKeyHyperEdge"></typeparam>
-        /// <typeparam name="TValueHyperEdge"></typeparam>
-        /// <param name="IEnumerable"></param>
-        /// <param name="EdgeFilter">An optional delegate for edge filtering.</param>
-        /// <returns></returns>
+        /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
+        /// <typeparam name="TRevisionIdVertex">The type of the vertex revision identifiers.</typeparam>
+        /// <typeparam name="TKeyVertex">The type of the vertex property keys.</typeparam>
+        /// <typeparam name="TValueVertex">The type of the vertex property values.</typeparam>
+        /// 
+        /// <typeparam name="TIdEdge">The type of the edge identifiers.</typeparam>
+        /// <typeparam name="TRevisionIdEdge">The type of the edge revision identifiers.</typeparam>
+        /// <typeparam name="TEdgeLabel">The type of the edge label.</typeparam>
+        /// <typeparam name="TKeyEdge">The type of the edge property keys.</typeparam>
+        /// <typeparam name="TValueEdge">The type of the edge property values.</typeparam>
+        /// 
+        /// <typeparam name="TIdHyperEdge">The type of the hyperedge identifiers.</typeparam>
+        /// <typeparam name="TRevisionIdHyperEdge">The type of the hyperedge revision identifiers.</typeparam>
+        /// <typeparam name="THyperEdgeLabel">The type of the hyperedge label.</typeparam>
+        /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
+        /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
+        /// <param name="IEnumerable">An enumeration of PropertyGraphs.</param>
+        /// <param name="EdgeFilter">An optional delegate for vertex filtering.</param>
+        /// <returns>All vertices of a the given PropertyGraphs.</returns>
         public static AllEdgesPipe<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
                                    TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                    TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>

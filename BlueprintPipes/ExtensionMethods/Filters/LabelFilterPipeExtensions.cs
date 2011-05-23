@@ -21,12 +21,14 @@ using System;
 using System.Collections.Generic;
 
 using de.ahzf.Blueprints.PropertyGraph;
+using de.ahzf.Pipes;
 
 #endregion
 
 namespace de.ahzf.BlueprintPipes.ExtensionMethods
 {
 
+    
     public static class LabelFilterPipeExtensions
     {
 

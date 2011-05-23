@@ -30,7 +30,7 @@ namespace de.ahzf.BlueprintPipes.ExtensionMethods
     /// <summary>
     /// PropertyPipeExtensions.
     /// </summary>
-    public static class PropertyPipeExtensions
+    public static class PropertyExtensions
     {
 
         #region PropertyPipe<S, E>(this myIEnumerable, myKeys)
@@ -56,36 +56,6 @@ namespace de.ahzf.BlueprintPipes.ExtensionMethods
 
             var _Pipe = new PropertyPipe<TId, TRevisionId, TKey, TValue, S, E>(myKeys);
             _Pipe.SetSourceCollection(myIEnumerable);
-
-            return _Pipe;
-
-        }
-
-        #endregion
-
-        #region PropertyPipe<S, E>(this myIEnumerator, myKeys)
-
-        /// <summary>
-        /// The PropertyPipe returns the property value of the
-        /// Element identified by the provided key.
-        /// </summary>
-        /// <typeparam name="S">The type of the consuming objects.</typeparam>
-        /// <typeparam name="E">The type of the emitting objects.</typeparam>
-        /// <param name="myIEnumerator">A enumerator of consumable objects.</param>
-        /// <param name="myKeys">The property keys.</param>
-        /// <returns>A collection of emittable objects.</returns>
-        public static IEnumerable<E> PropertyPipe<TId, TRevisionId, TKey, TValue, TDatastructure, S, E>(this IEnumerator<S> myIEnumerator, TKey[] myKeys)
-            
-            where TId            : IEquatable<TId>,         IComparable<TId>,         IComparable, TValue
-            where TRevisionId    : IEquatable<TRevisionId>, IComparable<TRevisionId>, IComparable, TValue
-            where TKey           : IEquatable<TKey>,        IComparable<TKey>,        IComparable
-            where TDatastructure : IDictionary<TKey, TValue>
-            where S              : IPropertyElement<TId, TRevisionId, TKey, TValue, TDatastructure>
-
-        {
-
-            var _Pipe = new PropertyPipe<TId, TRevisionId, TKey, TValue, S, E>(myKeys);
-            _Pipe.SetSource(myIEnumerator);
 
             return _Pipe;
 
