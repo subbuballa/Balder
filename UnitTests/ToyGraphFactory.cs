@@ -41,9 +41,9 @@ namespace de.ahzf.BlueprintPipes.UnitTests
                                      HyperEdgeId, RevisionId, String, String, Object> CreateToyGraph()
         {
 
-            var _ToyGraph    = new InMemoryPropertyGraph() as IPropertyGraph<VertexId,    RevisionId,         String, Object,
-                                                                             EdgeId,      RevisionId, String, String, Object,
-                                                                             HyperEdgeId, RevisionId, String, String, Object>;
+            var _ToyGraph    = new InMemoryPropertyGraph(new VertexId("ToyGraph")) as IPropertyGraph<VertexId,    RevisionId,         String, Object,
+                                                                                                     EdgeId,      RevisionId, String, String, Object,
+                                                                                                     HyperEdgeId, RevisionId, String, String, Object>;
 
             var _Alice       = _ToyGraph.AddVertex(new VertexId("1"), v => v.SetProperty("name", "Alice").    SetProperty("age", 29));
             var _Bob         = _ToyGraph.AddVertex(new VertexId("2"), v => v.SetProperty("name", "Bob").      SetProperty("age", 27));
