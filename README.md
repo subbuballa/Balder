@@ -1,6 +1,6 @@
-![BlueprintPipes.NET logo](/ahzf/BlueprintPipes.NET/raw/master/doc/BlueprintPipes.NET-logo.png)
+![Balder logo](/ahzf/Balder/raw/master/doc/BlueprintPipes.NET-logo.png)
 
-[BlueprintPipes.NET](http://github.com/ahzf/BlueprintPipes.NET) is a graph-based data flow framework for [property graph models](http://github.com/tinkerpop/gremlin/wiki/Defining-a-Property-Graph)
+[Balder](http://github.com/ahzf/Balder) is a graph-based data flow framework for [property graph models](http://github.com/tinkerpop/gremlin/wiki/Defining-a-Property-Graph)
 written in .NET/Mono. It comes with some syntactic sugar to build a powerful "LINQ to graphs" interface. A process graph is composed of a set of process vertices connected to one another by a set of communication edges. Pipes supports the splitting, merging, and transformation of data from input to output. 
 
 #### Usage
@@ -29,15 +29,15 @@ Pipes.NET comes with some syntactic sugar to make coexistence with LINQ a bit ea
 
 #### Help and Documentation
 
-Additional help and much more examples can be found in the [Wiki](http://github.com/ahzf/BlueprintPipes.NET/wiki).   
+Additional help and much more examples can be found in the [Wiki](http://github.com/ahzf/Balder/wiki).   
 News and updates can also be found on twitter by following: [@ahzf](http://www.twitter.com/ahzf) or [@graphdbs](http://www.twitter.com/graphdbs).
 
 #### Installation
 
-The installation of BlueprintPipes.NET is very straightforward.    
+The installation of Balder is very straightforward.    
 Just check out or download its sources and all its dependencies:
 
-- [Blueprints.NET](http://github.com/ahzf/blueprints.NET) for the handling of property graphs
+- [Blueprints.NET](http://github.com/ahzf/Balder) for the handling of property graphs
 - [Pipes.NET](http://github.com/ahzf/pipes.NET) a graph-based data flow framework.
 - [NUnit](http://www.nunit.org/) for unit tests
 
@@ -45,15 +45,15 @@ If you are interessted in using the [PipesShell](http://github.com/ahzf/pipes.NE
 
 #### License and your contribution
 
-[BlueprintPipes.NET](http://github.com/ahzf/BlueprintPipes.NET) is released under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0). For details see the [LICENSE](/ahzf/BlueprintPipes.NET/blob/master/LICENSE) file.    
-To suggest a feature, report a bug or general discussion: [http://github.com/ahzf/BlueprintPipes.NET/issues](http://github.com/ahzf/BlueprintPipes.NET/issues)    
+[BlueprintPipes.NET](http://github.com/ahzf/BlueprintPipes.NET) is released under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0). For details see the [LICENSE](/ahzf/Balder/blob/master/LICENSE) file.    
+To suggest a feature, report a bug or general discussion: [http://github.com/ahzf/Balder/issues](http://github.com/ahzf/Balder/issues)    
 If you want to help or contribute source code to this project, please use the same license.   
 The coding standards can be found by reading the code ;)
 
 #### Acknowledgments
 
 Pipes.NET is a reimplementation of the [Pipes](http://github.com/tinkerpop/pipes) library for Java provided by [Tinkerpop](http://tinkerpop.com).    
-Please read the [NOTICE](/ahzf/BlueprintPipes.NET/blob/master/NOTICE) file for further credits.
+Please read the [NOTICE](/ahzf/Balder/blob/master/NOTICE) file for further credits.
 
 #### 
 
