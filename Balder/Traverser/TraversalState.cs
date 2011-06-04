@@ -24,7 +24,7 @@ using de.ahzf.Blueprints.PropertyGraph;
 
 #endregion
 
-namespace de.ahzf.Balder
+namespace de.ahzf.Balder.Traverser
 {
 
     public class TraversalState<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,

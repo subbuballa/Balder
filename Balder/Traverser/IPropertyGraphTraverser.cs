@@ -23,7 +23,7 @@ using de.ahzf.Blueprints.PropertyGraph;
 
 #endregion
 
-namespace de.ahzf.Balder.ExtensionMethods
+namespace de.ahzf.Balder.Traverser
 {
 
     public static class IPropertyGraphTraverser
