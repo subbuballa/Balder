@@ -46,6 +46,7 @@
     <Compile Include="ExtensionMethods\HigherOrderRelations\IsComplicatedExtensions.cs" />
     <Compile Include="ExtensionMethods\IPropertyEdgeExtensions.cs" />
     <Compile Include="ExtensionMethods\IPropertyGraphExtensions.cs" />
+    <Compile Include="ExtensionMethods\IPropertyGraphTraverser.cs" />
     <Compile Include="ExtensionMethods\IPropertyVertexExtensions.cs" />
     <Compile Include="ExtensionMethods\PropertyExtensions.cs" />
     <Compile Include="Filters\EdgeIdFilterPipe.cs" />
@@ -60,6 +61,9 @@
     <Compile Include="Pipes\IPropertyEdge\OutVertexPipe.cs" />
     <Compile Include="Pipes\IPropertyGraph\AllEdgesPipe.cs" />
     <Compile Include="Pipes\IPropertyGraph\AllVerticesPipe.cs" />
+    <Compile Include="Pipes\IPropertyGraph\TraversalDelegates.cs" />
+    <Compile Include="Pipes\IPropertyGraph\TraversalOrder.cs" />
+    <Compile Include="Pipes\IPropertyGraph\TraversalState.cs" />
     <Compile Include="Pipes\IPropertyHyperEdge\HyperEdgeLabelPipe.cs" />
     <Compile Include="Pipes\IPropertyHyperEdge\IdHyperEdgePipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\AbstractEdgesPipe.cs" />
