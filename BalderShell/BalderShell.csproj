@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4D91B472-9ED3-4AAB-ADE3-B14ED1BCF780}</ProjectGuid>
+    <ProjectGuid>{AA7A53EB-2B9A-4DF1-8B83-576381166BAF}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BlueprintPipesShell</RootNamespace>
-    <AssemblyName>BlueprintPipesShell</AssemblyName>
+    <RootNamespace>BalderShell</RootNamespace>
+    <AssemblyName>BalderShell</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -67,9 +67,9 @@
       <Project>{3949790D-8591-4101-9E4D-CE7A758E7409}</Project>
       <Name>Pipes</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BlueprintPipes\BlueprintPipes.csproj">
-      <Project>{6BDAAB41-73D0-4899-A184-F10B3403BAFD}</Project>
-      <Name>BlueprintPipes</Name>
+    <ProjectReference Include="..\Balder\Balder.csproj">
+      <Project>{D2B4E7C7-0524-4DE5-9D62-2DE05682A74D}</Project>
+      <Name>Balder</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -27,7 +27,7 @@ using de.ahzf.Pipes;
 
 #endregion
 
-namespace de.ahzf.BlueprintPipes.UnitTests.FilterPipes
+namespace de.ahzf.Balder.UnitTests.FilterPipes
 {
 
     [TestFixture]

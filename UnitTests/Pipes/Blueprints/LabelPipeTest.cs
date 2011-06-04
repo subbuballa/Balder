@@ -26,7 +26,7 @@ using NUnit.Framework;
 
 #endregion
 
-namespace de.ahzf.BlueprintPipes.UnitTests.Blueprints
+namespace de.ahzf.Balder.UnitTests.Blueprints
 {
 
     [TestFixture]

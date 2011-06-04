@@ -1,10 +1,10 @@
 *.pidb
 *.VisualState.xml
 *.suo
-/BlueprintPipes/bin
-/BlueprintPipes/obj
+/Balder/bin
+/Balder/obj
 /UnitTests/bin
 /UnitTests/obj
 /UnitTests/TestResult.xml
-/BlueprintPipesShell/obj
-/BlueprintPipesShell/bin
+/BalderShell/obj
+/BalderShell/bin

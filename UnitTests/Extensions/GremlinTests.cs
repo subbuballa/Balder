@@ -26,11 +26,11 @@ using NUnit.Framework;
 using de.ahzf.Blueprints;
 using de.ahzf.Blueprints.PropertyGraph;
 
-using de.ahzf.BlueprintPipes.ExtensionMethods;
+using de.ahzf.Balder.ExtensionMethods;
 
 #endregion
 
-namespace de.ahzf.BlueprintPipes.UnitTests.Pipes
+namespace de.ahzf.Balder.UnitTests.Pipes
 {
 
     [TestFixture]

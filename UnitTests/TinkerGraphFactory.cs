@@ -25,7 +25,7 @@ using de.ahzf.Blueprints.PropertyGraph.InMemory;
 
 #endregion
 
-namespace de.ahzf.BlueprintPipes.UnitTests
+namespace de.ahzf.Balder.UnitTests
 {
 
     public static class TinkerGraphFactory

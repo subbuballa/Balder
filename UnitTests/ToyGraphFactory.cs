@@ -26,11 +26,11 @@ using de.ahzf.Blueprints.PropertyGraph;
 using de.ahzf.Blueprints.PropertyGraph.InMemory;
 
 using de.ahzf.Pipes;
-using de.ahzf.BlueprintPipes.ExtensionMethods;
+using de.ahzf.Balder.ExtensionMethods;
 
 #endregion
 
-namespace de.ahzf.BlueprintPipes.UnitTests
+namespace de.ahzf.Balder.UnitTests
 {
 
     public static class ToyGraphFactory

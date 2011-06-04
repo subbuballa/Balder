@@ -29,7 +29,7 @@ using de.ahzf.Pipes;
 
 #endregion
 
-namespace de.ahzf.BlueprintPipes.UnitTests.util
+namespace de.ahzf.Balder.UnitTests.util
 {
 
     [TestFixture]

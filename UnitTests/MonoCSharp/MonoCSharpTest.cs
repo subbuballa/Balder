@@ -27,7 +27,7 @@ using de.ahzf.Blueprints.PropertyGraph;
 
 #endregion
 
-namespace de.ahzf.BlueprintPipes.UnitTests.MonoCSharp
+namespace de.ahzf.Balder.UnitTests.MonoCSharp
 {
 
     [TestFixture]
