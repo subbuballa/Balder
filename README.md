@@ -1,7 +1,8 @@
 ![Balder logo](/ahzf/Balder/raw/master/doc/BlueprintPipes.NET-logo.png)
 
 [Balder](http://github.com/ahzf/Balder) is a graph-based data flow framework for [property graph models](http://github.com/tinkerpop/gremlin/wiki/Defining-a-Property-Graph)
-written in .NET/Mono. It comes with some syntactic sugar to build a powerful "LINQ to graphs" interface. A process graph is composed of a set of process vertices connected to one another by a set of communication edges. Pipes supports the splitting, merging, and transformation of data from input to output. 
+written in .NET/Mono. It comes with some syntactic sugar to build a powerful "LINQ to graphs" interface. A process graph is composed of a set of process vertices connected to one another by a set of communication edges. Pipes supports the splitting, merging, and transformation of data from input to output.     
+Balder is for .NET what [Gremlin](http://github.com/tinkerpop/gremlin) is for [Groovy](http://groovy.codehaus.org/) or [Pacer](http://github.com/pangloss/pacer) is for [Ruby](http://www.ruby-lang.org).
 
 #### Usage
 
