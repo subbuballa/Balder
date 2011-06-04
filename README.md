@@ -1,17 +1,16 @@
 ![Balder logo](/ahzf/Balder/raw/master/doc/BlueprintPipes.NET-logo.png)
 
 [Balder](http://github.com/ahzf/Balder) is a graph-based data flow framework for [property graph models](http://github.com/tinkerpop/gremlin/wiki/Defining-a-Property-Graph)
-written in .NET/Mono. It comes with some syntactic sugar to build a powerful "LINQ to graphs" interface. A process graph is composed of a set of process vertices connected to one another by a set of communication edges. Pipes supports the splitting, merging, and transformation of data from input to output.     
-Balder is for .NET what [Gremlin](http://github.com/tinkerpop/gremlin) is for [Groovy](http://groovy.codehaus.org/) or [Pacer](http://github.com/pangloss/pacer) is for [Ruby](http://www.ruby-lang.org).
+written in .NET/Mono. It comes with some syntactic sugar to build a powerful "LINQ to graphs" interface. A process graph is composed of a set of process vertices connected to one another by a set of communication edges. Pipes supports the splitting, merging, and transformation of data from input to output. Balder is for .NET what [Gremlin](http://github.com/tinkerpop/gremlin) is for [Groovy](http://groovy.codehaus.org/) or [Pacer](http://github.com/pangloss/pacer) is for [Ruby](http://www.ruby-lang.org).
 
 #### Usage
 
-Pipes.NET comes with some syntactic sugar to make coexistence with LINQ a bit easier.
+[Balder](http://github.com/ahzf/Balder) comes with some syntactic sugar to make coexistence with LINQ a bit easier.
 
-    var _Friends = _Graph.VertexId(1).
-                   OutEdges("knows").
-                   InVertex().
-                   GetProperty<String>("name");
+    var _Friends = _Graph.V().
+                   OutE("knows").
+                   InV().
+                   Prop("name");
 
     _Friends.ForEach(_Friend => Console.WriteLine(_Friend));
 
@@ -38,22 +37,22 @@ News and updates can also be found on twitter by following: [@ahzf](http://www.t
 The installation of Balder is very straightforward.    
 Just check out or download its sources and all its dependencies:
 
-- [Blueprints.NET](http://github.com/ahzf/Balder) for the handling of property graphs
-- [Pipes.NET](http://github.com/ahzf/pipes.NET) a graph-based data flow framework.
+- [Blueprints.NET](http://github.com/ahzf/Blueprints.NET) for the handling of property graphs
+- [Pipes.NET](http://github.com/ahzf/Pipes.NET) a graph-based data flow framework.
 - [NUnit](http://www.nunit.org/) for unit tests
 
 If you are interessted in using the [PipesShell](http://github.com/ahzf/pipes.NET/wiki/PipesShell-for-Adhoc-Graph-Querying) you have to add the latest [Mono.CSharp](http://tirania.org/blog/archive/2011/Feb-24.html) library (2011-02-28).
 
 #### License and your contribution
 
-[BlueprintPipes.NET](http://github.com/ahzf/BlueprintPipes.NET) is released under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0). For details see the [LICENSE](/ahzf/Balder/blob/master/LICENSE) file.    
+[Balder](http://github.com/ahzf/Balder) is released under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0). For details see the [LICENSE](/ahzf/Balder/blob/master/LICENSE) file.    
 To suggest a feature, report a bug or general discussion: [http://github.com/ahzf/Balder/issues](http://github.com/ahzf/Balder/issues)    
 If you want to help or contribute source code to this project, please use the same license.   
 The coding standards can be found by reading the code ;)
 
 #### Acknowledgments
 
-Pipes.NET is a reimplementation of the [Pipes](http://github.com/tinkerpop/pipes) library for Java provided by [Tinkerpop](http://tinkerpop.com).    
+[Balder](http://github.com/ahzf/Balder) is to some extent a reimplementation of the [Pipes](http://github.com/tinkerpop/pipes) library for Java provided by [Tinkerpop](http://tinkerpop.com).    
 Please read the [NOTICE](/ahzf/Balder/blob/master/NOTICE) file for further credits.
 
 #### 
