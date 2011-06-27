@@ -181,7 +181,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
 
             for (var i = 0; i < 100000; i++)
-                _Graph.AddVertex(null);
+                _Graph.AddVertex();
 
             var _Vertices = new AllVerticesPipe<VertexId,    RevisionId,         String, Object,
                                                 EdgeId,      RevisionId, String, String, Object,
