@@ -40,7 +40,7 @@ namespace de.ahzf.Balder
         where TId            : IEquatable<TId>,         IComparable<TId>,         IComparable, TValue
         where TRevisionId    : IEquatable<TRevisionId>, IComparable<TRevisionId>, IComparable, TValue
         where TKey           : IEquatable<TKey>,        IComparable<TKey>,        IComparable
-        where S              : IPropertyElement<TId, TRevisionId, TKey, TValue>
+        where S              : IGraphElement<TId, TRevisionId, TKey, TValue>
         where E              : TValue, IComparable
 
     {
@@ -98,7 +98,7 @@ namespace de.ahzf.Balder
 
                     var _IElement = _InternalEnumerator.Current;
 
-                    if (!CompareObjects((E) (Object) _IElement.Properties.GetProperty(_Key), (E) (Object) _Value))
+                    if (!CompareObjects((E) (Object) _IElement.PropertyData.GetProperty(_Key), (E) (Object) _Value))
                     {
                         _CurrentElement = _IElement;
                         return true;

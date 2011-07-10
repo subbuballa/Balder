@@ -50,7 +50,7 @@ namespace de.ahzf.Balder.ExtensionMethods
             where TRevisionId    : IEquatable<TRevisionId>, IComparable<TRevisionId>, IComparable, TValue
             where TKey           : IEquatable<TKey>,        IComparable<TKey>,        IComparable
             where TDatastructure : IDictionary<TKey, TValue>
-            where S              : IPropertyElement<TId, TRevisionId, TKey, TValue, TDatastructure>
+            where S              : IGraphElement<TId, TRevisionId, TKey, TValue, TDatastructure>
 
         {
 

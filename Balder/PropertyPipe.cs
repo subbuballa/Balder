@@ -42,7 +42,7 @@ namespace de.ahzf.Balder
         where TId            : IEquatable<TId>,         IComparable<TId>,         IComparable, TValue
         where TRevisionId    : IEquatable<TRevisionId>, IComparable<TRevisionId>, IComparable, TValue
         where TKey           : IEquatable<TKey>,        IComparable<TKey>,        IComparable
-        where S              : IPropertyElement<TId, TRevisionId, TKey, TValue>
+        where S              : IGraphElement<TId, TRevisionId, TKey, TValue>
 
     {
 
@@ -105,7 +105,7 @@ namespace de.ahzf.Balder
                 // Second emit the properties
                 if (_PropertyEnumerator.MoveNext())
                 {
-                    _CurrentElement = (E) (Object) _InternalEnumerator.Current.Properties.GetProperty(_PropertyEnumerator.Current);
+                    _CurrentElement = (E) (Object) _InternalEnumerator.Current.PropertyData.GetProperty(_PropertyEnumerator.Current);
                     return true;
                 }
 
@@ -242,7 +242,7 @@ namespace de.ahzf.Balder
                 // Second emit the properties
                 if (_PropertyEnumerator.MoveNext())
                 {
-                    _CurrentElement = (TValueVertex) (Object) _InternalEnumerator.Current.Properties.GetProperty(_PropertyEnumerator.Current);
+                    _CurrentElement = (TValueVertex) (Object) _InternalEnumerator.Current.PropertyData.GetProperty(_PropertyEnumerator.Current);
                     return true;
                 }
 
