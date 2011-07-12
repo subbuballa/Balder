@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipes", "..\Pipes.NET\Pipes\Pipes.csproj", "{3949790D-8591-4101-9E4D-CE7A758E7409}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{4BF95036-986A-47EE-B48E-CF8C2B0E7841}"
@@ -16,6 +16,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balder", "Balder\Balder.csproj", "{D2B4E7C7-0524-4DE5-9D62-2DE05682A74D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalderShell", "BalderShell\BalderShell.csproj", "{AA7A53EB-2B9A-4DF1-8B83-576381166BAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tutorials", "Tutorials\Tutorials.csproj", "{E142819C-BC1D-4E34-B842-53757612432D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrows", "..\Arrows.NET\Arrows\Arrows.csproj", "{55B3070D-C264-44BB-8315-504F8C512D75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +111,26 @@ Global
 		{AA7A53EB-2B9A-4DF1-8B83-576381166BAF}.Release|Mixed Platforms.Build.0 = Release|x86
 		{AA7A53EB-2B9A-4DF1-8B83-576381166BAF}.Release|x86.ActiveCfg = Release|x86
 		{AA7A53EB-2B9A-4DF1-8B83-576381166BAF}.Release|x86.Build.0 = Release|x86
+		{E142819C-BC1D-4E34-B842-53757612432D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{E142819C-BC1D-4E34-B842-53757612432D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{E142819C-BC1D-4E34-B842-53757612432D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{E142819C-BC1D-4E34-B842-53757612432D}.Debug|x86.ActiveCfg = Debug|x86
+		{E142819C-BC1D-4E34-B842-53757612432D}.Debug|x86.Build.0 = Debug|x86
+		{E142819C-BC1D-4E34-B842-53757612432D}.Release|Any CPU.ActiveCfg = Release|x86
+		{E142819C-BC1D-4E34-B842-53757612432D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{E142819C-BC1D-4E34-B842-53757612432D}.Release|Mixed Platforms.Build.0 = Release|x86
+		{E142819C-BC1D-4E34-B842-53757612432D}.Release|x86.ActiveCfg = Release|x86
+		{E142819C-BC1D-4E34-B842-53757612432D}.Release|x86.Build.0 = Release|x86
+		{55B3070D-C264-44BB-8315-504F8C512D75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55B3070D-C264-44BB-8315-504F8C512D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55B3070D-C264-44BB-8315-504F8C512D75}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{55B3070D-C264-44BB-8315-504F8C512D75}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{55B3070D-C264-44BB-8315-504F8C512D75}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{55B3070D-C264-44BB-8315-504F8C512D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55B3070D-C264-44BB-8315-504F8C512D75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55B3070D-C264-44BB-8315-504F8C512D75}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{55B3070D-C264-44BB-8315-504F8C512D75}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{55B3070D-C264-44BB-8315-504F8C512D75}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

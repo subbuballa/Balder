@@ -1643,7 +1643,7 @@ namespace de.ahzf.Balder.ExtensionMethods
         #endregion
 
 
-        #region VertexPropertyPipe(this IEnumerable<IPropertyEdge<...>>, params PropertyKeys)
+        #region VertexPropertyPipe(this IEnumerable<IPropertyVertex<...>>, params PropertyKeys)
 
         /// <summary>
         /// Returns the vertex identifiers of the given PropertyVertices.

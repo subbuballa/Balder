@@ -46,6 +46,8 @@
     <Compile Include="ExtensionMethods\HigherOrderRelations\IsComplicatedExtensions.cs" />
     <Compile Include="ExtensionMethods\IPropertyEdgeExtensions.cs" />
     <Compile Include="ExtensionMethods\IPropertyGraphExtensions.cs" />
+    <Compile Include="Pipes\IPropertyEdge\EdgePropertyPipe.cs" />
+    <Compile Include="Pipes\IPropertyVertex\VertexPropertyPipe.cs" />
     <Compile Include="Traverser\TraverserFactory.cs" />
     <Compile Include="Traverser\IPropertyGraphTraverser.cs" />
     <Compile Include="ExtensionMethods\IPropertyVertexExtensions.cs" />
@@ -81,6 +83,10 @@
     <Compile Include="PropertyPipe.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Arrows.NET\Arrows\Arrows.csproj">
+      <Project>{55B3070D-C264-44BB-8315-504F8C512D75}</Project>
+      <Name>Arrows</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Blueprints.NET\Blueprints\Blueprints.csproj">
       <Project>{B9DE4181-416E-4DE4-A983-B90FC9412774}</Project>
       <Name>Blueprints</Name>
