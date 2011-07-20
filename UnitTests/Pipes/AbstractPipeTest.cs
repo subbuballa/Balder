@@ -77,7 +77,7 @@ namespace de.ahzf.Balder.UnitTests.Pipes
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
 
-            var _Marko = _Graph.GetVertex(new VertexId("1"));
+            var _Marko = _Graph.VertexById(new VertexId("1"));
             
             var _Pipe1 = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
                                           EdgeId,      RevisionId, String, String, Object,
@@ -116,22 +116,22 @@ namespace de.ahzf.Balder.UnitTests.Pipes
 
                 if (_Name == "vadas")
                 {
-                    Assert.AreEqual(_Graph.GetEdge(new EdgeId(7)),     path[1]);
-                    Assert.AreEqual(_Graph.GetVertex(new VertexId(2)), path[2]);
+                    Assert.AreEqual(_Graph.EdgeById(new EdgeId(7)),     path[1]);
+                    Assert.AreEqual(_Graph.VertexById(new VertexId(2)), path[2]);
                     Assert.AreEqual("vadas", path[3]);
                 }
                 
                 else if (_Name == "lop")
                 {
-                    Assert.AreEqual(_Graph.GetEdge(new EdgeId(9)),     path[1]);
-                    Assert.AreEqual(_Graph.GetVertex(new VertexId(3)), path[2]);
+                    Assert.AreEqual(_Graph.EdgeById(new EdgeId(9)),     path[1]);
+                    Assert.AreEqual(_Graph.VertexById(new VertexId(3)), path[2]);
                     Assert.AreEqual("lop", path[3]);
                 }
                 
                 else if (_Name == "josh")
                 {
-                    Assert.AreEqual(_Graph.GetEdge(new EdgeId(8)),     path[1]);
-                    Assert.AreEqual(_Graph.GetVertex(new VertexId(4)), path[2]);
+                    Assert.AreEqual(_Graph.EdgeById(new EdgeId(8)),     path[1]);
+                    Assert.AreEqual(_Graph.VertexById(new VertexId(4)), path[2]);
                     Assert.AreEqual("josh", path[3]);
                 }
 

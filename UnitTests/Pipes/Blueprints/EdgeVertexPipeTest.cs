@@ -42,13 +42,13 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
 
-            var _Marko = _Graph.GetVertex(new VertexId("1"));
+            var _Marko = _Graph.VertexById(new VertexId("1"));
 
             var _EVP   = new InVertexPipe<VertexId,    RevisionId,         String, Object,
                                           EdgeId,      RevisionId, String, String, Object,
                                           HyperEdgeId, RevisionId, String, String, Object>();
 
-            _EVP.SetSourceCollection(_Marko.OutEdges);
+            _EVP.SetSourceCollection(_Marko.OutEdges());
 
             var _Counter = 0;
             while (_EVP.MoveNext())
@@ -61,13 +61,13 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             Assert.AreEqual(3, _Counter);
 
 
-            var _Josh = _Graph.GetVertex(new VertexId("4"));
+            var _Josh = _Graph.VertexById(new VertexId("4"));
             
             _EVP = new InVertexPipe<VertexId,    RevisionId,         String, Object,
                                     EdgeId,      RevisionId, String, String, Object,
                                     HyperEdgeId, RevisionId, String, String, Object>();
 
-            _EVP.SetSource(_Josh.OutEdges.GetEnumerator());
+            _EVP.SetSource(_Josh.OutEdges().GetEnumerator());
 
             _Counter = 0;
             while (_EVP.MoveNext())
@@ -93,12 +93,12 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
 
-            var _Josh  = _Graph.GetVertex(new VertexId("4"));
+            var _Josh  = _Graph.VertexById(new VertexId("4"));
             IPropertyEdge<VertexId,    RevisionId,         String, Object,
                           EdgeId,      RevisionId, String, String, Object,
                           HyperEdgeId, RevisionId, String, String, Object> _TmpEdge = null;
 
-            foreach (var _Edge in _Josh.OutEdges)
+            foreach (var _Edge in _Josh.OutEdges())
             {
                 if (_Edge.Id.Equals(new VertexId("11")))
                     _TmpEdge = _Edge;

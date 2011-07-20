@@ -70,7 +70,7 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
 
             _Pipeline.SetSource(new SingleEnumerator<IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                      EdgeId,      RevisionId, String, String, Object,
-                                                                     HyperEdgeId, RevisionId, String, String, Object>>(_Graph.GetVertex(new VertexId(1))));
+                                                                     HyperEdgeId, RevisionId, String, String, Object>>(_Graph.VertexById(new VertexId(1))));
 	
             var _Counter = 0;
 	
@@ -78,9 +78,9 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
             {
                 
                 _Counter++;
-                
-                Assert.IsTrue(_Object.Equals(_Graph.GetVertex(new VertexId(6))) ||
-                              _Object.Equals(_Graph.GetVertex(new VertexId(4))));
+
+                Assert.IsTrue(_Object.Equals(_Graph.VertexById(new VertexId(6))) ||
+                              _Object.Equals(_Graph.VertexById(new VertexId(4))));
 
             }
 	

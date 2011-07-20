@@ -70,8 +70,8 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
 			// ./outE[@label='created' or @weight > 0.5]
 
 	        var _Graph 			= TinkerGraphFactory.CreateTinkerGraph();
-	        var _Marko 			= _Graph.GetVertex(new VertexId("1"));
-	        var _Peter 			= _Graph.GetVertex(new VertexId("6"));
+	        var _Marko 			= _Graph.VertexById(new VertexId("1"));
+	        var _Peter 			= _Graph.VertexById(new VertexId("6"));
 
 	        var _Pipe0 			= new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
                                                    EdgeId,      RevisionId, String, String, Object,
@@ -133,7 +133,7 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
 			// ./outE[@label='created' or (@label='knows' and @weight > 0.5)]
 
 	        var _Graph 		= TinkerGraphFactory.CreateTinkerGraph();
-	        var _Marko 		= _Graph.GetVertex(new VertexId("1"));
+	        var _Marko 		= _Graph.VertexById(new VertexId("1"));
 	        
             var _Pipe1 		= new OutEdgesPipe   <VertexId,    RevisionId,         String, Object,
                                                   EdgeId,      RevisionId, String, String, Object,
@@ -236,7 +236,7 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
             // ./outE[@label='created']/inV[@name='lop']/../../@name
 
             var _Graph      = TinkerGraphFactory.CreateTinkerGraph();
-            var _Marko      = _Graph.GetVertex(new VertexId("1"));
+            var _Marko      = _Graph.VertexById(new VertexId("1"));
 
             var _PipeA      = new OutEdgesPipe   <VertexId,    RevisionId,         String, Object,
                                                   EdgeId,      RevisionId, String, String, Object,
@@ -305,7 +305,7 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
             // ./outE[@weight > 0.5]/inV/../../outE/inV/@name
 
             var _Graph      = TinkerGraphFactory.CreateTinkerGraph();
-            var _Marko      = _Graph.GetVertex(new VertexId("1"));
+            var _Marko      = _Graph.VertexById(new VertexId("1"));
 
             var _PipeA      = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
                                                EdgeId,      RevisionId, String, String, Object,
@@ -378,7 +378,7 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
             // ./outE/inV/../../outE/../outE/inV/@name
 
             var _Graph      = TinkerGraphFactory.CreateTinkerGraph();
-            var _Marko      = _Graph.GetVertex(new VertexId("1"));
+            var _Marko      = _Graph.VertexById(new VertexId("1"));
 
             var _PipeA      = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
                                                EdgeId,      RevisionId, String, String, Object,

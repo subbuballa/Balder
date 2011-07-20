@@ -133,14 +133,14 @@ namespace de.ahzf.Balder
                         _NextEdges = new MultiEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
                                                                        TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                        TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
-                                         (_InternalEnumerator.Current.GetInEdges (_Label).GetEnumerator(),
-                                          _InternalEnumerator.Current.GetOutEdges(_Label).GetEnumerator());
+                                         (_InternalEnumerator.Current.InEdges (_Label).GetEnumerator(),
+                                          _InternalEnumerator.Current.OutEdges(_Label).GetEnumerator());
                     else
                         _NextEdges = new MultiEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,                     TKeyVertex,    TValueVertex,
                                                                        TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                        TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
-                                         (_InternalEnumerator.Current.InEdges .GetEnumerator(),
-                                          _InternalEnumerator.Current.OutEdges.GetEnumerator());
+                                         (_InternalEnumerator.Current.InEdges() .GetEnumerator(),
+                                          _InternalEnumerator.Current.OutEdges().GetEnumerator());
 
                 }
 

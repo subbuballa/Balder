@@ -126,7 +126,7 @@ namespace de.ahzf.Balder
                 }
 
                 else if (_InternalEnumerator.MoveNext())
-                    _EdgeIterator = _InternalEnumerator.Current.GetEdges(_EdgeFilter).GetEnumerator();
+                    _EdgeIterator = _InternalEnumerator.Current.Edges(_EdgeFilter).GetEnumerator();
 
                 else
                     return false;

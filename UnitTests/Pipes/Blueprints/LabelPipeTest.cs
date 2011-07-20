@@ -45,7 +45,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
                                            EdgeId,      RevisionId, String, String, Object,
                                            HyperEdgeId, RevisionId, String, String, Object>();
 
-            _Pipe.SetSourceCollection(_Graph.GetVertex(new VertexId("1")).OutEdges);
+            _Pipe.SetSourceCollection(_Graph.VertexById(new VertexId("1")).OutEdges());
 
             var _Counter = 0;
             while (_Pipe.MoveNext())

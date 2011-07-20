@@ -126,7 +126,7 @@ namespace de.ahzf.Balder
                 }
 
                 else if (_InternalEnumerator.MoveNext())
-                    _VertexIterator = _InternalEnumerator.Current.GetVertices(_VertexFilter).GetEnumerator();
+                    _VertexIterator = _InternalEnumerator.Current.Vertices(_VertexFilter).GetEnumerator();
 
                 else
                     return false;

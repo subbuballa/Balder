@@ -128,9 +128,9 @@ namespace de.ahzf.Balder
                 {
 
                     if (_UseLabel)
-                        _NextEdges = _InternalEnumerator.Current.GetInEdges(_Label).GetEnumerator();
+                        _NextEdges = _InternalEnumerator.Current.InEdges(_Label).GetEnumerator();
                     else
-                        _NextEdges = _InternalEnumerator.Current.InEdges.GetEnumerator();
+                        _NextEdges = _InternalEnumerator.Current.InEdges().GetEnumerator();
 
                 }
 

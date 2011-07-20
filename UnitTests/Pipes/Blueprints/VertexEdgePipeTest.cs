@@ -42,7 +42,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
         {
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
-            var _Marko = _Graph.GetVertex(new VertexId("1"));
+            var _Marko = _Graph.VertexById(new VertexId("1"));
 
             var _VSF   = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
                                           EdgeId,      RevisionId, String, String, Object,
@@ -65,7 +65,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             
 
             
-            var _Josh = _Graph.GetVertex(new VertexId("4"));
+            var _Josh = _Graph.VertexById(new VertexId("4"));
 
             _VSF = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
                                     EdgeId,      RevisionId, String, String, Object,
@@ -88,7 +88,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
 
 
 
-            var _Lop = _Graph.GetVertex(new VertexId("3"));
+            var _Lop = _Graph.VertexById(new VertexId("3"));
 
             _VSF = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
                                     EdgeId,      RevisionId, String, String, Object,
@@ -117,7 +117,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
         {
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
-            var _Josh  = _Graph.GetVertex(new VertexId("4"));
+            var _Josh  = _Graph.VertexById(new VertexId("4"));
             
             var _Pipe = new InEdgesPipe<VertexId,    RevisionId,         String, Object,
                                         EdgeId,      RevisionId, String, String, Object,
@@ -148,7 +148,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
         {
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
-            var _Josh  = _Graph.GetVertex(new VertexId("4"));
+            var _Josh  = _Graph.VertexById(new VertexId("4"));
 
             var _Pipe = new BothEdgesPipe<VertexId,    RevisionId,         String, Object,
                                           EdgeId,      RevisionId, String, String, Object,

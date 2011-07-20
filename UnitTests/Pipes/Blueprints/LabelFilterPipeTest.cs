@@ -42,13 +42,13 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
 
-            var _Marko = _Graph.GetVertex(new VertexId("1"));
+            var _Marko = _Graph.VertexById(new VertexId("1"));
 
             var _LFP   = new LabelFilterPipe<VertexId,    RevisionId,         String, Object,
                                              EdgeId,      RevisionId, String, String, Object,
                                              HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
 
-            _LFP.SetSourceCollection(_Marko.OutEdges);
+            _LFP.SetSourceCollection(_Marko.OutEdges());
 
             var _Counter = 0;
             while (_LFP.MoveNext())
@@ -66,7 +66,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
                                        EdgeId,      RevisionId, String, String, Object,
                                        HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.EQUAL);
 
-            _LFP.SetSourceCollection(_Marko.OutEdges);
+            _LFP.SetSourceCollection(_Marko.OutEdges());
 
             _Counter = 0;
             while (_LFP.MoveNext())

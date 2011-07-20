@@ -88,7 +88,7 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
         {
 
 			var _Graph 				= TinkerGraphFactory.CreateTinkerGraph();
-	        var _Marko 				= _Graph.GetVertex(new VertexId(1));
+	        var _Marko 				= _Graph.VertexById(new VertexId(1));
 
 	        var _OutEPipe 			= new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
                                                        EdgeId,      RevisionId, String, String, Object,

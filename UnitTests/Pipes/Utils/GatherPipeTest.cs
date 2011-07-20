@@ -66,7 +66,7 @@ namespace de.ahzf.Balder.UnitTests.util
 
             _Pipeline.SetSource(new SingleEnumerator<IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                      EdgeId,      RevisionId, String, String, Object,
-                                                                     HyperEdgeId, RevisionId, String, String, Object>>(_Graph.GetVertex(new VertexId("1"))));
+                                                                     HyperEdgeId, RevisionId, String, String, Object>>(_Graph.VertexById(new VertexId("1"))));
 
             while (_Pipeline.MoveNext())
                 Console.WriteLine(_Pipeline.Current + "--->");// + pipeline.Path);

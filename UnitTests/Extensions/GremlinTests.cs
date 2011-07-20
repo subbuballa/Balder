@@ -48,7 +48,7 @@ namespace de.ahzf.Balder.UnitTests.Pipes
             var _AllEdges01 = _ToyGraph.V().OutE().ToList();
             var _AllEdges02 = _ToyGraph.V().OutE("loves").ToList();
 
-            var a = _ToyGraph.GetVertex(new VertexId(1)).OutE("knows");
+            var a = _ToyGraph.VertexById(new VertexId(1)).OutE("knows");
 
         }
 

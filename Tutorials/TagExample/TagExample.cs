@@ -116,7 +116,7 @@ namespace de.ahzf.Tutorials
 
 
             // Find out which tags xkcd is tagged with
-            foreach (var _TagName in _xkcd.GetOutEdges(_TagLabel).InV().Prop(_Name))
+            foreach (var _TagName in _xkcd.OutEdges(_TagLabel).InV().Prop(_Name))
                 Console.WriteLine(_TagName);
 
 
@@ -127,7 +127,7 @@ namespace de.ahzf.Tutorials
                            select new
                            {
                                Name  = Website.GetProperty(_Name),
-                               Count = Website.GetOutEdges(_TagLabel).Count()
+                               Count = Website.OutEdges(_TagLabel).Count()
                            };
 
             foreach (var _Site in _WebList)

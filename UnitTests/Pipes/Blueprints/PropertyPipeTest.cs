@@ -42,7 +42,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
         {
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
-            var _Marko = _Graph.GetVertex(new VertexId("1"));
+            var _Marko = _Graph.VertexById(new VertexId("1"));
 
             var _PPipe = new PropertyPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                                                 EdgeId,      RevisionId, String, String, Object,
@@ -71,7 +71,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
         {
 
             var _Graph    = TinkerGraphFactory.CreateTinkerGraph();
-            var _Marko    = _Graph.GetVertex(new VertexId("1"));
+            var _Marko    = _Graph.VertexById(new VertexId("1"));
             
             var _EVP      = new InVertexPipe<VertexId,    RevisionId,         String, Object,
                                              EdgeId,      RevisionId, String, String, Object,
@@ -85,7 +85,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
                                                        EdgeId,      RevisionId, String, String, Object,
                                                        HyperEdgeId, RevisionId, String, String, Object>, String>(_EVP, _PPipe);
 
-            _Pipeline.SetSourceCollection(_Marko.OutEdges);
+            _Pipeline.SetSourceCollection(_Marko.OutEdges());
 
             var _Counter = 0;
             while (_Pipeline.MoveNext())
@@ -108,8 +108,8 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
         {
 
             var _Graph    = TinkerGraphFactory.CreateTinkerGraph();
-            var _Marko    = _Graph.GetVertex(new VertexId("1"));
-            var _Vadas    = _Graph.GetVertex(new VertexId("2"));
+            var _Marko    = _Graph.VertexById(new VertexId("1"));
+            var _Vadas    = _Graph.VertexById(new VertexId("2"));
 
             var _Pipe     = new PropertyPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId,         String, Object,
                                                                                                    EdgeId,      RevisionId, String, String, Object,

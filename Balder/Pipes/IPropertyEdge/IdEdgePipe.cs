@@ -113,7 +113,7 @@ namespace de.ahzf.Balder
 
             if (_InternalEnumerator.MoveNext())
             {
-                _CurrentElement = _IPropertyGraph.GetEdge(_InternalEnumerator.Current);
+                _CurrentElement = _IPropertyGraph.EdgeById(_InternalEnumerator.Current);
                 return true;
             }
 
