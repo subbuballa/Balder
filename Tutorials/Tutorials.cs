@@ -21,38 +21,32 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-using NUnit.Framework;
-
-using de.ahzf.Blueprints;
 using de.ahzf.Blueprints.PropertyGraph;
-
+using de.ahzf.Blueprints.PropertyGraph.InMemory;
 using de.ahzf.Balder.ExtensionMethods;
+using de.ahzf.Blueprints;
+using de.ahzf.Blueprints.PropertyGraph.Indices;
+using de.ahzf.Blueprints.Indices;
 
 #endregion
 
-namespace de.ahzf.Balder.UnitTests.Pipes
+namespace de.ahzf.Tutorials
 {
 
-    [TestFixture]
-    public class GremlinTests
+
+    /// <summary>
+    /// The Tutorials
+    /// </summary>
+    public class Tutorials
     {
 
-        #region Gremlin01()
-
-        [Test]
-        public void Gremlin01()
+        public static void Main(String[] Args)
         {
 
-            var _ToyGraph = ToyGraphFactory.CreateToyGraph();
-
-            var _AllEdges01 = _ToyGraph.V().OutE().ToList();
-            var _AllEdges02 = _ToyGraph.V().OutE("loves").ToList();
-
-            var a = _ToyGraph.VertexById(new VertexId(1)).OutE("knows");
-
+            //var _Tutorial1 = new TagExample();
+            var _Tutorial2 = new SmallBenchmark();
+            
         }
-
-        #endregion
 
     }
 

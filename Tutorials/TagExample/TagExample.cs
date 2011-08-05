@@ -1,6 +1,6 @@
 ﻿/*
  * Copyright (c) 2010-2011, Achim 'ahzf' Friedland <code@ahzf.de>
- * This file is part of Pipes.NET <http://www.github.com/ahzf/Pipes.NET>
+ * This file is part of Balder <http://www.github.com/ahzf/Balder>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,9 +78,9 @@ namespace de.ahzf.Tutorials
         #endregion
 
 
-        #region Main()
+        #region TagExample()
 
-        public static void Main(String[] Args)
+        public TagExample()
         {
 
             // Create a new simple property graph
