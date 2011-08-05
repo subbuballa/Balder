@@ -20,6 +20,7 @@
 using System;
 using System.Linq;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 using de.ahzf.Blueprints.PropertyGraph;
 using de.ahzf.Blueprints.PropertyGraph.InMemory;
@@ -87,12 +88,36 @@ namespace de.ahzf.Tutorials
         public SmallBenchmark()
         {
 
+            var Stopwatch = new Stopwatch();
+
+            var d = new Dictionary<Int32, Int32>();
+            for (var i = 0; i < 300000; i++)
+            {
+                d.Add(i, i);
+            }
+
+            var count = 0;
+            
+            Stopwatch.Restart();
+            foreach (var INT in d)
+                count += INT.Value;
+            Stopwatch.Stop();
+            Console.WriteLine(Stopwatch.Elapsed.TotalMilliseconds + "ms");
+
+            Stopwatch.Restart();
+            var b = new Int32[300000UL];
+            foreach (var INT in b)
+                count += INT;
+            Stopwatch.Stop();
+            Console.WriteLine(Stopwatch.Elapsed.TotalMilliseconds + "ms");
+
+
             var PRNG = new Random();
 
             // Create a new simple property graph
             var _graph = new SimplePropertyGraph();
 
-            var NumberOfUsers      = 100000UL;
+            var NumberOfUsers      = 300000UL;
             var NumberOfIterations = 30;
             var MinNumberOfEdges   = 20;
             var MaxNumberOfEdges   = 30;
@@ -107,7 +132,6 @@ namespace de.ahzf.Tutorials
 
             var Measurements = new Double[NumberOfIterations];
             
-            var Stopwatch = new Stopwatch();
             Stopwatch.Start();
 
             Vertices[0] = _graph.AddVertex(1);
@@ -168,6 +192,7 @@ namespace de.ahzf.Tutorials
             var stddev = Math.Sqrt(Sum / (Measurements.Count() - 1));
 
             Console.WriteLine("Mean: " + mean + ", stddev: " + stddev);
+            Console.ReadLine();
 
         }
 
