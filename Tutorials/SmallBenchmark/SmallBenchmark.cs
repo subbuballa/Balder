@@ -22,6 +22,7 @@ using System.Linq;
 using System.Diagnostics;
 using System.Collections.Generic;
 
+using de.ahzf.Blueprints;
 using de.ahzf.Blueprints.PropertyGraph;
 using de.ahzf.Blueprints.PropertyGraph.InMemory;
 
@@ -89,38 +90,40 @@ namespace de.ahzf.Tutorials
         {
 
             var Stopwatch = new Stopwatch();
-
-            var d = new Dictionary<Int32, Int32>();
-            for (var i = 0; i < 300000; i++)
-            {
-                d.Add(i, i);
-            }
-
-            var count = 0;
-            
-            Stopwatch.Restart();
-            foreach (var INT in d)
-                count += INT.Value;
-            Stopwatch.Stop();
-            Console.WriteLine(Stopwatch.Elapsed.TotalMilliseconds + "ms");
-
-            Stopwatch.Restart();
-            var b = new Int32[300000UL];
-            foreach (var INT in b)
-                count += INT;
-            Stopwatch.Stop();
-            Console.WriteLine(Stopwatch.Elapsed.TotalMilliseconds + "ms");
-
-
-            var PRNG = new Random();
+                        var PRNG = new Random();
 
             // Create a new simple property graph
             var _graph = new SimplePropertyGraph();
 
-            var NumberOfUsers      = 300000UL;
-            var NumberOfIterations = 30;
-            var MinNumberOfEdges   = 20;
-            var MaxNumberOfEdges   = 30;
+            var NumberOfUsers           = 200000UL;
+            var NumberOfIterations      = 30;
+            var MinNumberOfEdges        = 15;
+            var MaxNumberOfEdges        = 25;
+
+            var CountedNumberOfEdges    = 0UL;
+
+
+            var d = new Dictionary<UInt64, UInt64>();
+            for (var i = 0UL; i < NumberOfUsers; i++)
+            {
+                d.Add(i, i);
+            }
+
+            Stopwatch.Restart();
+            foreach (var INT in d)
+                CountedNumberOfEdges += INT.Value;
+            Stopwatch.Stop();
+            Console.WriteLine(Stopwatch.Elapsed.TotalMilliseconds + "ms");
+
+            Stopwatch.Restart();
+            var b = new UInt64[NumberOfUsers];
+            foreach (var INT in b)
+                CountedNumberOfEdges += INT;
+            Stopwatch.Stop();
+            Console.WriteLine(Stopwatch.Elapsed.TotalMilliseconds + "ms");
+
+
+
 
             IPropertyVertex<UInt64, Int64,         String, Object,
                             UInt64, Int64, String, String, Object,
@@ -161,7 +164,6 @@ namespace de.ahzf.Tutorials
             Console.WriteLine();
 
 
-            var CountedNumberOfEdges = 0UL;
 
             for (var Iteration = 0; Iteration < NumberOfIterations; Iteration++)
             {
@@ -172,7 +174,7 @@ namespace de.ahzf.Tutorials
 
                 foreach (var _Vertex in _graph.Vertices())
                 {
-                    CountedNumberOfEdges += _Vertex.OutDegree();
+                    CountedNumberOfEdges += (UInt64) _Vertex.OutDegree();
                 }
 
                 Stopwatch.Stop();
@@ -181,17 +183,8 @@ namespace de.ahzf.Tutorials
 
             }
 
-            var mean = Measurements.Average();
-            var Sum  = 0.0;
-
-            foreach (var Measurement in Measurements)
-            {
-                Sum += (Measurement - mean) * (Measurement - mean);
-            }
-
-            var stddev = Math.Sqrt(Sum / (Measurements.Count() - 1));
-
-            Console.WriteLine("Mean: " + mean + ", stddev: " + stddev);
+            var AverageAndStdDev = Measurements.AverageAndStdDev();
+            Console.WriteLine("Mean: " + AverageAndStdDev.Item1 + ", stddev: " + AverageAndStdDev.Item2);
             Console.ReadLine();
 
         }
