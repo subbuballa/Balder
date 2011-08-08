@@ -47,6 +47,7 @@
     <Compile Include="ExtensionMethods\IPropertyEdgeExtensions.cs" />
     <Compile Include="ExtensionMethods\IPropertyGraphExtensions.cs" />
     <Compile Include="Pipes\IPropertyEdge\EdgePropertyPipe.cs" />
+    <Compile Include="Pipes\IPropertyGraph\AllHyperEdgesPipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\VertexPropertyPipe.cs" />
     <Compile Include="Traverser\TraverserFactory.cs" />
     <Compile Include="Traverser\IPropertyGraphTraverser.cs" />

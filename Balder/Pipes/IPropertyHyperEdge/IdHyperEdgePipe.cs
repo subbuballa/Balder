@@ -18,6 +18,7 @@
 #region Usings
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using de.ahzf.Blueprints.PropertyGraph;
@@ -113,7 +114,7 @@ namespace de.ahzf.Balder
 
             if (_InternalEnumerator.MoveNext())
             {
-                _CurrentElement = _IPropertyGraph.GetHyperEdge(_InternalEnumerator.Current);
+                _CurrentElement = _IPropertyGraph.HyperEdgesById(_InternalEnumerator.Current).First();
                 return true;
             }
 
