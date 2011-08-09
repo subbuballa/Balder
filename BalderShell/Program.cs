@@ -29,6 +29,8 @@ using de.ahzf.Blueprints.PropertyGraph;
 using de.ahzf.Blueprints.PropertyGraph.InMemory;
 using de.ahzf.Pipes;
 using de.ahzf.Balder.ExtensionMethods;
+using System.Collections.Generic;
+using de.ahzf.Arrows;
 
 #endregion
 
