@@ -46,25 +46,25 @@ namespace de.ahzf.Balder.UnitTests.util
 
             var _Marko    = _Graph.VertexById(new VertexId("1"));
 
-            var _Pipe1    = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+            var _Pipe1    = new OutEdgesPipe<VertexId,    RevisionId, String, String, Object,
                                              EdgeId,      RevisionId, String, String, Object,
                                              HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _Pipe2    = new InVertexPipe<VertexId,    RevisionId,         String, Object,
+            var _Pipe2    = new InVertexPipe<VertexId,    RevisionId, String, String, Object,
                                              EdgeId,      RevisionId, String, String, Object,
                                              HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _Pipe3    = new PathPipe<IPropertyVertex<VertexId,    RevisionId,         String, Object,
+            var _Pipe3    = new PathPipe<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                          EdgeId,      RevisionId, String, String, Object,
                                                          HyperEdgeId, RevisionId, String, String, Object>>();
 
-            var _Pipeline = new Pipeline<IPropertyVertex<VertexId,    RevisionId,         String, Object,
+            var _Pipeline = new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                          EdgeId,      RevisionId, String, String, Object,
                                                          HyperEdgeId, RevisionId, String, String, Object>,
 
                                          IEnumerable<Object>>(_Pipe1, _Pipe2, _Pipe3);
 
-            _Pipeline.SetSource(new SingleEnumerator<IPropertyVertex<VertexId,    RevisionId,         String, Object,
+            _Pipeline.SetSource(new SingleEnumerator<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                      EdgeId,      RevisionId, String, String, Object,
                                                                      HyperEdgeId, RevisionId, String, String, Object>>(_Marko));
 

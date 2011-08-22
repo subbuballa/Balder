@@ -31,12 +31,12 @@ namespace de.ahzf.Balder.UnitTests
     public static class TinkerGraphFactory
     {
 
-        public static IPropertyGraph<VertexId,    RevisionId,         String, Object,
+        public static IPropertyGraph<VertexId,    RevisionId, String, String, Object,
                                      EdgeId,      RevisionId, String, String, Object,
                                      HyperEdgeId, RevisionId, String, String, Object> CreateTinkerGraph()
         {
 
-            var _TinkerGraph = new InMemoryPropertyGraph(new VertexId("TinkerGraph")) as IPropertyGraph<VertexId,    RevisionId,         String, Object,
+            var _TinkerGraph = new InMemoryPropertyGraph(new VertexId("TinkerGraph")) as IPropertyGraph<VertexId,    RevisionId, String, String, Object,
                                                                                                         EdgeId,      RevisionId, String, String, Object,
                                                                                                         HyperEdgeId, RevisionId, String, String, Object>;
 

@@ -44,7 +44,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
 
             var _Marko = _Graph.VertexById(new VertexId("1"));
 
-            var _LFP   = new LabelFilterPipe<VertexId,    RevisionId,         String, Object,
+            var _LFP   = new LabelFilterPipe<VertexId,    RevisionId, String, String, Object,
                                              EdgeId,      RevisionId, String, String, Object,
                                              HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
 
@@ -62,7 +62,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             Assert.AreEqual(2, _Counter);
 
 
-            _LFP = new LabelFilterPipe<VertexId,    RevisionId,         String, Object,
+            _LFP = new LabelFilterPipe<VertexId,    RevisionId, String, String, Object,
                                        EdgeId,      RevisionId, String, String, Object,
                                        HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.EQUAL);
 

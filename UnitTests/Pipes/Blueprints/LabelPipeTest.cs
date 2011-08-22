@@ -41,7 +41,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
             
-            var _Pipe  = new EdgeLabelPipe<VertexId,    RevisionId,         String, Object,
+            var _Pipe  = new EdgeLabelPipe<VertexId,    RevisionId, String, String, Object,
                                            EdgeId,      RevisionId, String, String, Object,
                                            HyperEdgeId, RevisionId, String, String, Object>();
 

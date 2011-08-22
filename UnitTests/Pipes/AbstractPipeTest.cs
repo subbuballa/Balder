@@ -79,22 +79,22 @@ namespace de.ahzf.Balder.UnitTests.Pipes
 
             var _Marko = _Graph.VertexById(new VertexId("1"));
             
-            var _Pipe1 = new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+            var _Pipe1 = new OutEdgesPipe<VertexId,    RevisionId, String, String, Object,
                                           EdgeId,      RevisionId, String, String, Object,
                                           HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _Pipe2 = new InVertexPipe<VertexId,    RevisionId,         String, Object,
+            var _Pipe2 = new InVertexPipe<VertexId,    RevisionId, String, String, Object,
                                           EdgeId,      RevisionId, String, String, Object,
                                           HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _Pipe3 = new PropertyPipe<VertexId, RevisionId, String, Object,  IPropertyVertex<VertexId,    RevisionId,         String, Object,
+            var _Pipe3 = new PropertyPipe<VertexId, RevisionId, String, Object,  IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                                                  EdgeId,      RevisionId, String, String, Object,
                                                                                                  HyperEdgeId, RevisionId, String, String, Object>, String>("name");
 
             _Pipe3.SetSource(_Pipe2);
             _Pipe2.SetSource(_Pipe1);
 
-            var _MarkoList = new List<IPropertyVertex<VertexId,    RevisionId,         String, Object,
+            var _MarkoList = new List<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                       EdgeId,      RevisionId, String, String, Object,
                                                       HyperEdgeId, RevisionId, String, String, Object>>() { _Marko };
 
@@ -106,10 +106,10 @@ namespace de.ahzf.Balder.UnitTests.Pipes
                 var path = _Pipe3.Path;
 
                 Assert.AreEqual(_Marko,                 path[0]);
-                Assert.AreEqual(typeof(IPropertyEdge<VertexId,    RevisionId,         String, Object,
+                Assert.AreEqual(typeof(IPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                      EdgeId,      RevisionId, String, String, Object,
                                                      HyperEdgeId, RevisionId, String, String, Object>),   path[1].GetType());
-                Assert.AreEqual(typeof(IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                Assert.AreEqual(typeof(IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                        EdgeId,      RevisionId, String, String, Object,
                                                        HyperEdgeId, RevisionId, String, String, Object>), path[2].GetType());
                 Assert.AreEqual(typeof(String),         path[3].GetType());

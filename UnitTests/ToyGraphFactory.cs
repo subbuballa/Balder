@@ -36,12 +36,12 @@ namespace de.ahzf.Balder.UnitTests
     public static class ToyGraphFactory
     {
 
-        public static IPropertyGraph<VertexId,    RevisionId,         String, Object,
+        public static IPropertyGraph<VertexId,    RevisionId, String, String, Object,
                                      EdgeId,      RevisionId, String, String, Object,
                                      HyperEdgeId, RevisionId, String, String, Object> CreateToyGraph()
         {
 
-            var _ToyGraph    = new InMemoryPropertyGraph(new VertexId("ToyGraph")) as IPropertyGraph<VertexId,    RevisionId,         String, Object,
+            var _ToyGraph    = new InMemoryPropertyGraph(new VertexId("ToyGraph")) as IPropertyGraph<VertexId,    RevisionId, String, String, Object,
                                                                                                      EdgeId,      RevisionId, String, String, Object,
                                                                                                      HyperEdgeId, RevisionId, String, String, Object>;
 
@@ -74,10 +74,10 @@ namespace de.ahzf.Balder.UnitTests
             // ==>Carol
             var AliceFriendsWithBob = _Alice.OutE("knows").InV().OutE("knows").InV();
 
-            var Pipeline = new Pipeline<IPropertyVertex<VertexId,    RevisionId,         String, Object,
+            var Pipeline = new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                         EdgeId,      RevisionId, String, String, Object,
                                                         HyperEdgeId, RevisionId, String, String, Object>,
-                                        IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                                        IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                         EdgeId,      RevisionId, String, String, Object,
                                                         HyperEdgeId, RevisionId, String, String, Object>>(
                                (v) => v.OutE("knows").InV().OutE("knows").InV());

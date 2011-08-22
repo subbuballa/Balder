@@ -90,39 +90,39 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
 			var _Graph 				= TinkerGraphFactory.CreateTinkerGraph();
 	        var _Marko 				= _Graph.VertexById(new VertexId(1));
 
-	        var _OutEPipe 			= new OutEdgesPipe<VertexId,    RevisionId,         String, Object,
+	        var _OutEPipe 			= new OutEdgesPipe<VertexId,    RevisionId, String, String, Object,
                                                        EdgeId,      RevisionId, String, String, Object,
                                                        HyperEdgeId, RevisionId, String, String, Object>();
 
-	        var _InVPipe 			= new InVertexPipe<VertexId,    RevisionId,         String, Object,
+	        var _InVPipe 			= new InVertexPipe<VertexId,    RevisionId, String, String, Object,
                                                        EdgeId,      RevisionId, String, String, Object,
                                                        HyperEdgeId, RevisionId, String, String, Object>();
 
-	        var _PropertyFilterPipe = new PropertyFilterPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId,         String, Object,
+	        var _PropertyFilterPipe = new PropertyFilterPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                                                                    EdgeId,      RevisionId, String, String, Object,
                                                                                                                    HyperEdgeId, RevisionId, String, String, Object>, String>("name", "lop", ComparisonFilter.NOT_EQUAL);
 
-	        var _FutureFilterPipe 	= new FutureFilterPipe<IPropertyEdge<VertexId,    RevisionId,         String, Object,
+	        var _FutureFilterPipe 	= new FutureFilterPipe<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                                          EdgeId,      RevisionId, String, String, Object,
                                                                          HyperEdgeId, RevisionId, String, String, Object>>(
 
-                                          new Pipeline<IPropertyEdge<VertexId,    RevisionId,         String, Object,
+                                          new Pipeline<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                                      EdgeId,      RevisionId, String, String, Object,
                                                                      HyperEdgeId, RevisionId, String, String, Object>,
 
-                                                       IPropertyVertex<VertexId,    RevisionId,         String, Object,
+                                                       IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                        EdgeId,      RevisionId, String, String, Object,
                                                                        HyperEdgeId, RevisionId, String, String, Object>>(_InVPipe, _PropertyFilterPipe));
 
-	        var _Pipeline 			= new Pipeline<IPropertyVertex<VertexId,    RevisionId,         String, Object,
+	        var _Pipeline 			= new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                    EdgeId,      RevisionId, String, String, Object,
                                                                    HyperEdgeId, RevisionId, String, String, Object>,
 
-                                                   IPropertyEdge<VertexId,    RevisionId,         String, Object,
+                                                   IPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                                  EdgeId,      RevisionId, String, String, Object,
                                                                  HyperEdgeId, RevisionId, String, String, Object>>(_OutEPipe, _FutureFilterPipe);
 
-	        _Pipeline.SetSourceCollection(new List<IPropertyVertex<VertexId,    RevisionId,         String, Object,
+	        _Pipeline.SetSourceCollection(new List<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                    EdgeId,      RevisionId, String, String, Object,
                                                                    HyperEdgeId, RevisionId, String, String, Object>>() { _Marko });
 	        
