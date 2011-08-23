@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
     <Compile Include="Extensions\GremlinTests.cs" />
-    <Compile Include="MonoCSharp\MonoCSharpTest.cs" />
     <Compile Include="Pipes\AbstractPipeTest.cs" />
     <Compile Include="Pipes\Blueprints\EdgeVertexPipeTest.cs" />
     <Compile Include="Pipes\FilterPipes\AndFilterPipeTest.cs" />
@@ -76,17 +75,9 @@
       <Project>{B9DE4181-416E-4DE4-A983-B90FC9412774}</Project>
       <Name>Blueprints</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\blueprints.NET\InMemoryGraph\InMemoryGraph.csproj">
+    <ProjectReference Include="..\..\Blueprints.NET\InMemoryGraph\InMemoryGraph.csproj">
       <Project>{D4D2ACAD-FF2E-44AD-9D4A-6E332C246FAD}</Project>
       <Name>InMemoryGraph</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\MonoCompilerAsAService\MonoCompilerAsAService\MonoCompilerAsAService.csproj">
-      <Project>{A2ABC2B4-28D1-47B1-8EF9-6E8C60215515}</Project>
-      <Name>MonoCompilerAsAService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\MonoCompilerAsAService\MonoCSharp\MonoCSharp.csproj">
-      <Project>{322FD822-7722-4176-A7D7-CD8D36488DB9}</Project>
-      <Name>MonoCSharp</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\pipes.NET\Pipes\Pipes.csproj">
       <Project>{3949790D-8591-4101-9E4D-CE7A758E7409}</Project>
