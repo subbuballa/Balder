@@ -44,16 +44,19 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
             var _Pipe = new AllVerticesPipe<VertexId,    RevisionId, String, String, Object,
                                             EdgeId,      RevisionId, String, String, Object,
-                                            HyperEdgeId, RevisionId, String, String, Object>();
+                                            MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             _Pipe.SetSource(new SingleEnumerator<IPropertyGraph<VertexId,    RevisionId, String, String, Object,
                                                                 EdgeId,      RevisionId, String, String, Object,
-                                                                HyperEdgeId, RevisionId, String, String, Object>>(_Graph));
+                                                                MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>>(_Graph));
             
             var _Counter = 0;
             var _Vertices = new HashSet<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                         EdgeId,      RevisionId, String, String, Object,
-                                                        HyperEdgeId, RevisionId, String, String, Object>>();
+                                                        MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>>();
 
             while (_Pipe.MoveNext())
             {
@@ -79,16 +82,19 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             
             var _Pipe = new AllEdgesPipe<VertexId,    RevisionId, String, String, Object,
                                          EdgeId,      RevisionId, String, String, Object,
-                                         HyperEdgeId, RevisionId, String, String, Object>();
+                                         MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
             
             _Pipe.SetSource(new SingleEnumerator<IPropertyGraph<VertexId,    RevisionId, String, String, Object,
                                                                 EdgeId,      RevisionId, String, String, Object,
-                                                                HyperEdgeId, RevisionId, String, String, Object>>(_Graph));
+                                                                MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>>(_Graph));
 
             var _Counter = 0;
             var _Edges = new HashSet<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                    EdgeId,      RevisionId, String, String, Object,
-                                                   HyperEdgeId, RevisionId, String, String, Object>>();
+                                                   MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>>();
 
             while (_Pipe.MoveNext())
             {
@@ -114,16 +120,19 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             
             var _Pipe = new AllEdgesPipe<VertexId,    RevisionId, String, String, Object,
                                          EdgeId,      RevisionId, String, String, Object,
-                                         HyperEdgeId, RevisionId, String, String, Object>();
+                                         MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             _Pipe.SetSourceCollection(new List<IPropertyGraph<VertexId,    RevisionId, String, String, Object,
                                                               EdgeId,      RevisionId, String, String, Object,
-                                                              HyperEdgeId, RevisionId, String, String, Object>>() { _Graph, _Graph, _Graph });
+                                                              MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>>() { _Graph, _Graph, _Graph });
             
             var _Counter = 0;
             var _Edges = new HashSet<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                    EdgeId,      RevisionId, String, String, Object,
-                                                   HyperEdgeId, RevisionId, String, String, Object>>();
+                                                   MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>>();
 
             while (_Pipe.MoveNext())
             {

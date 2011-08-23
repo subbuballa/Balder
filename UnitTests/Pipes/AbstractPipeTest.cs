@@ -81,22 +81,26 @@ namespace de.ahzf.Balder.UnitTests.Pipes
             
             var _Pipe1 = new OutEdgesPipe<VertexId,    RevisionId, String, String, Object,
                                           EdgeId,      RevisionId, String, String, Object,
-                                          HyperEdgeId, RevisionId, String, String, Object>();
+                                          MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe2 = new InVertexPipe<VertexId,    RevisionId, String, String, Object,
                                           EdgeId,      RevisionId, String, String, Object,
-                                          HyperEdgeId, RevisionId, String, String, Object>();
+                                          MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe3 = new PropertyPipe<VertexId, RevisionId, String, Object,  IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                                                  EdgeId,      RevisionId, String, String, Object,
-                                                                                                 HyperEdgeId, RevisionId, String, String, Object>, String>("name");
+                                                                                                 MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>, String>("name");
 
             _Pipe3.SetSource(_Pipe2);
             _Pipe2.SetSource(_Pipe1);
 
             var _MarkoList = new List<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                       EdgeId,      RevisionId, String, String, Object,
-                                                      HyperEdgeId, RevisionId, String, String, Object>>() { _Marko };
+                                                      MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>>() { _Marko };
 
             _Pipe1.SetSource(_MarkoList.GetEnumerator());
 
@@ -108,10 +112,12 @@ namespace de.ahzf.Balder.UnitTests.Pipes
                 Assert.AreEqual(_Marko,                 path[0]);
                 Assert.AreEqual(typeof(IPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                      EdgeId,      RevisionId, String, String, Object,
-                                                     HyperEdgeId, RevisionId, String, String, Object>),   path[1].GetType());
+                                                     MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>),   path[1].GetType());
                 Assert.AreEqual(typeof(IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                        EdgeId,      RevisionId, String, String, Object,
-                                                       HyperEdgeId, RevisionId, String, String, Object>), path[2].GetType());
+                                                       MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>), path[2].GetType());
                 Assert.AreEqual(typeof(String),         path[3].GetType());
 
                 if (_Name == "vadas")

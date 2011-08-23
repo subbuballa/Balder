@@ -46,27 +46,33 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
 
             var _Pipe1    = new OutEdgesPipe<VertexId,    RevisionId, String, String, Object,
                                              EdgeId,      RevisionId, String, String, Object,
-                                             HyperEdgeId, RevisionId, String, String, Object>();
+                                             MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe2    = new InVertexPipe<VertexId,    RevisionId, String, String, Object,
                                              EdgeId,      RevisionId, String, String, Object,
-                                             HyperEdgeId, RevisionId, String, String, Object>();
+                                             MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe3    = new PropertyFilterPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                                                          EdgeId,      RevisionId, String, String, Object,
-                                                                                                         HyperEdgeId, RevisionId, String, String, Object>, String>("lang", "java", ComparisonFilter.NOT_EQUAL);
+                                                                                                         MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>, String>("lang", "java", ComparisonFilter.NOT_EQUAL);
 
             var _Pipeline = new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                          EdgeId,      RevisionId, String, String, Object,
-                                                         HyperEdgeId, RevisionId, String, String, Object>,
+                                                         MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>,
 
                                          IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                          EdgeId,      RevisionId, String, String, Object,
-                                                         HyperEdgeId, RevisionId, String, String, Object>>(new List<IPipe>() { _Pipe1, _Pipe2, _Pipe3 });
+                                                         MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>>(new List<IPipe>() { _Pipe1, _Pipe2, _Pipe3 });
 
             _Pipeline.SetSource(new List<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                          EdgeId,      RevisionId, String, String, Object,
-                                                         HyperEdgeId, RevisionId, String, String, Object>>() { _Marko }.GetEnumerator());
+                                                         MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>>() { _Marko }.GetEnumerator());
 
             var _Counter = 0;
             while (_Pipeline.MoveNext())

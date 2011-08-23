@@ -43,7 +43,8 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             
             var _Pipe  = new EdgeLabelPipe<VertexId,    RevisionId, String, String, Object,
                                            EdgeId,      RevisionId, String, String, Object,
-                                           HyperEdgeId, RevisionId, String, String, Object>();
+                                           MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             _Pipe.SetSourceCollection(_Graph.VertexById(new VertexId("1")).OutEdges());
 

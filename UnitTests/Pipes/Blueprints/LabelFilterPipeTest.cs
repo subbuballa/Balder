@@ -46,7 +46,8 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
 
             var _LFP   = new LabelFilterPipe<VertexId,    RevisionId, String, String, Object,
                                              EdgeId,      RevisionId, String, String, Object,
-                                             HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
+                                             MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
 
             _LFP.SetSourceCollection(_Marko.OutEdges());
 
@@ -64,7 +65,8 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
 
             _LFP = new LabelFilterPipe<VertexId,    RevisionId, String, String, Object,
                                        EdgeId,      RevisionId, String, String, Object,
-                                       HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.EQUAL);
+                                       MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.EQUAL);
 
             _LFP.SetSourceCollection(_Marko.OutEdges());
 

@@ -43,34 +43,42 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
             var _Graph      = TinkerGraphFactory.CreateTinkerGraph();
             var _Pipe1      = new OutEdgesPipe <VertexId,    RevisionId, String, String, Object,
                                                 EdgeId,      RevisionId, String, String, Object,
-                                                HyperEdgeId, RevisionId, String, String, Object>();
+                                                MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe2      = new InVertexPipe <VertexId,    RevisionId, String, String, Object,
                                                 EdgeId,      RevisionId, String, String, Object,
-                                                HyperEdgeId, RevisionId, String, String, Object>();
+                                                MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe3      = new InEdgesPipe  <VertexId,    RevisionId, String, String, Object,
                                                 EdgeId,      RevisionId, String, String, Object,
-                                                HyperEdgeId, RevisionId, String, String, Object>();
+                                                MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe4      = new OutVertexPipe<VertexId,    RevisionId, String, String, Object,
                                                 EdgeId,      RevisionId, String, String, Object,
-                                                HyperEdgeId, RevisionId, String, String, Object>();
+                                                MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe5      = new UniquePathFilterPipe<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                        EdgeId,      RevisionId, String, String, Object,
-                                                                       HyperEdgeId, RevisionId, String, String, Object>>();
+                                                                       MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>>();
 
             var _Pipeline   = new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                            EdgeId,      RevisionId, String, String, Object,
-                                                           HyperEdgeId, RevisionId, String, String, Object>,
+                                                           MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>,
                                            IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                            EdgeId,      RevisionId, String, String, Object,
-                                                           HyperEdgeId, RevisionId, String, String, Object>>(_Pipe1, _Pipe2, _Pipe3, _Pipe4, _Pipe5);
+                                                           MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>>(_Pipe1, _Pipe2, _Pipe3, _Pipe4, _Pipe5);
 
             _Pipeline.SetSource(new SingleEnumerator<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                      EdgeId,      RevisionId, String, String, Object,
-                                                                     HyperEdgeId, RevisionId, String, String, Object>>(_Graph.VertexById(new VertexId(1))));
+                                                                     MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>>(_Graph.VertexById(new VertexId(1))));
 	
             var _Counter = 0;
 	

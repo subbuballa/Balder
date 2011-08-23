@@ -46,7 +46,8 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
 
             var _EVP   = new InVertexPipe<VertexId,    RevisionId, String, String, Object,
                                           EdgeId,      RevisionId, String, String, Object,
-                                          HyperEdgeId, RevisionId, String, String, Object>();
+                                          MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             _EVP.SetSourceCollection(_Marko.OutEdges());
 
@@ -65,7 +66,8 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             
             _EVP = new InVertexPipe<VertexId,    RevisionId, String, String, Object,
                                     EdgeId,      RevisionId, String, String, Object,
-                                    HyperEdgeId, RevisionId, String, String, Object>();
+                                    MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             _EVP.SetSource(_Josh.OutEdges().GetEnumerator());
 
@@ -96,7 +98,8 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             var _Josh  = _Graph.VertexById(new VertexId("4"));
             IPropertyEdge<VertexId,    RevisionId, String, String, Object,
                           EdgeId,      RevisionId, String, String, Object,
-                          HyperEdgeId, RevisionId, String, String, Object> _TmpEdge = null;
+                          MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object> _TmpEdge = null;
 
             foreach (var _Edge in _Josh.OutEdges())
             {
@@ -106,11 +109,13 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
 
             var _Pipe = new BothVerticesPipe<VertexId,    RevisionId, String, String, Object,
                                          EdgeId,      RevisionId, String, String, Object,
-                                         HyperEdgeId, RevisionId, String, String, Object>();
+                                         MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>();
 
             _Pipe.SetSource(new SingleEnumerator<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                                EdgeId,      RevisionId, String, String, Object,
-                                                               HyperEdgeId, RevisionId, String, String, Object>>(_TmpEdge));
+                                                               MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>>(_TmpEdge));
 
             var _Counter = 0;
             while (_Pipe.MoveNext())

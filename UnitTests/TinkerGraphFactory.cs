@@ -33,12 +33,14 @@ namespace de.ahzf.Balder.UnitTests
 
         public static IPropertyGraph<VertexId,    RevisionId, String, String, Object,
                                      EdgeId,      RevisionId, String, String, Object,
+                                     MultiEdgeId, RevisionId, String, String, Object,
                                      HyperEdgeId, RevisionId, String, String, Object> CreateTinkerGraph()
         {
 
             var _TinkerGraph = new InMemoryPropertyGraph(new VertexId("TinkerGraph")) as IPropertyGraph<VertexId,    RevisionId, String, String, Object,
                                                                                                         EdgeId,      RevisionId, String, String, Object,
-                                                                                                        HyperEdgeId, RevisionId, String, String, Object>;
+                                                                                                        MultiEdgeId, RevisionId, String, String, Object,
+                                                    HyperEdgeId, RevisionId, String, String, Object>;
 
             var marko  = _TinkerGraph.AddVertex(new VertexId("1"), v => v.SetProperty("name", "marko"). SetProperty("age",   29));
             var vadas  = _TinkerGraph.AddVertex(new VertexId("2"), v => v.SetProperty("name", "vadas"). SetProperty("age",   27));
