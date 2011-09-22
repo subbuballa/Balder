@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 
 using de.ahzf.Blueprints;
-using de.ahzf.Blueprints.PropertyGraph;
+using de.ahzf.Blueprints.PropertyGraphs;
 
 using NUnit.Framework;
 using de.ahzf.Pipes;

@@ -20,7 +20,7 @@
 using System;
 
 using de.ahzf.Blueprints;
-using de.ahzf.Blueprints.PropertyGraph;
+using de.ahzf.Blueprints.PropertyGraphs;
 
 using de.ahzf.Pipes;
 

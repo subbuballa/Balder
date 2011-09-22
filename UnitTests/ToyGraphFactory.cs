@@ -19,14 +19,13 @@
 
 using System;
 using System.Linq;
-using System.Collections.Generic;
 
 using de.ahzf.Blueprints;
-using de.ahzf.Blueprints.PropertyGraph;
-using de.ahzf.Blueprints.PropertyGraph.InMemory;
+using de.ahzf.Blueprints.PropertyGraphs;
 
 using de.ahzf.Pipes;
 using de.ahzf.Balder.ExtensionMethods;
+using de.ahzf.Blueprints.PropertyGraphs.InMemory.Mutable;
 
 #endregion
 
@@ -42,10 +41,10 @@ namespace de.ahzf.Balder.UnitTests
                                      HyperEdgeId, RevisionId, String, String, Object> CreateToyGraph()
         {
 
-            var _ToyGraph    = new InMemoryPropertyGraph(new VertexId("ToyGraph")) as IPropertyGraph<VertexId,    RevisionId, String, String, Object,
-                                                                                                     EdgeId,      RevisionId, String, String, Object,
-                                                                                                     MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>;
+            var _ToyGraph    = new DistributedPropertyGraph(new VertexId("ToyGraph"), null) as IPropertyGraph<VertexId,    RevisionId, String, String, Object,
+                                                                                                              EdgeId,      RevisionId, String, String, Object,
+                                                                                                              MultiEdgeId, RevisionId, String, String, Object,
+                                                                                                              HyperEdgeId, RevisionId, String, String, Object>;
 
             var _Alice       = _ToyGraph.AddVertex(new VertexId("1"), v => v.SetProperty("name", "Alice").    SetProperty("age", 29));
             var _Bob         = _ToyGraph.AddVertex(new VertexId("2"), v => v.SetProperty("name", "Bob").      SetProperty("age", 27));
@@ -79,11 +78,11 @@ namespace de.ahzf.Balder.UnitTests
             var Pipeline = new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                         EdgeId,      RevisionId, String, String, Object,
                                                         MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>,
+                                                        HyperEdgeId, RevisionId, String, String, Object>,
                                         IPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                         EdgeId,      RevisionId, String, String, Object,
                                                         MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>>(
+                                                        HyperEdgeId, RevisionId, String, String, Object>>(
                                (v) => v.OutE("knows").InV().OutE("knows").InV());
 
             var _FirendFriends = Pipeline.SetSource(_Alice);
