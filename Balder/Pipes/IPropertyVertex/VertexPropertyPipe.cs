@@ -30,12 +30,32 @@ namespace de.ahzf.Balder
 {
 
     /// <summary>
-    /// The PropertyPipe returns the property value of the
-    /// Element identified by the provided key.
+    /// The VertexPropertyPipe returns the property values of the
+    /// given property key of the given vertices.
     /// </summary>
-    /// <typeparam name="TKey">The type of the property keys.</typeparam>
-    /// <typeparam name="S">The type of the consuming objects.</typeparam>
-    /// <typeparam name="E">The type of the emitting objects.</typeparam>
+    /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
+    /// <typeparam name="TRevisionIdVertex">The type of the vertex revision identifiers.</typeparam>
+    /// <typeparam name="TVertexType">The type of the vertex type.</typeparam>
+    /// <typeparam name="TKeyVertex">The type of the vertex property keys.</typeparam>
+    /// <typeparam name="TValueVertex">The type of the vertex property values.</typeparam>
+    /// 
+    /// <typeparam name="TIdEdge">The type of the edge identifiers.</typeparam>
+    /// <typeparam name="TRevisionIdEdge">The type of the edge revision identifiers.</typeparam>
+    /// <typeparam name="TEdgeLabel">The type of the edge label.</typeparam>
+    /// <typeparam name="TKeyEdge">The type of the edge property keys.</typeparam>
+    /// <typeparam name="TValueEdge">The type of the edge property values.</typeparam>
+    /// 
+    /// <typeparam name="TIdMultiEdge">The type of the multiedge identifiers.</typeparam>
+    /// <typeparam name="TRevisionIdMultiEdge">The type of the multiedge revision identifiers.</typeparam>
+    /// <typeparam name="TMultiEdgeLabel">The type of the multiedge label.</typeparam>
+    /// <typeparam name="TKeyMultiEdge">The type of the multiedge property keys.</typeparam>
+    /// <typeparam name="TValueMultiEdge">The type of the multiedge property values.</typeparam>
+    /// 
+    /// <typeparam name="TIdHyperEdge">The type of the hyperedge identifiers.</typeparam>
+    /// <typeparam name="TRevisionIdHyperEdge">The type of the hyperedge revision identifiers.</typeparam>
+    /// <typeparam name="THyperEdgeLabel">The type of the hyperedge label.</typeparam>
+    /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
+    /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
     public class VertexPropertyPipe<TIdVertex,    TRevisionIdVertex,    TVertexType,     TKeyVertex,    TValueVertex,
                                     TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                     TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
@@ -71,20 +91,21 @@ namespace de.ahzf.Balder
 
         #region Data
 
-        private readonly TKeyVertex[]            _Keys;
-        private          IEnumerator<TKeyVertex> _PropertyEnumerator;
+        private readonly TKeyVertex PropertyKey;
 
         #endregion
 
         #region Constructor(s)
 
-        #region PropertyPipe(PropertyKeys, IEnumerable = null, IEnumerator = null)
+        #region PropertyPipe(PropertyKey, IEnumerable = null, IEnumerator = null)
 
         /// <summary>
         /// Creates a new PropertyPipe.
         /// </summary>
-        /// <param name="PropertyKeys">The property keys.</param>
-        public VertexPropertyPipe(TKeyVertex[] PropertyKeys,
+        /// <param name="PropertyKey">The property key.</param>
+        /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
+        /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
+        public VertexPropertyPipe(TKeyVertex PropertyKey,
                                   IEnumerable<IPropertyVertex<TIdVertex,    TRevisionIdVertex,    TVertexType,     TKeyVertex,    TValueVertex,
                                                               TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                               TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
@@ -98,7 +119,7 @@ namespace de.ahzf.Balder
                : base(IEnumerable, IEnumerator)
 
         {
-            _Keys = PropertyKeys;
+            this.PropertyKey = PropertyKey;
         }
 
         #endregion
@@ -122,31 +143,13 @@ namespace de.ahzf.Balder
             if (_InternalEnumerator == null)
                 return false;
 
-            while (true)
+            if (_InternalEnumerator.MoveNext())
             {
-
-                // First set the property enumerator
-                if (_PropertyEnumerator == null)
-                {
-
-                    if (_InternalEnumerator.MoveNext())
-                        _PropertyEnumerator = new List<TKeyVertex>(_Keys).GetEnumerator();
-
-                    else
-                        return false;
-
-                }
-
-                // Second emit the properties
-                if (_PropertyEnumerator.MoveNext())
-                {
-                    _CurrentElement = _InternalEnumerator.Current.PropertyData.GetProperty(_PropertyEnumerator.Current);
-                    return true;
-                }
-
-                _PropertyEnumerator = null;
-
+                _CurrentElement = _InternalEnumerator.Current.PropertyData.GetProperty(PropertyKey);
+                return true;
             }
+
+            return false;
 
         }
 
@@ -163,13 +166,7 @@ namespace de.ahzf.Balder
 
             var _StringBuilder = new StringBuilder();
 
-            foreach (var _Key in _Keys)
-                _StringBuilder.Append(_Key.ToString() + ", ");
-
-            if (_StringBuilder.Length >= 2)
-                _StringBuilder.Length = _StringBuilder.Length - 2;
-
-            return base.ToString() + "<" + _StringBuilder.ToString() + ">";
+            return base.ToString() + "<" + PropertyKey + ">";
 
         }
 
