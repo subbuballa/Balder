@@ -25,7 +25,7 @@ using de.ahzf.Blueprints.PropertyGraphs.ReadOnly;
 
 #endregion
 
-namespace de.ahzf.Balder.ExtensionMethods
+namespace de.ahzf.Balder
 {
 
     /// <summary>

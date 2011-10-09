@@ -25,7 +25,7 @@ using de.ahzf.Pipes;
 
 #endregion
 
-namespace de.ahzf.Balder.ExtensionMethods
+namespace de.ahzf.Balder
 {
 
     

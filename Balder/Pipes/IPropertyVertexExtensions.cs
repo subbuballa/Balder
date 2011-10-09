@@ -25,7 +25,7 @@ using de.ahzf.Blueprints.PropertyGraphs;
 
 #endregion
 
-namespace de.ahzf.Balder.ExtensionMethods
+namespace de.ahzf.Balder
 {
 
     /// <summary>

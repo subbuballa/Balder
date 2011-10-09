@@ -41,20 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtensionMethods\Filters\LabelFilterPipeExtensions.cs" />
-    <Compile Include="ExtensionMethods\HigherOrderRelations\Foaf.cs" />
-    <Compile Include="ExtensionMethods\HigherOrderRelations\IsComplicatedExtensions.cs" />
-    <Compile Include="ExtensionMethods\IPropertyEdgeExtensions.cs" />
-    <Compile Include="ExtensionMethods\IPropertyGraphExtensions.cs" />
+    <Compile Include="Filters\LabelFilterPipeExtensions.cs" />
+    <Compile Include="Pipes\HigherOrderRelations\Foaf.cs" />
+    <Compile Include="Pipes\HigherOrderRelations\IsComplicatedExtensions.cs" />
+    <Compile Include="Pipes\IPropertyEdgeExtensions.cs" />
+    <Compile Include="Pipes\IPropertyGraphExtensions.cs" />
     <Compile Include="Pipes\IPropertyEdge\EdgePropertyPipe.cs" />
     <Compile Include="Pipes\IPropertyGraph\AllHyperEdgesPipe.cs" />
+    <Compile Include="Pipes\IPropertyGraph\AllMultiEdgesPipe.cs" />
+    <Compile Include="Pipes\IPropertyVertex\VertexTypePipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\VertexPropertiesMapPipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\VertexPropertiesPipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\VertexPropertyPipe.cs" />
     <Compile Include="Traverser\TraverserFactory.cs" />
     <Compile Include="Traverser\IPropertyGraphTraverser.cs" />
-    <Compile Include="ExtensionMethods\IPropertyVertexExtensions.cs" />
-    <Compile Include="ExtensionMethods\PropertyExtensions.cs" />
+    <Compile Include="Pipes\IPropertyVertexExtensions.cs" />
+    <Compile Include="Pipes\PropertyExtensions.cs" />
     <Compile Include="Filters\EdgeIdFilterPipe.cs" />
     <Compile Include="Filters\LabelFilterPipe.cs" />
     <Compile Include="Filters\PropertyFilterPipe.cs" />
@@ -98,6 +100,9 @@
       <Project>{3949790D-8591-4101-9E4D-CE7A758E7409}</Project>
       <Name>Pipes</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Arrows\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
