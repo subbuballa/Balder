@@ -30,8 +30,8 @@ namespace de.ahzf.Balder
 {
 
     /// <summary>
-    /// The IdVertexPipe will convert the given VertexIds into the
-    /// corresponding vertices of the given graph.
+    /// The IdMultiEdgePipe will convert the given MultiEdgeIds into the
+    /// corresponding multiedges of the given graph.
     /// </summary>
     /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
     /// <typeparam name="TRevisionIdVertex">The type of the vertex revision identifiers.</typeparam>
@@ -56,16 +56,16 @@ namespace de.ahzf.Balder
     /// <typeparam name="THyperEdgeLabel">The type of the hyperedge label.</typeparam>
     /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
     /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
-    public class IdVertexPipe<TIdVertex,    TRevisionIdVertex,    TVertexType,     TKeyVertex,    TValueVertex,    TDatastructureVertex,
-                              TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,      TDatastructureEdge,
-                              TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge, TDatastructureMultiEdge,
-                              TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge, TDatastructureHyperEdge>
-
-                              : AbstractPipe<TIdVertex,
-                                             IPropertyVertex<TIdVertex,    TRevisionIdVertex,    TVertexType,     TKeyVertex,    TValueVertex,
-                                                             TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                             TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                             TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
+    public class IdMultiEdgePipe<TIdVertex,    TRevisionIdVertex,    TVertexType,     TKeyVertex,    TValueVertex,
+                                 TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                 TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                 TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
+                                 
+                                 : AbstractPipe<TIdMultiEdge,
+                                                IPropertyMultiEdge<TIdVertex,    TRevisionIdVertex,    TVertexType,     TKeyVertex,    TValueVertex,
+                                                                   TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                                   TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                                   TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
 
         where TKeyVertex              : IEquatable<TKeyVertex>,           IComparable<TKeyVertex>,           IComparable
         where TKeyEdge                : IEquatable<TKeyEdge>,             IComparable<TKeyEdge>,             IComparable
@@ -87,10 +87,6 @@ namespace de.ahzf.Balder
         where TMultiEdgeLabel         : IEquatable<TMultiEdgeLabel>,      IComparable<TMultiEdgeLabel>,      IComparable
         where THyperEdgeLabel         : IEquatable<THyperEdgeLabel>,      IComparable<THyperEdgeLabel>,      IComparable
 
-        where TDatastructureVertex    : IDictionary<TKeyVertex,    TValueVertex>
-        where TDatastructureEdge      : IDictionary<TKeyEdge,      TValueEdge>
-        where TDatastructureHyperEdge : IDictionary<TKeyHyperEdge, TValueHyperEdge>
-
     {
 
         #region Data
@@ -104,20 +100,21 @@ namespace de.ahzf.Balder
 
         #region Constructor(s)
 
-        #region IdVertexPipe(IPropertyGraph, IEnumerable = null, IEnumerator = null)
+        #region IdMultiEdgePipe(IPropertyGraph, IEnumerable = null, IEnumerator = null)
 
         /// <summary>
-        /// Creates a new IdVertexPipe.
+        /// Creates a new IdMultiEdgePipe.
         /// </summary>
         /// <param name="IPropertyGraph">The IPropertyGraph to use.</param>
-        /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
-        /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
-        public IdVertexPipe(IPropertyGraph<TIdVertex,    TRevisionIdVertex,    TVertexType,     TKeyVertex,    TValueVertex,
-                                           TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                           TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                           TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> IPropertyGraph,
-                            IEnumerable<TIdVertex> IEnumerable = null,
-                            IEnumerator<TIdVertex> IEnumerator = null)
+        /// <param name="IEnumerable">An optional IEnumerable&lt;TIdMultiEdge&gt; as element source.</param>
+        /// <param name="IEnumerator">An optional IEnumerator&lt;TIdMultiEdge&gt; as element source.</param>
+        public IdMultiEdgePipe(IPropertyGraph<TIdVertex,    TRevisionIdVertex,    TVertexType,     TKeyVertex,    TValueVertex,
+                                              TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                              TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                              TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> IPropertyGraph,
+
+                               IEnumerable<TIdMultiEdge> IEnumerable = null,
+                               IEnumerator<TIdMultiEdge> IEnumerator = null)
 
             : base(IEnumerable, IEnumerator)
 
@@ -128,6 +125,7 @@ namespace de.ahzf.Balder
         #endregion
 
         #endregion
+
 
         #region MoveNext()
 
@@ -147,11 +145,12 @@ namespace de.ahzf.Balder
 
             if (_InternalEnumerator.MoveNext())
             {
-                _CurrentElement = _IPropertyGraph.VerticesById(_InternalEnumerator.Current).First();
+                _CurrentElement = _IPropertyGraph.MultiEdgeById(_InternalEnumerator.Current);
                 return true;
             }
 
-            return false;
+            else
+                return false;
 
         }
 

@@ -49,6 +49,9 @@
     <Compile Include="Pipes\IPropertyEdge\EdgePropertyPipe.cs" />
     <Compile Include="Pipes\IPropertyGraph\AllHyperEdgesPipe.cs" />
     <Compile Include="Pipes\IPropertyGraph\AllMultiEdgesPipe.cs" />
+    <Compile Include="Pipes\IPropertyGraph\IdMultiEdgePipe.cs" />
+    <Compile Include="Pipes\IPropertyMultiEdge\VerticesPipe.cs" />
+    <Compile Include="Pipes\IPropertyMultiEdge\MultiEdgeLabelPipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\VertexTypePipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\VertexPropertiesMapPipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\VertexPropertiesPipe.cs" />
@@ -64,7 +67,7 @@
     <Compile Include="IdPipe.cs" />
     <Compile Include="Pipes\IPropertyEdge\BothVerticesPipe.cs" />
     <Compile Include="Pipes\IPropertyEdge\EdgeLabelPipe.cs" />
-    <Compile Include="Pipes\IPropertyEdge\IdEdgePipe.cs" />
+    <Compile Include="Pipes\IPropertyGraph\IdEdgePipe.cs" />
     <Compile Include="Pipes\IPropertyEdge\InVertexPipe.cs" />
     <Compile Include="Pipes\IPropertyEdge\OutVertexPipe.cs" />
     <Compile Include="Pipes\IPropertyGraph\AllEdgesPipe.cs" />
@@ -73,12 +76,12 @@
     <Compile Include="Traverser\TraversalOrder.cs" />
     <Compile Include="Traverser\TraversalState.cs" />
     <Compile Include="Pipes\IPropertyHyperEdge\HyperEdgeLabelPipe.cs" />
-    <Compile Include="Pipes\IPropertyHyperEdge\IdHyperEdgePipe.cs" />
+    <Compile Include="Pipes\IPropertyGraph\IdHyperEdgePipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\AbstractEdgesPipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\AbstractEdgesVerticesPipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\BothEdgesPipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\BothPipe.cs" />
-    <Compile Include="Pipes\IPropertyVertex\IdVertexPipe.cs" />
+    <Compile Include="Pipes\IPropertyGraph\IdVertexPipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\InEdgesPipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\InPipe.cs" />
     <Compile Include="Pipes\IPropertyVertex\OutEdgesPipe.cs" />
