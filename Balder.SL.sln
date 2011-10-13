@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipes.SL", "..\Pipes.NET\Pi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blueprints.SL", "..\Blueprints.NET\Blueprints\Blueprints.SL.csproj", "{C907FBA5-7DE0-4244-9872-806FCFF97175}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{FC319998-D959-46BF-9329-6F307C80DC2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,5 +36,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4CC8282B-A807-434A-BD22-39C8B2E62535} = {FC319998-D959-46BF-9329-6F307C80DC2E}
+		{C907FBA5-7DE0-4244-9872-806FCFF97175} = {FC319998-D959-46BF-9329-6F307C80DC2E}
 	EndGlobalSection
 EndGlobal

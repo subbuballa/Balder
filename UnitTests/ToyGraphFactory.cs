@@ -20,11 +20,10 @@
 using System;
 using System.Linq;
 
+using de.ahzf.Pipes;
+using de.ahzf.Balder;
 using de.ahzf.Blueprints;
 using de.ahzf.Blueprints.PropertyGraphs;
-
-using de.ahzf.Pipes;
-using de.ahzf.Balder.ExtensionMethods;
 using de.ahzf.Blueprints.PropertyGraphs.InMemory.Mutable;
 
 #endregion

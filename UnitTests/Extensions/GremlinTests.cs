@@ -26,7 +26,7 @@ using NUnit.Framework;
 using de.ahzf.Blueprints;
 using de.ahzf.Blueprints.PropertyGraphs;
 
-using de.ahzf.Balder.ExtensionMethods;
+using de.ahzf.Balder;
 
 #endregion
 

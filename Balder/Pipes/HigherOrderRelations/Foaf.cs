@@ -25,7 +25,7 @@
 
 //#endregion
 
-//namespace de.ahzf.Balder.ExtensionMethods
+//namespace de.ahzf.Balder
 //{
 
 //    /// <summary>
