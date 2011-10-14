@@ -198,7 +198,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
                                                 MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>();
 
-            _Vertices.SetSource(new SingleEnumerator<IPropertyGraph<VertexId,    RevisionId, String, String, Object,
+            _Vertices.SetSource(new SingleEnumerator<IGenericPropertyGraph<VertexId,    RevisionId, String, String, Object,
                                                                     EdgeId,      RevisionId, String, String, Object,
                                                                     MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(_Graph));

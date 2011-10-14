@@ -21,7 +21,6 @@ using System;
 using System.Linq;
 
 using de.ahzf.Pipes;
-using de.ahzf.Balder;
 using de.ahzf.Blueprints;
 using de.ahzf.Blueprints.PropertyGraphs;
 using de.ahzf.Blueprints.PropertyGraphs.InMemory.Mutable;
@@ -34,13 +33,13 @@ namespace de.ahzf.Balder.UnitTests
     public static class ToyGraphFactory
     {
 
-        public static IPropertyGraph<VertexId,    RevisionId, String, String, Object,
-                                     EdgeId,      RevisionId, String, String, Object,
-                                     MultiEdgeId, RevisionId, String, String, Object,
-                                     HyperEdgeId, RevisionId, String, String, Object> CreateToyGraph()
+        public static IGenericPropertyGraph<VertexId,    RevisionId, String, String, Object,
+                                            EdgeId,      RevisionId, String, String, Object,
+                                            MultiEdgeId, RevisionId, String, String, Object,
+                                            HyperEdgeId, RevisionId, String, String, Object> CreateToyGraph()
         {
 
-            var _ToyGraph    = new DistributedPropertyGraph(new VertexId("ToyGraph"), null) as IPropertyGraph<VertexId,    RevisionId, String, String, Object,
+            var _ToyGraph    = new DistributedPropertyGraph(new VertexId("ToyGraph"), null) as IGenericPropertyGraph<VertexId,    RevisionId, String, String, Object,
                                                                                                               EdgeId,      RevisionId, String, String, Object,
                                                                                                               MultiEdgeId, RevisionId, String, String, Object,
                                                                                                               HyperEdgeId, RevisionId, String, String, Object>;

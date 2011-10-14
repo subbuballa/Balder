@@ -19,6 +19,7 @@
 
 using System;
 using System.Linq;
+using System.Text;
 using System.Collections.Generic;
 
 using de.ahzf.Blueprints.PropertyGraphs;
@@ -30,8 +31,9 @@ namespace de.ahzf.Balder
 {
 
     /// <summary>
-    /// The IdMultiEdgePipe will convert the given MultiEdgeIds into the
-    /// corresponding multiedges of the given graph.
+    /// The EdgePropertiesMapPipe returns the property values of the
+    /// given property keys of the given edges as an enumeration
+    /// of ILookup&lt;Key, Value&gt;.
     /// </summary>
     /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
     /// <typeparam name="TRevisionIdVertex">The type of the vertex revision identifiers.</typeparam>
@@ -56,70 +58,76 @@ namespace de.ahzf.Balder
     /// <typeparam name="THyperEdgeLabel">The type of the hyperedge label.</typeparam>
     /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
     /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
-    public class IdMultiEdgePipe<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                 TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                 TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                 TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
-                                 
-                                 : AbstractPipe<TIdMultiEdge,
-                                                IPropertyMultiEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+    public class EdgePropertiesMapPipe<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                       TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                       TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                       TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
+
+                                      : AbstractPipe<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                    TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                    TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                   TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
-
+                                                                   TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>,
+                                                     ILookup<TKeyEdge, TValueEdge>>
+        
         where TKeyVertex              : IEquatable<TKeyVertex>,           IComparable<TKeyVertex>,           IComparable
         where TKeyEdge                : IEquatable<TKeyEdge>,             IComparable<TKeyEdge>,             IComparable
         where TKeyMultiEdge           : IEquatable<TKeyMultiEdge>,        IComparable<TKeyMultiEdge>,        IComparable
         where TKeyHyperEdge           : IEquatable<TKeyHyperEdge>,        IComparable<TKeyHyperEdge>,        IComparable
-                                                                                                            
+
         where TIdVertex               : IEquatable<TIdVertex>,            IComparable<TIdVertex>,            IComparable, TValueVertex
         where TIdEdge                 : IEquatable<TIdEdge>,              IComparable<TIdEdge>,              IComparable, TValueEdge
         where TIdMultiEdge            : IEquatable<TIdMultiEdge>,         IComparable<TIdMultiEdge>,         IComparable, TValueMultiEdge
         where TIdHyperEdge            : IEquatable<TIdHyperEdge>,         IComparable<TIdHyperEdge>,         IComparable, TValueHyperEdge
-
-        where TRevisionIdVertex       : IEquatable<TRevisionIdVertex>,    IComparable<TRevisionIdVertex>,    IComparable, TValueVertex
-        where TRevisionIdEdge         : IEquatable<TRevisionIdEdge>,      IComparable<TRevisionIdEdge>,      IComparable, TValueEdge
-        where TRevisionIdMultiEdge    : IEquatable<TRevisionIdMultiEdge>, IComparable<TRevisionIdMultiEdge>, IComparable, TValueMultiEdge
-        where TRevisionIdHyperEdge    : IEquatable<TRevisionIdHyperEdge>, IComparable<TRevisionIdHyperEdge>, IComparable, TValueHyperEdge
 
         where TVertexLabel            : IEquatable<TVertexLabel>,         IComparable<TVertexLabel>,         IComparable
         where TEdgeLabel              : IEquatable<TEdgeLabel>,           IComparable<TEdgeLabel>,           IComparable
         where TMultiEdgeLabel         : IEquatable<TMultiEdgeLabel>,      IComparable<TMultiEdgeLabel>,      IComparable
         where THyperEdgeLabel         : IEquatable<THyperEdgeLabel>,      IComparable<THyperEdgeLabel>,      IComparable
 
+        where TRevisionIdVertex       : IEquatable<TRevisionIdVertex>,    IComparable<TRevisionIdVertex>,    IComparable, TValueVertex
+        where TRevisionIdEdge         : IEquatable<TRevisionIdEdge>,      IComparable<TRevisionIdEdge>,      IComparable, TValueEdge
+        where TRevisionIdMultiEdge    : IEquatable<TRevisionIdMultiEdge>, IComparable<TRevisionIdMultiEdge>, IComparable, TValueMultiEdge
+        where TRevisionIdHyperEdge    : IEquatable<TRevisionIdHyperEdge>, IComparable<TRevisionIdHyperEdge>, IComparable, TValueHyperEdge
+
     {
 
         #region Data
 
-        private readonly IGenericPropertyGraph<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                        TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                        TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                        TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> _IPropertyGraph;
+        private readonly TKeyEdge[] PropertyKeys;
+        private readonly Boolean    IncludeNullValues;
 
         #endregion
 
         #region Constructor(s)
 
-        #region IdMultiEdgePipe(IPropertyGraph, IEnumerable = null, IEnumerator = null)
+        #region EdgePropertiesMapPipe(PropertyKeys, IncludeNullValues = false, IEnumerable = null, IEnumerator = null)
 
         /// <summary>
-        /// Creates a new IdMultiEdgePipe.
+        /// Creates a new EdgePropertiesMapPipe emitting the property values of the
+        /// given property keys of the given edges as an enumeration
+        /// of ILookup&lt;Key, Value&gt;.
         /// </summary>
-        /// <param name="IPropertyGraph">The IPropertyGraph to use.</param>
-        /// <param name="IEnumerable">An optional IEnumerable&lt;TIdMultiEdge&gt; as element source.</param>
-        /// <param name="IEnumerator">An optional IEnumerator&lt;TIdMultiEdge&gt; as element source.</param>
-        public IdMultiEdgePipe(IGenericPropertyGraph<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                              TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                              TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                              TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> IPropertyGraph,
+        /// <param name="PropertyKeys">The property keys.</param>
+        /// <param name="IncludeNullValues">Whether to include null-values or not.</param>
+        /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
+        /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
+        public EdgePropertiesMapPipe(TKeyEdge[] PropertyKeys,
+                                     Boolean    IncludeNullValues = false,
+                                     IEnumerable<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                               TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                               TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                               TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable = null,
 
-                               IEnumerable<TIdMultiEdge> IEnumerable = null,
-                               IEnumerator<TIdMultiEdge> IEnumerator = null)
+                                     IEnumerator<IPropertyEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                               TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                               TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                               TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
 
-            : base(IEnumerable, IEnumerator)
+               : base(IEnumerable, IEnumerator)
 
         {
-            _IPropertyGraph = IPropertyGraph;
+            this.PropertyKeys      = PropertyKeys;
+            this.IncludeNullValues = IncludeNullValues;
         }
 
         #endregion
@@ -145,12 +153,19 @@ namespace de.ahzf.Balder
 
             if (_InternalEnumerator.MoveNext())
             {
-                _CurrentElement = _IPropertyGraph.MultiEdgeById(_InternalEnumerator.Current);
+
+                _CurrentElement = (from   Key
+                                   in     PropertyKeys
+                                   let    PropertyValue = _InternalEnumerator.Current.PropertyData.GetProperty(Key)
+                                   where  (!PropertyValue.Equals(default(TValueEdge)) || !IncludeNullValues)
+                                   select new KeyValuePair<TKeyEdge, TValueEdge>(Key, PropertyValue)).
+
+                                   ToLookup(kvp => kvp.Key, kvp => kvp.Value);
+
                 return true;
             }
 
-            else
-                return false;
+            return false;
 
         }
 
@@ -164,7 +179,17 @@ namespace de.ahzf.Balder
         /// </summary>
         public override String ToString()
         {
-            return base.ToString() + "<" + _InternalEnumerator.Current + ">";
+
+            var _StringBuilder = new StringBuilder();
+
+            foreach (var _Key in PropertyKeys)
+                _StringBuilder.Append(_Key.ToString() + ", ");
+
+            if (_StringBuilder.Length >= 2)
+                _StringBuilder.Length = _StringBuilder.Length - 2;
+
+            return base.ToString() + "<" + _StringBuilder.ToString() + ">";
+
         }
 
         #endregion
