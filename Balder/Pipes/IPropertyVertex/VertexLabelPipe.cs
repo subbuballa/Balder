@@ -133,7 +133,7 @@ namespace de.ahzf.Balder
 
             if (_InternalEnumerator.MoveNext())
             {
-                _CurrentElement = _InternalEnumerator.Current.Type;
+                _CurrentElement = _InternalEnumerator.Current.Label;
                 return true;
             }
 

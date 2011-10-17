@@ -29,15 +29,15 @@ namespace de.ahzf.Balder
 {
 
     /// <summary>
-    /// The VerticesPipe emits all vertices of an multiedge.
+    /// The HyperEdgeVerticesPipe emits all vertices of a hyperedge.
     /// </summary>
-    public class MultiEdgeVerticesPipe<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+    public class HyperEdgeVerticesPipe<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                        TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                        TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                        TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
 
                      : AbstractPipe<
-                          IPropertyMultiEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                          IPropertyHyperEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                              TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                              TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                              TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>,
@@ -93,22 +93,22 @@ namespace de.ahzf.Balder
 
         #region Constructor(s)
 
-        #region MultiEdgeVerticesPipe(IEnumerable = null, IEnumerator = null)
+        #region HyperEdgeVerticesPipe(IEnumerable = null, IEnumerator = null)
 
         /// <summary>
-        /// Creates a new VerticesPipe emitting all vertices of an multiedge.
+        /// Creates a new HyperEdgeVerticesPipe emitting all vertices of an multiedge.
         /// </summary>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
-        public MultiEdgeVerticesPipe(IEnumerable<IPropertyMultiEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                           TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                           TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                           TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable = null,
+        public HyperEdgeVerticesPipe(IEnumerable<IPropertyHyperEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                                    TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                                    TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                                    TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable = null,
 
-                            IEnumerator<IPropertyMultiEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                           TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                           TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                           TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
+                                     IEnumerator<IPropertyHyperEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                                    TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                                    TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                                    TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
 
             : base(IEnumerable, IEnumerator)
 
@@ -116,7 +116,7 @@ namespace de.ahzf.Balder
 
         #endregion
 
-        #region MultiEdgeVerticesPipe(VertexType, IEnumerable = null, IEnumerator = null)
+        #region HyperEdgeVerticesPipe(VertexType, IEnumerable = null, IEnumerator = null)
 
         /// <summary>
         /// Creates a new VerticesPipe emitting all vertices of an multiedge.
@@ -124,13 +124,13 @@ namespace de.ahzf.Balder
         /// <param name="VertexType">The vertex type.</param>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
-        public MultiEdgeVerticesPipe(TVertexLabel VertexType,            
-                                     IEnumerable<IPropertyMultiEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+        public HyperEdgeVerticesPipe(TVertexLabel VertexType,            
+                                     IEnumerable<IPropertyHyperEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                     TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                     TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                                                     TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable = null,
 
-                                     IEnumerator<IPropertyMultiEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                     IEnumerator<IPropertyHyperEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                     TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                     TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                                                     TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
