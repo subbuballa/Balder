@@ -18,6 +18,7 @@
 #region Usings
 
 using System;
+using System.Text;
 using System.Collections.Generic;
 
 using de.ahzf.Blueprints.PropertyGraphs;
@@ -29,24 +30,43 @@ namespace de.ahzf.Balder
 {
 
     /// <summary>
-    /// The HyperEdgeVerticesPipe emits all vertices of a hyperedge.
+    /// The HyperEdgePropertyPipe returns the property values of the
+    /// given property key of the given hyperedges.
     /// </summary>
-    public class HyperEdgeVerticesPipe<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+    /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
+    /// <typeparam name="TRevisionIdVertex">The type of the vertex revision identifiers.</typeparam>
+    /// <typeparam name="TVertexLabel">The type of the vertex type.</typeparam>
+    /// <typeparam name="TKeyVertex">The type of the vertex property keys.</typeparam>
+    /// <typeparam name="TValueVertex">The type of the vertex property values.</typeparam>
+    /// 
+    /// <typeparam name="TIdEdge">The type of the edge identifiers.</typeparam>
+    /// <typeparam name="TRevisionIdEdge">The type of the edge revision identifiers.</typeparam>
+    /// <typeparam name="TEdgeLabel">The type of the edge label.</typeparam>
+    /// <typeparam name="TKeyEdge">The type of the edge property keys.</typeparam>
+    /// <typeparam name="TValueEdge">The type of the edge property values.</typeparam>
+    /// 
+    /// <typeparam name="TIdMultiEdge">The type of the multiedge identifiers.</typeparam>
+    /// <typeparam name="TRevisionIdMultiEdge">The type of the multiedge revision identifiers.</typeparam>
+    /// <typeparam name="TMultiEdgeLabel">The type of the multiedge label.</typeparam>
+    /// <typeparam name="TKeyMultiEdge">The type of the multiedge property keys.</typeparam>
+    /// <typeparam name="TValueMultiEdge">The type of the multiedge property values.</typeparam>
+    /// 
+    /// <typeparam name="TIdHyperEdge">The type of the hyperedge identifiers.</typeparam>
+    /// <typeparam name="TRevisionIdHyperEdge">The type of the hyperedge revision identifiers.</typeparam>
+    /// <typeparam name="THyperEdgeLabel">The type of the hyperedge label.</typeparam>
+    /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
+    /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
+    public class HyperEdgePropertyPipe<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                        TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                        TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                        TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
 
-                     : AbstractPipe<IPropertyHyperEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                       TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                       TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                       TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>,
-                   
-                                    IPropertyVertex   <TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                       TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                       TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                       TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
-
-
+                                       : AbstractPipe<IPropertyHyperEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                                         TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                                         TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                                         TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>,
+                                                      TValueHyperEdge>
+        
         where TKeyVertex              : IEquatable<TKeyVertex>,           IComparable<TKeyVertex>,           IComparable
         where TKeyEdge                : IEquatable<TKeyEdge>,             IComparable<TKeyEdge>,             IComparable
         where TKeyMultiEdge           : IEquatable<TKeyMultiEdge>,        IComparable<TKeyMultiEdge>,        IComparable
@@ -71,60 +91,22 @@ namespace de.ahzf.Balder
 
         #region Data
 
-        /// <summary>
-        /// The label of the vertices to visit.
-        /// </summary>
-        private TVertexLabel _VertexLabel;
-
-        /// <summary>
-        /// If the vertex label is in use, as _Label is always at least default(TVertexLabel)!
-        /// </summary>
-        private Boolean _UseVertexLabel;
-        
-        /// <summary>
-        /// Vertices to be traversed next...
-        /// </summary>
-        private IEnumerator<IPropertyVertex<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                            TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                            TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                            TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> _NextVertices;
+        private readonly TKeyHyperEdge PropertyKey;
 
         #endregion
 
         #region Constructor(s)
 
-        #region HyperEdgeVerticesPipe(IEnumerable = null, IEnumerator = null)
+        #region HyperEdgePropertyPipe(PropertyKey, IEnumerable = null, IEnumerator = null)
 
         /// <summary>
-        /// Creates a new HyperEdgeVerticesPipe emitting all vertices of a hyperedge.
+        /// Creates a new HyperEdgePropertyPipe emitting the property values
+        /// of the given property key of the given hyperedges.
         /// </summary>
+        /// <param name="PropertyKey">The property key.</param>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
-        public HyperEdgeVerticesPipe(IEnumerable<IPropertyHyperEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                    TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                    TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                    TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable = null,
-
-                                     IEnumerator<IPropertyHyperEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                    TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                    TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                    TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
-
-            : base(IEnumerable, IEnumerator)
-
-        { }
-
-        #endregion
-
-        #region HyperEdgeVerticesPipe(VertexLabel, IEnumerable = null, IEnumerator = null)
-
-        /// <summary>
-        /// Creates a new HyperEdgeVerticesPipe emitting all vertices of a hyperedge.
-        /// </summary>
-        /// <param name="VertexLabel">The vertex label.</param>
-        /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
-        /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
-        public HyperEdgeVerticesPipe(TVertexLabel VertexLabel,            
+        public HyperEdgePropertyPipe(TKeyHyperEdge PropertyKey,
                                      IEnumerable<IPropertyHyperEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                     TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                     TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
@@ -135,10 +117,10 @@ namespace de.ahzf.Balder
                                                                     TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                                                     TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
 
-            : base(IEnumerable, IEnumerator)
+               : base(IEnumerable, IEnumerator)
 
         {
-            this._VertexLabel = VertexLabel;
+            this.PropertyKey = PropertyKey;
         }
 
         #endregion
@@ -162,29 +144,30 @@ namespace de.ahzf.Balder
             if (_InternalEnumerator == null)
                 return false;
 
-            while (true)
+            if (_InternalEnumerator.MoveNext())
             {
-
-                if (_NextVertices != null && _NextVertices.MoveNext())
-                {
-                    _CurrentElement = _NextVertices.Current;
-                    return true;
-                }
-
-                else if (_InternalEnumerator.MoveNext())
-                {
-
-                    if (_UseVertexLabel)
-                        _NextVertices = _InternalEnumerator.Current.VerticesByLabel(_VertexLabel).GetEnumerator();
-                    else
-                        _NextVertices = _InternalEnumerator.Current.Vertices().GetEnumerator();
-
-                }
-
-                else
-                    return false;
-
+                _CurrentElement = _InternalEnumerator.Current.PropertyData.GetProperty(PropertyKey);
+                return true;
             }
+
+            return false;
+
+        }
+
+        #endregion
+
+
+        #region ToString()
+
+        /// <summary>
+        /// A string representation of this pipe.
+        /// </summary>
+        public override String ToString()
+        {
+
+            var _StringBuilder = new StringBuilder();
+
+            return base.ToString() + "<" + PropertyKey + ">";
 
         }
 
