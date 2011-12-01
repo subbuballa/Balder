@@ -50,7 +50,7 @@ namespace de.ahzf.Balder
             where TRevisionId    : IEquatable<TRevisionId>, IComparable<TRevisionId>, IComparable, TValue
             where TKey           : IEquatable<TKey>,        IComparable<TKey>,        IComparable
             where TDatastructure : IDictionary<TKey, TValue>
-            where S              : IGraphElement<TId, TRevisionId, TKey, TValue, TDatastructure>
+            where S              : IGraphElement<TId, TRevisionId, TKey, TValue>
 
         {
 
