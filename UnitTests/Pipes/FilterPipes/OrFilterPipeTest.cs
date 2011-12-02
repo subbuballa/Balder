@@ -76,47 +76,47 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
 	        var _Pipe0 			= new OutEdgesPipe<VertexId,    RevisionId, String, String, Object,
                                                    EdgeId,      RevisionId, String, String, Object,
                                                    MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>();
+                                                   HyperEdgeId, RevisionId, String, String, Object>();
 	        
             var _Pipe1 			= new LabelFilterPipe<VertexId,    RevisionId, String, String, Object,
                                                       EdgeId,      RevisionId, String, String, Object,
                                                       MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>("created", ComparisonFilter.NOT_EQUAL);
+                                                      HyperEdgeId, RevisionId, String, String, Object>("created", ComparisonFilter.NOT_EQUAL);
 
-            var _Pipe2 			= new PropertyFilterPipe<EdgeId, RevisionId, String, Object, IPropertyEdge<VertexId,    RevisionId, String, String, Object,
-                                                                                                           EdgeId,      RevisionId, String, String, Object,
-                                                                                                           MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>, Double>("weight", 0.5, ComparisonFilter.LESS_THAN_EQUAL);
+            var _Pipe2 			= new PropertyFilterPipe<EdgeId, RevisionId, String, Object, IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
+                                                                                                                  EdgeId,      RevisionId, String, String, Object,
+                                                                                                                  MultiEdgeId, RevisionId, String, String, Object,
+                                                                                                                  HyperEdgeId, RevisionId, String, String, Object>, Double>("weight", 0.5, ComparisonFilter.LESS_THAN_EQUAL);
 
-            var _ORFilterPipe	= new OrFilterPipe<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
-                                                                 EdgeId,      RevisionId, String, String, Object,
-                                                                 MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>>(
+            var _ORFilterPipe	= new OrFilterPipe<IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
+                                                                        EdgeId,      RevisionId, String, String, Object,
+                                                                        MultiEdgeId, RevisionId, String, String, Object,
+                                                                        HyperEdgeId, RevisionId, String, String, Object>>(
 
-                                      new HasNextPipe<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
-                                                                    EdgeId,      RevisionId, String, String, Object,
-                                                                    MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>>(_Pipe1),
+                                      new HasNextPipe<IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
+                                                                           EdgeId,      RevisionId, String, String, Object,
+                                                                           MultiEdgeId, RevisionId, String, String, Object,
+                                                                           HyperEdgeId, RevisionId, String, String, Object>>(_Pipe1),
 
-                                      new HasNextPipe<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
-                                                                    EdgeId,      RevisionId, String, String, Object,
-                                                                    MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>>(_Pipe2));
+                                      new HasNextPipe<IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
+                                                                           EdgeId,      RevisionId, String, String, Object,
+                                                                           MultiEdgeId, RevisionId, String, String, Object,
+                                                                           HyperEdgeId, RevisionId, String, String, Object>>(_Pipe2));
 
-	        var _Pipeline 		= new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                               EdgeId,      RevisionId, String, String, Object,
-                                                               MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>,
+	        var _Pipeline 		= new Pipeline<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                                      EdgeId,      RevisionId, String, String, Object,
+                                                                      MultiEdgeId, RevisionId, String, String, Object,
+                                                                      HyperEdgeId, RevisionId, String, String, Object>,
 
-                                                 IPropertyEdge<VertexId,    RevisionId, String, String, Object,
-                                                               EdgeId,      RevisionId, String, String, Object,
-                                                               MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>>(_Pipe0, _ORFilterPipe);
+                                                 IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
+                                                                      EdgeId,      RevisionId, String, String, Object,
+                                                                      MultiEdgeId, RevisionId, String, String, Object,
+                                                                      HyperEdgeId, RevisionId, String, String, Object>>(_Pipe0, _ORFilterPipe);
 
-	        _Pipeline.SetSourceCollection(new List<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                                   EdgeId,      RevisionId, String, String, Object,
-                                                                   MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>>() { _Marko, _Peter, _Marko });
+	        _Pipeline.SetSourceCollection(new List<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                                          EdgeId,      RevisionId, String, String, Object,
+                                                                          MultiEdgeId, RevisionId, String, String, Object,
+                                                                          HyperEdgeId, RevisionId, String, String, Object>>() { _Marko, _Peter, _Marko });
 	        
 			var _Counter = 0;
 	        while (_Pipeline.MoveNext())
@@ -159,50 +159,50 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
                                                   MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
 
-	        var _PipeC 		= new PropertyFilterPipe<EdgeId, RevisionId, String, Object, IPropertyEdge<VertexId,    RevisionId, String, String, Object,
+	        var _PipeC 		= new PropertyFilterPipe<EdgeId, RevisionId, String, Object, IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                                                                        EdgeId,      RevisionId, String, String, Object,
                                                                                                        MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>, Double>("weight", 0.5, ComparisonFilter.LESS_THAN_EQUAL);
 
-	        var _PipeD 		= new AndFilterPipe<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
+	        var _PipeD 		= new AndFilterPipe<IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                               EdgeId,      RevisionId, String, String, Object,
                                                               MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(
 
-                                  new HasNextPipe<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
+                                  new HasNextPipe<IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                                 EdgeId,      RevisionId, String, String, Object,
                                                                 MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(_PipeB),
-                                  new HasNextPipe<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
+                                  new HasNextPipe<IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                                 EdgeId,      RevisionId, String, String, Object,
                                                                 MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(_PipeC));
 
-	        var _Pipe2 		= new OrFilterPipe<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
+	        var _Pipe2 		= new OrFilterPipe<IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                              EdgeId,      RevisionId, String, String, Object,
                                                              MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(
 
-                                  new HasNextPipe<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
+                                  new HasNextPipe<IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                                 EdgeId,      RevisionId, String, String, Object,
                                                                 MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(_PipeA),
-                                  new HasNextPipe<IPropertyEdge<VertexId,    RevisionId, String, String, Object,
+                                  new HasNextPipe<IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                                 EdgeId,      RevisionId, String, String, Object,
                                                                 MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(_PipeD));
 	        
-            var _Pipeline 	= new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+            var _Pipeline 	= new Pipeline<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                            EdgeId,      RevisionId, String, String, Object,
                                                            MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>,
 
-                                           IPropertyEdge<VertexId,    RevisionId, String, String, Object,
+                                           IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                          EdgeId,      RevisionId, String, String, Object,
                                                          MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(_Pipe1, _Pipe2);
 
-	        _Pipeline.SetSourceCollection(new List<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+	        _Pipeline.SetSourceCollection(new List<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                    EdgeId,      RevisionId, String, String, Object,
                                                                    MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>() { _Marko });
@@ -275,45 +275,45 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
                                                   MultiEdgeId, RevisionId, String, String, Object,
                                                   HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _PipeD      = new PropertyFilterPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                                                                           EdgeId,      RevisionId, String, String, Object,
-                                                                                                           MultiEdgeId, RevisionId, String, String, Object,
-                                                                                                           HyperEdgeId, RevisionId, String, String, Object>, String>("name", "lop", ComparisonFilter.NOT_EQUAL);
+            var _PipeD      = new PropertyFilterPipe<VertexId, RevisionId, String, Object, IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                                                                                  EdgeId,      RevisionId, String, String, Object,
+                                                                                                                  MultiEdgeId, RevisionId, String, String, Object,
+                                                                                                                  HyperEdgeId, RevisionId, String, String, Object>, String>("name", "lop", ComparisonFilter.NOT_EQUAL);
 
-            var _Pipe1      = new AndFilterPipe<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                                EdgeId,      RevisionId, String, String, Object,
-                                                                MultiEdgeId, RevisionId, String, String, Object,
-                                                                HyperEdgeId, RevisionId, String, String, Object>>(
+            var _Pipe1      = new AndFilterPipe<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                                       EdgeId,      RevisionId, String, String, Object,
+                                                                       MultiEdgeId, RevisionId, String, String, Object,
+                                                                       HyperEdgeId, RevisionId, String, String, Object>>(
 
-                                  new HasNextPipe<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                  new HasNextPipe<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                                         EdgeId,      RevisionId, String, String, Object,
+                                                                         MultiEdgeId, RevisionId, String, String, Object,
+                                                                         HyperEdgeId, RevisionId, String, String, Object>>(
+
+                                  new Pipeline<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                                      EdgeId,      RevisionId, String, String, Object,
+                                                                      MultiEdgeId, RevisionId, String, String, Object,
+                                                                      HyperEdgeId, RevisionId, String, String, Object>,
+
+                                               IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                                      EdgeId,      RevisionId, String, String, Object,
+                                                                      MultiEdgeId, RevisionId, String, String, Object,
+                                                                      HyperEdgeId, RevisionId, String, String, Object>>(_PipeA, _PipeB, _PipeC, _PipeD)));
+            
+            var _Pipe2      = new PropertyPipe<VertexId, RevisionId, String, Object, IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                                                                            EdgeId,      RevisionId, String, String, Object,
+                                                                                                            MultiEdgeId, RevisionId, String, String, Object,
+                                                                                                            HyperEdgeId, RevisionId, String, String, Object>, String>("name");
+
+            var _Pipeline   = new Pipeline<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                   EdgeId,      RevisionId, String, String, Object,
                                                                   MultiEdgeId, RevisionId, String, String, Object,
-                                                                  HyperEdgeId, RevisionId, String, String, Object>>(
-
-                                  new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                               EdgeId,      RevisionId, String, String, Object,
-                                                               MultiEdgeId, RevisionId, String, String, Object,
-                                                               HyperEdgeId, RevisionId, String, String, Object>,
-
-                                               IPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                               EdgeId,      RevisionId, String, String, Object,
-                                                               MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>>(_PipeA, _PipeB, _PipeC, _PipeD)));
+                                                                  HyperEdgeId, RevisionId, String, String, Object>, String>(_Pipe1, _Pipe2);
             
-            var _Pipe2      = new PropertyPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                                                                     EdgeId,      RevisionId, String, String, Object,
-                                                                                                     MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>, String>("name");
-
-            var _Pipeline   = new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                           EdgeId,      RevisionId, String, String, Object,
-                                                           MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>, String>(_Pipe1, _Pipe2);
-            
-            _Pipeline.SetSourceCollection(new List<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                                   EdgeId,      RevisionId, String, String, Object,
-                                                                   MultiEdgeId, RevisionId, String, String, Object,
-                                                                   HyperEdgeId, RevisionId, String, String, Object>>() { _Marko });
+            _Pipeline.SetSourceCollection(new List<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                                          EdgeId,      RevisionId, String, String, Object,
+                                                                          MultiEdgeId, RevisionId, String, String, Object,
+                                                                          HyperEdgeId, RevisionId, String, String, Object>>() { _Marko });
 
             var _Counter = 0;
             while (_Pipeline.MoveNext())
@@ -345,7 +345,7 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
                                                MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>();
             
-            var _PipeB      = new PropertyFilterPipe<EdgeId, RevisionId, String, Object, IPropertyEdge<VertexId,    RevisionId, String, String, Object,
+            var _PipeB      = new PropertyFilterPipe<EdgeId, RevisionId, String, Object, IGenericPropertyEdge<VertexId,    RevisionId, String, String, Object,
                                                                                                        EdgeId,      RevisionId, String, String, Object,
                                                                                                        MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>, Double>("weight", 0.5, ComparisonFilter.LESS_THAN_EQUAL);
@@ -355,22 +355,22 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
                                                MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _Pipe1      = new AndFilterPipe<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+            var _Pipe1      = new AndFilterPipe<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                 EdgeId,      RevisionId, String, String, Object,
                                                                 MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(
 
-                                  new HasNextPipe<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                  new HasNextPipe<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                   EdgeId,      RevisionId, String, String, Object,
                                                                   MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(
                                                                   
-                                      new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                      new Pipeline<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                    EdgeId,      RevisionId, String, String, Object,
                                                                    MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>,
 
-                                                   IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                   IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                    EdgeId,      RevisionId, String, String, Object,
                                                                    MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(_PipeA, _PipeB, _PipeC)));
@@ -385,17 +385,17 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
                                                MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _Pipe4      = new PropertyPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+            var _Pipe4      = new PropertyPipe<VertexId, RevisionId, String, Object, IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                                                      EdgeId,      RevisionId, String, String, Object,
                                                                                                      MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>, String>("name");
 
-            var _Pipeline   = new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+            var _Pipeline   = new Pipeline<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                            EdgeId,      RevisionId, String, String, Object,
                                                            MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>, String>(_Pipe1, _Pipe2, _Pipe3, _Pipe4);
 
-            _Pipeline.SetSourceCollection(new List<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+            _Pipeline.SetSourceCollection(new List<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                    EdgeId,      RevisionId, String, String, Object,
                                                                    MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>() { _Marko });
@@ -435,22 +435,22 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
                                                MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _Pipe1      = new OrFilterPipe<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+            var _Pipe1      = new OrFilterPipe<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                EdgeId,      RevisionId, String, String, Object,
                                                                MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(
 
-                                  new HasNextPipe<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                  new HasNextPipe<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                   EdgeId,      RevisionId, String, String, Object,
                                                                   MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(
 
-                                      new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                      new Pipeline<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                    EdgeId,      RevisionId, String, String, Object,
                                                                    MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>,
 
-                                                   IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                   IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                    EdgeId,      RevisionId, String, String, Object,
                                                                    MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(_PipeA, _PipeB)));
@@ -460,12 +460,12 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
                                                MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _Pipe2      = new OrFilterPipe<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+            var _Pipe2      = new OrFilterPipe<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                EdgeId,      RevisionId, String, String, Object,
                                                                MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(
 
-                                  new HasNextPipe<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                  new HasNextPipe<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                   EdgeId,      RevisionId, String, String, Object,
                                                                   MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(_PipeC));
@@ -480,17 +480,17 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
                                                MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>();
 
-            var _Pipe5      = new PropertyPipe<VertexId, RevisionId, String, Object, IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+            var _Pipe5      = new PropertyPipe<VertexId, RevisionId, String, Object, IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                                                      EdgeId,      RevisionId, String, String, Object,
                                                                                                      MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>, String>("name");
 
-            var _Pipeline   = new Pipeline<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+            var _Pipeline   = new Pipeline<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                            EdgeId,      RevisionId, String, String, Object,
                                                            MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>, String>(_Pipe1, _Pipe2, _Pipe3, _Pipe4, _Pipe5);
 
-            _Pipeline.SetSourceCollection(new List<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+            _Pipeline.SetSourceCollection(new List<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                    EdgeId,      RevisionId, String, String, Object,
                                                                    MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>() { _Marko });

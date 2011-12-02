@@ -49,10 +49,10 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
                                           MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>();
 
-            _VSF.SetSource(new List<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                    EdgeId,      RevisionId, String, String, Object,
-                                                    MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>>() { _Marko }.GetEnumerator());
+            _VSF.SetSource(new List<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                           EdgeId,      RevisionId, String, String, Object,
+                                                           MultiEdgeId, RevisionId, String, String, Object,
+                                                           HyperEdgeId, RevisionId, String, String, Object>>() { _Marko }.GetEnumerator());
 
             var _Counter = 0;
             while (_VSF.MoveNext())
@@ -72,12 +72,12 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             _VSF = new OutEdgesPipe<VertexId,    RevisionId, String, String, Object,
                                     EdgeId,      RevisionId, String, String, Object,
                                     MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>();
+                                    HyperEdgeId, RevisionId, String, String, Object>();
 
-            _VSF.SetSource(new List<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                    EdgeId,      RevisionId, String, String, Object,
-                                                    MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>>() { _Josh }.GetEnumerator());
+            _VSF.SetSource(new List<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                           EdgeId,      RevisionId, String, String, Object,
+                                                           MultiEdgeId, RevisionId, String, String, Object,
+                                                           HyperEdgeId, RevisionId, String, String, Object>>() { _Josh }.GetEnumerator());
 
             _Counter = 0;
             while (_VSF.MoveNext())
@@ -97,12 +97,12 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             _VSF = new OutEdgesPipe<VertexId,    RevisionId, String, String, Object,
                                     EdgeId,      RevisionId, String, String, Object,
                                     MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>();
+                                    HyperEdgeId, RevisionId, String, String, Object>();
 
-            _VSF.SetSource(new List<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                    EdgeId,      RevisionId, String, String, Object,
-                                                    MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>>() { _Lop }.GetEnumerator());
+            _VSF.SetSource(new List<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
+                                                           EdgeId,      RevisionId, String, String, Object,
+                                                           MultiEdgeId, RevisionId, String, String, Object,
+                                                           HyperEdgeId, RevisionId, String, String, Object>>() { _Lop }.GetEnumerator());
 
             _Counter = 0;
             while (_VSF.MoveNext())
@@ -130,7 +130,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
                                         MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>();
 
-            _Pipe.SetSource(new SingleEnumerator<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+            _Pipe.SetSource(new SingleEnumerator<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                  EdgeId,      RevisionId, String, String, Object,
                                                                  MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(_Josh));
@@ -163,7 +163,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
                                           MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>();
 
-            _Pipe.SetSource(new SingleEnumerator<IPropertyVertex<VertexId,    RevisionId, String, String, Object,
+            _Pipe.SetSource(new SingleEnumerator<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                  EdgeId,      RevisionId, String, String, Object,
                                                                  MultiEdgeId, RevisionId, String, String, Object,
                                                     HyperEdgeId, RevisionId, String, String, Object>>(_Josh));
