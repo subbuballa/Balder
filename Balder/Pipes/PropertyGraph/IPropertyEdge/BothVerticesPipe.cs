@@ -18,10 +18,9 @@
 #region Usings
 
 using System;
+using System.Collections.Generic;
 
-using de.ahzf.Blueprints;
 using de.ahzf.Blueprints.PropertyGraphs;
-
 using de.ahzf.Pipes;
 
 #endregion
@@ -30,17 +29,22 @@ namespace de.ahzf.Balder
 {
 
     /// <summary>
-    /// EdgeIdFilterPipe.
+    /// BothVertices emits the tail/source and head/target vertices of an edge.
     /// </summary>
-    public class EdgeIdFilterPipe<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+    public class BothVerticesPipe<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                   TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                   TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                   TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
 
-                                  : AbstractComparisonFilterPipe<IGenericPropertyEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                                      TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                                      TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                                      TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>, TIdEdge>
+                                  : AbstractPipe<
+                                       IGenericPropertyEdge  <TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                              TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                              TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                              TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>,
+                                       IGenericPropertyVertex<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                              TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                              TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                              TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
 
         where TKeyVertex              : IEquatable<TKeyVertex>,           IComparable<TKeyVertex>,           IComparable
         where TKeyEdge                : IEquatable<TKeyEdge>,             IComparable<TKeyEdge>,             IComparable
@@ -66,24 +70,36 @@ namespace de.ahzf.Balder
 
         #region Data
 
-        private readonly TIdEdge _EdgeId;
+        private IGenericPropertyVertex<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                       TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                       TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                       TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> _NextVertex;
 
         #endregion
 
         #region Constructor(s)
 
-        #region IdFilterPipe(EdgeId, myComparisonFilter)
+        #region BothVertices(IEnumerable = null, IEnumerator = null)
 
         /// <summary>
-        /// Creates a new EdgeIdFilterPipe.
+        /// Creates a new BothVertices emitting the tail/source
+        /// and head/target vertices of an edge.
         /// </summary>
-        /// <param name="myEdgeId">The Id of the IElement.</param>
-        /// <param name="myComparisonFilter">The filter to use.</param>
-        public EdgeIdFilterPipe(TIdEdge myEdgeId, ComparisonFilter myComparisonFilter)
-            : base(myComparisonFilter)
-        {
-            _EdgeId = myEdgeId;
-        }
+        /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
+        /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
+        public BothVerticesPipe(IEnumerable<IGenericPropertyEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                                 TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                                 TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                                 TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable = null,
+
+                                IEnumerator<IGenericPropertyEdge<TIdVertex,    TRevisionIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                                 TIdEdge,      TRevisionIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                                 TIdMultiEdge, TRevisionIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                                 TIdHyperEdge, TRevisionIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
+
+            : base(IEnumerable, IEnumerator)
+
+        { }
 
         #endregion
 
@@ -106,40 +122,27 @@ namespace de.ahzf.Balder
             if (_InternalEnumerator == null)
                 return false;
 
-            while (true)
+            if (_NextVertex == null)
             {
 
                 if (_InternalEnumerator.MoveNext())
                 {
-
-                    var _Edge = _InternalEnumerator.Current;
-
-                    if (!CompareObjects(_Edge.Id, _EdgeId))
-                    {
-                        _CurrentElement = _Edge;
-                        return true;
-                    }
-
+                    _CurrentElement = _InternalEnumerator.Current.InVertex;
+                    _NextVertex     = _InternalEnumerator.Current.OutVertex;
+                    return true;
                 }
 
-                else
-                    return false;
+                return false;
 
             }
+            
+            else
+            {
+                _CurrentElement = _NextVertex;
+                _NextVertex     = null;
+                return true;
+            }
 
-        }
-
-        #endregion
-
-
-        #region ToString()
-
-        /// <summary>
-        /// A string representation of this pipe.
-        /// </summary>
-        public override String ToString()
-        {
-            return base.ToString() + "<" + _InternalEnumerator.Current + ">";
         }
 
         #endregion
