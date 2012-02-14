@@ -105,17 +105,9 @@
     <Compile Include="Traverser\TraverserFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Arrows.NET\Arrows\Arrows.SL.csproj">
-      <Project>{4CC8282B-A807-434A-BD22-39C8B2E62535}</Project>
-      <Name>Arrows.SL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Blueprints.NET\Blueprints\Blueprints.SL.csproj">
-      <Project>{C907FBA5-7DE0-4244-9872-806FCFF97175}</Project>
-      <Name>Blueprints.SL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Pipes.NET\Pipes\Pipes.SL.csproj">
-      <Project>{31E35DEA-EC3D-4004-8E9E-E00E28C7DA71}</Project>
-      <Name>Pipes.SL</Name>
+    <ProjectReference Include="..\..\Styx\Styx\Styx.SL.csproj">
+      <Project>{1E8E49A5-399E-47B5-83CD-D83B025009FF}</Project>
+      <Name>Styx.SL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

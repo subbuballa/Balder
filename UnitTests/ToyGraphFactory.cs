@@ -20,7 +20,7 @@
 using System;
 using System.Linq;
 
-using de.ahzf.Pipes;
+using de.ahzf.Styx;
 using de.ahzf.Blueprints;
 using de.ahzf.Blueprints.PropertyGraphs;
 using de.ahzf.Blueprints.PropertyGraphs.InMemory.Mutable;

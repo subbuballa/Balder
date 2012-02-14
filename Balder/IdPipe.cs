@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 
 using de.ahzf.Blueprints;
-using de.ahzf.Pipes;
+using de.ahzf.Styx;
 
 #endregion
 

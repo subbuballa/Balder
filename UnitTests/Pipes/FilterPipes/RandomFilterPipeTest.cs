@@ -19,7 +19,7 @@
 
 using System;
 
-using de.ahzf.Pipes;
+using de.ahzf.Styx;
 
 using NUnit.Framework;
 

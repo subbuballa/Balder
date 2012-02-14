@@ -79,9 +79,9 @@
       <Project>{562AC94F-60EA-4911-8C62-684F02867783}</Project>
       <Name>PropertyGraphs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\pipes.NET\Pipes\Pipes.csproj">
+    <ProjectReference Include="..\..\Styx\Styx\Styx.csproj">
       <Project>{3949790D-8591-4101-9E4D-CE7A758E7409}</Project>
-      <Name>Pipes</Name>
+      <Name>Styx</Name>
     </ProjectReference>
     <ProjectReference Include="..\Balder\Balder.csproj">
       <Project>{D2B4E7C7-0524-4DE5-9D62-2DE05682A74D}</Project>

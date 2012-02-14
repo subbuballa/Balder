@@ -109,9 +109,9 @@
       <Project>{B9DE4181-416E-4DE4-A983-B90FC9412774}</Project>
       <Name>Blueprints</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Pipes.NET\Pipes\Pipes.csproj">
+    <ProjectReference Include="..\..\Styx\Styx\Styx.csproj">
       <Project>{3949790D-8591-4101-9E4D-CE7A758E7409}</Project>
-      <Name>Pipes</Name>
+      <Name>Styx</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

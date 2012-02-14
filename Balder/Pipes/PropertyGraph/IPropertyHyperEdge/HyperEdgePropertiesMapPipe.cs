@@ -23,7 +23,7 @@ using System.Text;
 using System.Collections.Generic;
 
 using de.ahzf.Blueprints.PropertyGraphs;
-using de.ahzf.Pipes;
+using de.ahzf.Styx;
 
 #endregion
 
