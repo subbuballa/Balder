@@ -736,7 +736,7 @@ namespace de.ahzf.Balder
             where TRevisionIdHyperEdge    : IEquatable<TRevisionIdHyperEdge>, IComparable<TRevisionIdHyperEdge>, IComparable, TValueHyperEdge
 
         {
-            return IPropertyEdge.PropertyData.GetProperty(PropertyKey);
+            return IPropertyEdge.GetProperty(PropertyKey);
         }
 
         #endregion
@@ -803,7 +803,7 @@ namespace de.ahzf.Balder
             where TRevisionIdHyperEdge    : IEquatable<TRevisionIdHyperEdge>, IComparable<TRevisionIdHyperEdge>, IComparable, TValueHyperEdge
 
         {
-            return from Key in PropertyKeys select IPropertyEdge.PropertyData.GetProperty(Key);
+            return from Key in PropertyKeys select IPropertyEdge.GetProperty(Key);
         }
 
         #endregion
@@ -875,7 +875,7 @@ namespace de.ahzf.Balder
 
             return (from   Key
                     in     PropertyKeys
-                    select new KeyValuePair<TKeyEdge, TValueEdge>(Key, IPropertyEdge.PropertyData.GetProperty(Key))).
+                    select new KeyValuePair<TKeyEdge, TValueEdge>(Key, IPropertyEdge.GetProperty(Key))).
 
                     ToLookup(kvp => kvp.Key, kvp => kvp.Value);
 

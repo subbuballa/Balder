@@ -24,6 +24,7 @@ using de.ahzf.Blueprints.PropertyGraphs;
 
 using NUnit.Framework;
 using de.ahzf.Styx;
+using de.ahzf.Illias.Commons;
 
 #endregion
 
@@ -47,7 +48,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             var _LFP   = new LabelFilterPipe<VertexId,    RevisionId, String, String, Object,
                                              EdgeId,      RevisionId, String, String, Object,
                                              MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
+                                             HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
 
             _LFP.SetSourceCollection(_Marko.OutEdges());
 

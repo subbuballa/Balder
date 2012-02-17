@@ -105,7 +105,7 @@ namespace de.ahzf.Balder
                 // Second emit the properties
                 if (_PropertyEnumerator.MoveNext())
                 {
-                    _CurrentElement = (E) (Object) _InternalEnumerator.Current.PropertyData.GetProperty(_PropertyEnumerator.Current);
+                    _CurrentElement = (E) (Object) _InternalEnumerator.Current.GetProperty(_PropertyEnumerator.Current);
                     return true;
                 }
 

@@ -156,7 +156,7 @@ namespace de.ahzf.Balder
 
                 _CurrentElement = (from   Key
                                    in     PropertyKeys
-                                   let    PropertyValue = _InternalEnumerator.Current.PropertyData.GetProperty(Key)
+                                   let    PropertyValue = _InternalEnumerator.Current.GetProperty(Key)
                                    where  (!PropertyValue.Equals(default(TValueEdge)) || !IncludeNullValues)
                                    select new KeyValuePair<TKeyEdge, TValueEdge>(Key, PropertyValue)).
 

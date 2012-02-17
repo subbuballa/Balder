@@ -101,13 +101,13 @@
     <Compile Include="PropertyPipe.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Arrows.NET\Arrows\Arrows.csproj">
-      <Project>{55B3070D-C264-44BB-8315-504F8C512D75}</Project>
-      <Name>Arrows</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Blueprints.NET\Blueprints\Blueprints.csproj">
       <Project>{B9DE4181-416E-4DE4-A983-B90FC9412774}</Project>
       <Name>Blueprints</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Illias\Commons\Commons.csproj">
+      <Project>{16C85DF8-5DE6-4A9F-9FC7-7CA5B0440DF3}</Project>
+      <Name>Commons</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Styx\Styx\Styx.csproj">
       <Project>{3949790D-8591-4101-9E4D-CE7A758E7409}</Project>

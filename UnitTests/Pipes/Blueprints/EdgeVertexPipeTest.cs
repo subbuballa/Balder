@@ -24,6 +24,7 @@ using de.ahzf.Blueprints.PropertyGraphs;
 
 using NUnit.Framework;
 using de.ahzf.Styx;
+using de.ahzf.Illias.Commons;
 
 #endregion
 
@@ -47,7 +48,7 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             var _EVP   = new InVertexPipe<VertexId,    RevisionId, String, String, Object,
                                           EdgeId,      RevisionId, String, String, Object,
                                           MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>();
+                                          HyperEdgeId, RevisionId, String, String, Object>();
 
             _EVP.SetSourceCollection(_Marko.OutEdges());
 

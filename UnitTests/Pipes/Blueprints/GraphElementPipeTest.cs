@@ -25,6 +25,7 @@ using de.ahzf.Blueprints.PropertyGraphs;
 
 using NUnit.Framework;
 using de.ahzf.Styx;
+using de.ahzf.Illias.Commons;
 
 #endregion
 

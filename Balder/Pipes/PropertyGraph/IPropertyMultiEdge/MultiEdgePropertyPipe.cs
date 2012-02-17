@@ -146,7 +146,7 @@ namespace de.ahzf.Balder
 
             if (_InternalEnumerator.MoveNext())
             {
-                _CurrentElement = _InternalEnumerator.Current.PropertyData.GetProperty(PropertyKey);
+                _CurrentElement = _InternalEnumerator.Current.GetProperty(PropertyKey);
                 return true;
             }
 

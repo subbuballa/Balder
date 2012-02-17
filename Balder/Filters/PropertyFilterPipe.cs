@@ -98,7 +98,7 @@ namespace de.ahzf.Balder
 
                     var _IElement = _InternalEnumerator.Current;
 
-                    if (!CompareObjects((E) (Object) _IElement.PropertyData.GetProperty(_Key), (E) (Object) _Value))
+                    if (!CompareObjects((E) (Object) _IElement.GetProperty(_Key), (E) (Object) _Value))
                     {
                         _CurrentElement = _IElement;
                         return true;

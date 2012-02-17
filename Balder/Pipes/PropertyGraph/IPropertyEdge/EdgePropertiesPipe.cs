@@ -152,7 +152,7 @@ namespace de.ahzf.Balder
 
                 _CurrentElement = from   Key
                                   in     PropertyKeys
-                                  select _InternalEnumerator.Current.PropertyData.GetProperty(Key);
+                                  select _InternalEnumerator.Current.GetProperty(Key);
 
                 return true;
 

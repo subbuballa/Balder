@@ -25,6 +25,7 @@ using de.ahzf.Blueprints.PropertyGraphs;
 
 using NUnit.Framework;
 using de.ahzf.Styx;
+using de.ahzf.Illias.Commons;
 
 #endregion
 
@@ -47,12 +48,12 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             var _Pipe1    = new OutEdgesPipe<VertexId,    RevisionId, String, String, Object,
                                              EdgeId,      RevisionId, String, String, Object,
                                              MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>();
+                                             HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe2    = new InVertexPipe<VertexId,    RevisionId, String, String, Object,
                                              EdgeId,      RevisionId, String, String, Object,
                                              MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>();
+                                             HyperEdgeId, RevisionId, String, String, Object>();
 
             var _Pipe3    = new PropertyFilterPipe<VertexId, RevisionId, String, Object, IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
                                                                                                                 EdgeId,      RevisionId, String, String, Object,

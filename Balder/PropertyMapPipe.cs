@@ -65,8 +65,8 @@ namespace de.ahzf.Balder
 
                 var _Map = new Dictionary<TKey, TValue>();
 
-                foreach (var _Key in _IElement.PropertyData.Keys)
-                    _Map.Add(_Key, _IElement.PropertyData.GetProperty(_Key));
+                foreach (var _Key in _IElement.Keys)
+                    _Map.Add(_Key, _IElement.GetProperty(_Key));
 
                 _CurrentElement = _Map;
 
