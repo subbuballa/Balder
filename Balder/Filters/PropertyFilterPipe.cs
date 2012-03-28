@@ -34,13 +34,14 @@ namespace de.ahzf.Balder
     /// <typeparam name="TKey">The type of the property keys.</typeparam>
     /// <typeparam name="S">The type of the consuming objects.</typeparam>
     /// <typeparam name="E">The type of the emitting objects.</typeparam>
-    public class PropertyFilterPipe<TId, TRevisionId, TKey, TValue, S, E>
+    public class PropertyFilterPipe<TId, TRevisionId, TLabel, TKey, TValue, S, E>
                     : AbstractComparisonFilterPipe<S, E>
 
         where TId            : IEquatable<TId>,         IComparable<TId>,         IComparable, TValue
         where TRevisionId    : IEquatable<TRevisionId>, IComparable<TRevisionId>, IComparable, TValue
+        where TLabel         : IEquatable<TLabel>,      IComparable<TLabel>,      IComparable
         where TKey           : IEquatable<TKey>,        IComparable<TKey>,        IComparable
-        where S              : IGraphElement<TId, TRevisionId, TKey, TValue>
+        where S              : IGraphElement<TId, TRevisionId, TLabel, TKey, TValue>
         where E              : TValue, IComparable
 
     {

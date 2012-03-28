@@ -31,14 +31,15 @@ namespace de.ahzf.Balder
     /// <summary>
     /// The PropertyMapPipe...
     /// </summary>
-    public class PropertyMapPipe<TId, TRevisionId, TValue, TDatastructure, TKey, S, T>
+    public class PropertyMapPipe<TId, TRevisionId, TLabel, TValue, TDatastructure, TKey, S, T>
                     : AbstractPipe<S, IDictionary<TKey, TValue>>
 
         where TDatastructure : IDictionary<TKey, TValue>
-        where TKey           : IEquatable<TKey>,        IComparable<TKey>,        IComparable
         where TId            : IEquatable<TId>,         IComparable<TId>,         IComparable, TValue
         where TRevisionId    : IEquatable<TRevisionId>, IComparable<TRevisionId>, IComparable, TValue
-        where S              : IGraphElement<TId, TRevisionId, TKey, TValue>
+        where TLabel         : IEquatable<TLabel>,      IComparable<TLabel>,      IComparable
+        where TKey           : IEquatable<TKey>,        IComparable<TKey>,        IComparable
+        where S              : IGraphElement<TId, TRevisionId, TLabel, TKey, TValue>
 
     {
 

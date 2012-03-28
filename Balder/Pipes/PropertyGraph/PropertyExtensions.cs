@@ -44,17 +44,18 @@ namespace de.ahzf.Balder
         /// <param name="myIEnumerable">A collection of consumable objects.</param>
         /// <param name="myKeys">The property keys.</param>
         /// <returns>A collection of emittable objects.</returns>
-        public static IEnumerable<E> PropertyPipe<TId, TRevisionId, TKey, TValue, TDatastructure, S, E>(this IEnumerable<S> myIEnumerable, TKey[] myKeys)
+        public static IEnumerable<E> PropertyPipe<TId, TRevisionId, TLabel, TKey, TValue, TDatastructure, S, E>(this IEnumerable<S> myIEnumerable, TKey[] myKeys)
             
             where TId            : IEquatable<TId>,         IComparable<TId>,         IComparable, TValue
             where TRevisionId    : IEquatable<TRevisionId>, IComparable<TRevisionId>, IComparable, TValue
+            where TLabel         : IEquatable<TLabel>,      IComparable<TLabel>,      IComparable
             where TKey           : IEquatable<TKey>,        IComparable<TKey>,        IComparable
             where TDatastructure : IDictionary<TKey, TValue>
-            where S              : IGraphElement<TId, TRevisionId, TKey, TValue>
+            where S              : IGraphElement<TId, TRevisionId, TLabel, TKey, TValue>
 
         {
 
-            var _Pipe = new PropertyPipe<TId, TRevisionId, TKey, TValue, S, E>(myKeys);
+            var _Pipe = new PropertyPipe<TId, TRevisionId, TLabel, TKey, TValue, S, E>(myKeys);
             _Pipe.SetSourceCollection(myIEnumerable);
 
             return _Pipe;
