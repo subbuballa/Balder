@@ -3,10 +3,6 @@
 *.suo
 /Balder/bin
 /Balder/obj
-/UnitTests/bin
-/UnitTests/obj
-/UnitTests/TestResult.xml
-/BalderShell/obj
-/BalderShell/bin
-/Tutorials/bin
-/Tutorials/obj
+/BalderTests/bin
+/BalderTests/obj
+/BalderTests/TestResult.xml

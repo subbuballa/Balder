@@ -24,6 +24,7 @@ using de.ahzf.Blueprints.PropertyGraphs;
 
 using NUnit.Framework;
 using de.ahzf.Illias.Commons;
+using de.ahzf.Blueprints.UnitTests;
 
 #endregion
 
@@ -42,12 +43,12 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
             
-            var _Pipe  = new EdgeLabelPipe<VertexId,    RevisionId, String, String, Object,
-                                           EdgeId,      RevisionId, String, String, Object,
-                                           MultiEdgeId, RevisionId, String, String, Object,
-                                           HyperEdgeId, RevisionId, String, String, Object>();
+            var _Pipe  = new EdgeLabelPipe<UInt64, Int64, String, String, Object,
+                                           UInt64, Int64, String, String, Object,
+                                           UInt64, Int64, String, String, Object,
+                                           UInt64, Int64, String, String, Object>();
 
-            _Pipe.SetSourceCollection(_Graph.VertexById(new VertexId("1")).OutEdges());
+            _Pipe.SetSourceCollection(_Graph.VertexById(1).OutEdges());
 
             var _Counter = 0;
             while (_Pipe.MoveNext())

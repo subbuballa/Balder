@@ -25,6 +25,7 @@ using de.ahzf.Blueprints.PropertyGraphs;
 using NUnit.Framework;
 using de.ahzf.Styx;
 using de.ahzf.Illias.Commons;
+using de.ahzf.Blueprints.UnitTests;
 
 #endregion
 
@@ -43,12 +44,12 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
 
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
 
-            var _Marko = _Graph.VertexById(new VertexId("1"));
+            var _Marko = _Graph.VertexById(1);
 
-            var _LFP   = new LabelFilterPipe<VertexId,    RevisionId, String, String, Object,
-                                             EdgeId,      RevisionId, String, String, Object,
-                                             MultiEdgeId, RevisionId, String, String, Object,
-                                             HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
+            var _LFP   = new LabelFilterPipe<UInt64, Int64, String, String, Object,
+                                             UInt64, Int64, String, String, Object,
+                                             UInt64, Int64, String, String, Object,
+                                             UInt64, Int64, String, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
 
             _LFP.SetSourceCollection(_Marko.OutEdges());
 
@@ -64,10 +65,10 @@ namespace de.ahzf.Balder.UnitTests.Blueprints
             Assert.AreEqual(2, _Counter);
 
 
-            _LFP = new LabelFilterPipe<VertexId,    RevisionId, String, String, Object,
-                                       EdgeId,      RevisionId, String, String, Object,
-                                       MultiEdgeId, RevisionId, String, String, Object,
-                                                    HyperEdgeId, RevisionId, String, String, Object>("knows", ComparisonFilter.EQUAL);
+            _LFP = new LabelFilterPipe<UInt64, Int64, String, String, Object,
+                                       UInt64, Int64, String, String, Object,
+                                       UInt64, Int64, String, String, Object,
+                                       UInt64, Int64, String, String, Object>("knows", ComparisonFilter.EQUAL);
 
             _LFP.SetSourceCollection(_Marko.OutEdges());
 

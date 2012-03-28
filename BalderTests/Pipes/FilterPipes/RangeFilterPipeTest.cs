@@ -26,6 +26,7 @@ using de.ahzf.Blueprints.PropertyGraphs;
 using NUnit.Framework;
 using de.ahzf.Styx;
 using de.ahzf.Illias.Commons;
+using de.ahzf.Blueprints.UnitTests;
 
 #endregion
 
@@ -171,34 +172,34 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
             // ./outE[2]/inV/@name
 
             var _Graph      = TinkerGraphFactory.CreateTinkerGraph();
-            var _Marko      = _Graph.VertexById(new VertexId("1"));
+            var _Marko      = _Graph.VertexById(1);
             
-            var _Pipe1      = new OutEdgesPipe<VertexId,    RevisionId, String, String, Object,
-                                               EdgeId,      RevisionId, String, String, Object,
-                                               MultiEdgeId, RevisionId, String, String, Object,
-                                               HyperEdgeId, RevisionId, String, String, Object>();
+            var _Pipe1      = new OutEdgesPipe<UInt64, Int64, String, String, Object,
+                                               UInt64, Int64, String, String, Object,
+                                               UInt64, Int64, String, String, Object,
+                                               UInt64, Int64, String, String, Object>();
 
             var _Pipe2      = new RangeFilterPipe<IPropertyEdge>(2, 3);
             
-            var _Pipe3      = new InVertexPipe<VertexId,    RevisionId, String, String, Object,
-                                               EdgeId,      RevisionId, String, String, Object,
-                                               MultiEdgeId, RevisionId, String, String, Object,
-                                               HyperEdgeId, RevisionId, String, String, Object>();
+            var _Pipe3      = new InVertexPipe<UInt64, Int64, String, String, Object,
+                                               UInt64, Int64, String, String, Object,
+                                               UInt64, Int64, String, String, Object,
+                                               UInt64, Int64, String, String, Object>();
             
-            var _Pipe4      = new PropertyPipe<VertexId, RevisionId, String, Object, IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                                                                            EdgeId,      RevisionId, String, String, Object,
-                                                                                                            MultiEdgeId, RevisionId, String, String, Object,
-                                                                                                            HyperEdgeId, RevisionId, String, String, Object>, String>("name");
+            var _Pipe4      = new PropertyPipe<UInt64, Int64, String, String, Object, IGenericPropertyVertex<UInt64, Int64, String, String, Object,
+                                                                                                             UInt64, Int64, String, String, Object,
+                                                                                                             UInt64, Int64, String, String, Object,
+                                                                                                             UInt64, Int64, String, String, Object>, String>("name");
 
-            var _Pipeline   = new Pipeline<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                                  EdgeId,      RevisionId, String, String, Object,
-                                                                  MultiEdgeId, RevisionId, String, String, Object,
-                                                                  HyperEdgeId, RevisionId, String, String, Object>, String>(_Pipe1, _Pipe2, _Pipe3, _Pipe4);
+            var _Pipeline   = new Pipeline<IGenericPropertyVertex<UInt64, Int64, String, String, Object,
+                                                                  UInt64, Int64, String, String, Object,
+                                                                  UInt64, Int64, String, String, Object,
+                                                                  UInt64, Int64, String, String, Object>, String>(_Pipe1, _Pipe2, _Pipe3, _Pipe4);
 
-            _Pipeline.SetSource(new SingleEnumerator<IGenericPropertyVertex<VertexId,    RevisionId, String, String, Object,
-                                                                            EdgeId,      RevisionId, String, String, Object,
-                                                                            MultiEdgeId, RevisionId, String, String, Object,
-                                                                            HyperEdgeId, RevisionId, String, String, Object>>(_Marko));
+            _Pipeline.SetSource(new SingleEnumerator<IGenericPropertyVertex<UInt64, Int64, String, String, Object,
+                                                                            UInt64, Int64, String, String, Object,
+                                                                            UInt64, Int64, String, String, Object,
+                                                                            UInt64, Int64, String, String, Object>>(_Marko));
             
             var _Counter = 0;
             while (_Pipeline.MoveNext())

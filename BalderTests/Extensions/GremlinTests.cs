@@ -27,6 +27,7 @@ using de.ahzf.Blueprints;
 using de.ahzf.Blueprints.PropertyGraphs;
 
 using de.ahzf.Balder;
+using de.ahzf.Blueprints.UnitTests;
 
 #endregion
 
@@ -43,12 +44,12 @@ namespace de.ahzf.Balder.UnitTests.Pipes
         public void Gremlin01()
         {
 
-            var _ToyGraph = ToyGraphFactory.CreateToyGraph();
+            var _ToyGraph = GenericDemoGraphFactory.CreateGenericDemoGraph();
 
             var _AllEdges01 = _ToyGraph.V().OutE().ToList();
             var _AllEdges02 = _ToyGraph.V().OutE("loves").ToList();
 
-            var a = _ToyGraph.VertexById(new VertexId(1)).OutE("knows");
+            var a = _ToyGraph.VertexById(1).OutE("knows");
 
         }
 

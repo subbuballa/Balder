@@ -67,10 +67,12 @@
     <Compile Include="Pipes\Blueprints\PropertyPipeTest.cs" />
     <Compile Include="Pipes\Blueprints\VertexEdgePipeTest.cs" />
     <Compile Include="Pipes\Blueprints\VertexIdFilterPipeTest.cs" />
-    <Compile Include="TinkerGraphFactory.cs" />
-    <Compile Include="ToyGraphFactory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Blueprints.NET\BlueprintsTests\BlueprintsTests.csproj">
+      <Project>{7F4CE297-4A42-47A8-9A0A-74BA46B09891}</Project>
+      <Name>BlueprintsTests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Blueprints.NET\Blueprints\Blueprints.csproj">
       <Project>{B9DE4181-416E-4DE4-A983-B90FC9412774}</Project>
       <Name>Blueprints</Name>
