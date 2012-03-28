@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalderTests", "BalderTests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonsTests", "..\Illias\CommonsTests\CommonsTests.csproj", "{02A5F706-A9AC-46BE-A428-EA6F990D8E21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StyxTests", "..\Styx\StyxTests\StyxTests.csproj", "{6F2452F5-BF16-4577-9C5A-85C8D7B5289D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,16 @@ Global
 		{02A5F706-A9AC-46BE-A428-EA6F990D8E21}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{02A5F706-A9AC-46BE-A428-EA6F990D8E21}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{02A5F706-A9AC-46BE-A428-EA6F990D8E21}.Release|x86.ActiveCfg = Release|Any CPU
+		{6F2452F5-BF16-4577-9C5A-85C8D7B5289D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F2452F5-BF16-4577-9C5A-85C8D7B5289D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F2452F5-BF16-4577-9C5A-85C8D7B5289D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6F2452F5-BF16-4577-9C5A-85C8D7B5289D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6F2452F5-BF16-4577-9C5A-85C8D7B5289D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6F2452F5-BF16-4577-9C5A-85C8D7B5289D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F2452F5-BF16-4577-9C5A-85C8D7B5289D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F2452F5-BF16-4577-9C5A-85C8D7B5289D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6F2452F5-BF16-4577-9C5A-85C8D7B5289D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6F2452F5-BF16-4577-9C5A-85C8D7B5289D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,5 +135,6 @@ Global
 		{7F4CE297-4A42-47A8-9A0A-74BA46B09891} = {2ED09F56-118B-4DA2-A1D2-7B04716BA55A}
 		{4BF95036-986A-47EE-B48E-CF8C2B0E7841} = {2ED09F56-118B-4DA2-A1D2-7B04716BA55A}
 		{02A5F706-A9AC-46BE-A428-EA6F990D8E21} = {2ED09F56-118B-4DA2-A1D2-7B04716BA55A}
+		{6F2452F5-BF16-4577-9C5A-85C8D7B5289D} = {2ED09F56-118B-4DA2-A1D2-7B04716BA55A}
 	EndGlobalSection
 EndGlobal
