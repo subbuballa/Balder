@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Filters\LabelFilterPipeExtensions.cs" />
     <Compile Include="Pipes\GraphIO\N3\N3ImportPipe.cs" />
     <Compile Include="Pipes\PropertyGraph\HigherOrderRelations\Foaf.cs" />
     <Compile Include="Pipes\PropertyGraph\HigherOrderRelations\IsComplicatedExtensions.cs" />
@@ -72,11 +71,11 @@
     <Compile Include="Traverser\IPropertyGraphTraverser.cs" />
     <Compile Include="Pipes\PropertyGraph\IPropertyVertexExtensions.cs" />
     <Compile Include="Pipes\PropertyGraph\PropertyExtensions.cs" />
-    <Compile Include="Filters\EdgeIdFilterPipe.cs" />
-    <Compile Include="Filters\LabelFilterPipe.cs" />
-    <Compile Include="Filters\PropertyFilterPipe.cs" />
-    <Compile Include="Filters\VertexIdFilterPipe.cs" />
-    <Compile Include="IdPipe.cs" />
+    <Compile Include="Pipes\PropertyGraph\IPropertyEdge\EdgeIdFilterPipe.cs" />
+    <Compile Include="Pipes\PropertyGraph\IPropertyEdge\LabelFilterPipe.cs" />
+    <Compile Include="Pipes\Properties\PropertyFilterPipe.cs" />
+    <Compile Include="Pipes\PropertyGraph\IPropertyVertex\VertexIdFilterPipe.cs" />
+    <Compile Include="Pipes\Properties\IdPipe.cs" />
     <Compile Include="Pipes\PropertyGraph\IPropertyEdge\BothVerticesPipe.cs" />
     <Compile Include="Pipes\PropertyGraph\IPropertyEdge\EdgeLabelPipe.cs" />
     <Compile Include="Pipes\PropertyGraph\IPropertyGraph\IdEdgePipe.cs" />
@@ -99,8 +98,8 @@
     <Compile Include="Pipes\PropertyGraph\IPropertyVertex\OutEdgesPipe.cs" />
     <Compile Include="Pipes\PropertyGraph\IPropertyVertex\OutPipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyMapPipe.cs" />
-    <Compile Include="PropertyPipe.cs" />
+    <Compile Include="Pipes\Properties\PropertyMapPipe.cs" />
+    <Compile Include="Pipes\Properties\PropertyPipe.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Blueprints.NET\Blueprints\Blueprints.csproj">
