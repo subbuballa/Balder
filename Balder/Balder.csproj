@@ -62,6 +62,8 @@
     <Compile Include="Pipes\PropertyGraph\IPropertyMultiEdge\MultiEdgePropertiesPipe.cs" />
     <Compile Include="Pipes\PropertyGraph\IPropertyMultiEdge\MultiEdgePropertyPipe.cs" />
     <Compile Include="Pipes\PropertyGraph\IPropertyMultiEdge\MultiEdgeLabelPipe.cs" />
+    <Compile Include="Pipes\PropertyGraph\IPropertyVertex\AbstractHyperEdgesPipe.cs" />
+    <Compile Include="Pipes\PropertyGraph\IPropertyVertex\OutHyperEdgesPipe.cs" />
     <Compile Include="Pipes\PropertyGraph\IPropertyVertex\VertexLabelPipe.cs" />
     <Compile Include="Pipes\PropertyGraph\IPropertyVertex\VertexPropertiesMapPipe.cs" />
     <Compile Include="Pipes\PropertyGraph\IPropertyVertex\VertexPropertiesPipe.cs" />
