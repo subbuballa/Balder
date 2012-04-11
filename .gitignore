@@ -1,8 +1,11 @@
 *.pidb
 *.VisualState.xml
 *.suo
-/Balder/bin
-/Balder/obj
-/BalderTests/bin
-/BalderTests/obj
-/BalderTests/TestResult.xml
+*.csproj.user
+*.vsp
+*.app.ctl
+*.krn.ctl
+*.psess
+*/obj
+*/bin
+*/TestResult.xml
