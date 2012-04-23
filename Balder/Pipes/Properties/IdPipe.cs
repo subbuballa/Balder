@@ -30,6 +30,35 @@ namespace de.ahzf.Balder
 {
 
     /// <summary>
+    /// PropertyPipeExtensions.
+    /// </summary>
+    public static class IdPipeExtensions
+    {
+
+        #region Ids<TId>(this IEnumerable)
+
+        /// <summary>
+        /// The PropertyPipe returns the property value of the
+        /// Element identified by the provided key.
+        /// </summary>
+        /// <typeparam name="S">The type of the consuming objects.</typeparam>
+        /// <typeparam name="E">The type of the emitting objects.</typeparam>
+        /// <param name="IEnumerable">A collection of consumable objects.</param>
+        /// <returns>A collection of emittable objects.</returns>
+        public static IdPipe<TId> Ids<TId>(this IEnumerable<IIdentifier<TId>> IEnumerable)
+
+            where TId : IEquatable<TId>, IComparable<TId>, IComparable
+
+        {
+            return new IdPipe<TId>(IEnumerable);
+        }
+
+        #endregion
+
+    }
+
+
+    /// <summary>
     /// The IdPipe will return the Id of the given identifiable elements.
     /// </summary>
     public class IdPipe<TId> : AbstractPipe<IIdentifier<TId>, TId>
