@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arrows\EdgeSerializerArrow.cs" />
+    <Compile Include="Arrows\VertexSerializerArrow.cs" />
     <Compile Include="Pipes\GraphIO\N3\N3ImportPipe.cs" />
     <Compile Include="Pipes\PropertyGraph\HigherOrderRelations\Foaf.cs" />
     <Compile Include="Pipes\PropertyGraph\HigherOrderRelations\IsComplicatedExtensions.cs" />
@@ -116,7 +118,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Arrows\" />
     <Folder Include="Pipes\GraphIO\CSV\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
