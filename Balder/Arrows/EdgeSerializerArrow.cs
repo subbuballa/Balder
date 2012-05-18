@@ -21,6 +21,7 @@ using System;
 
 using de.ahzf.Styx;
 using de.ahzf.Blueprints.PropertyGraphs;
+using de.ahzf.Vanaheimr.Walkyr;
 
 #endregion
 
@@ -88,32 +89,60 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #region Data
 
-        //private readonly UDPMulticastSenderArrow<String> UDPMulticastSenderArrow;
+        private readonly IEdgeSerializer<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                         TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                         TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                         TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> EdgeSerializer;
 
         #endregion
 
         #region Constructor(s)
 
-        #region EdgeSerializerArrow()
+        #region EdgeSerializerArrow(EdgeSerializer)
 
         /// <summary>
         /// Creates a new EdgeSerializerArrow.
         /// </summary>
-        public EdgeSerializerArrow()
-		{ }
+        /// <param name="EdgeSerializer">An edge serializer.</param>
+        public EdgeSerializerArrow(IEdgeSerializer<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                   TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                   TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                   TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> EdgeSerializer)
+        {
+
+            #region Initial checks
+
+            if (EdgeSerializer == null)
+                throw new ArgumentNullException("EdgeSerializer", "The given EdgeSerializer must not be null!");
+
+            #endregion
+
+            this.EdgeSerializer = EdgeSerializer;
+
+        }
 		
 		#endregion
 
-        #region EdgeSerializerArrow(MessageRecipients.Recipient, params MessageRecipients.Recipients)
+        #region EdgeSerializerArrow(EdgeSerializer, MessageRecipients.Recipient, params MessageRecipients.Recipients)
 
         /// <summary>
         /// Creates a new AbstractArrow and adds the given recipients
         /// to the list of message recipients.
         /// </summary>
+        /// <param name="EdgeSerializer">An edge serializer.</param>
         /// <param name="Recipient">A recipient of the processed messages.</param>
         /// <param name="Recipients">The recipients of the processed messages.</param>
-        public EdgeSerializerArrow(MessageRecipient<String> Recipient, params MessageRecipient<String>[] Recipients)
+        public EdgeSerializerArrow(IEdgeSerializer<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                   TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                   TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                   TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> EdgeSerializer,
+                                   MessageRecipient<String> Recipient,
+                                   params MessageRecipient<String>[] Recipients)
+
+            : this(EdgeSerializer)
+
         {
+
             lock (this)
             {
                 
@@ -127,20 +156,31 @@ namespace de.ahzf.Vanaheimr.Balder
                 }
 
             }
+
         }
 
         #endregion
 
-        #region EdgeSerializerArrow(IArrowReceiver.Recipient, params IArrowReceiver.Recipients)
+        #region EdgeSerializerArrow(EdgeSerializer, IArrowReceiver.Recipient, params IArrowReceiver.Recipients)
 
         /// <summary>
         /// Creates a new AbstractArrow and adds the given recipients
         /// to the list of message recipients.
         /// </summary>
+        /// <param name="EdgeSerializer">An edge serializer.</param>
         /// <param name="Recipient">A recipient of the processed messages.</param>
         /// <param name="Recipients">The recipients of the processed messages.</param>
-        public EdgeSerializerArrow(IArrowReceiver<String> Recipient, params IArrowReceiver<String>[] Recipients)
+        public EdgeSerializerArrow(IEdgeSerializer<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                   TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                   TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                   TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> EdgeSerializer,
+                                   IArrowReceiver<String> Recipient,
+                                   params IArrowReceiver<String>[] Recipients)
+
+            : this(EdgeSerializer)
+
         {
+
             lock (this)
             {
 
@@ -154,6 +194,7 @@ namespace de.ahzf.Vanaheimr.Balder
                 }
 
             }
+
         }
 
         #endregion
@@ -161,7 +202,30 @@ namespace de.ahzf.Vanaheimr.Balder
         #endregion
 
 
-        #region ProcessMessage(Edge, out MessageOut)
+        #region ReceiveMessage(Graph, Edge)
+
+        /// <summary>
+        /// Accepts an edge from a graph for further processing
+        /// and delivery to the subscribers.
+        /// </summary>
+        /// <param name="Graph">The sending graph.</param>
+        /// <param name="Edge">The sent edge.</param>
+        public void ReceiveMessage(IGenericPropertyGraph<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                         TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                         TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                         TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> Graph,
+
+                                   IGenericPropertyEdge <TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                         TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                         TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                         TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> Edge)
+        {
+            base.ReceiveMessage(Graph, Edge);
+        }
+
+        #endregion
+
+        #region (protected) ProcessMessage(Edge, out MessageOut)
 
         /// <summary>
         /// Process the incoming edge and return an outgoing message.

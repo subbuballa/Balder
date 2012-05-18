@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arrows\GraphSerializerArrow.cs" />
     <Compile Include="Arrows\EdgeSerializerArrow.cs" />
     <Compile Include="Arrows\VertexSerializerArrow.cs" />
     <Compile Include="Pipes\GraphIO\N3\N3ImportPipe.cs" />
@@ -115,6 +116,10 @@
     <ProjectReference Include="..\..\Styx\Styx\Styx.csproj">
       <Project>{3949790D-8591-4101-9E4D-CE7A758E7409}</Project>
       <Name>Styx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Walkyr\Walkyr\Walkyr.csproj">
+      <Project>{A3507C2E-1A82-4342-BD42-F544275D6959}</Project>
+      <Name>Walkyr</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

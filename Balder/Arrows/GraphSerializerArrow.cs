@@ -29,7 +29,7 @@ namespace de.ahzf.Vanaheimr.Balder
 {
 
     /// <summary>
-    /// The VertexSerializerArrow serializes the incoming vertices.
+    /// The GraphSerializerArrow serializes entire graphs.
     /// </summary>
     /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
     /// <typeparam name="TRevIdVertex">The type of the vertex revision identifiers.</typeparam>
@@ -54,15 +54,15 @@ namespace de.ahzf.Vanaheimr.Balder
     /// <typeparam name="THyperEdgeLabel">The type of the hyperedge label.</typeparam>
     /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
     /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
-    public class VertexSerializerArrow<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                       TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                       TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                       TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> :
+    public class GraphSerializerArrow<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                      TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                      TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                      TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> :
 
-                     AbstractArrow<IGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                          TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                          TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                          TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>,
+                     AbstractArrow<IGenericPropertyGraph<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                         TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                         TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                         TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>,
                                    String>
 
         where TIdVertex        : IEquatable<TIdVertex>,       IComparable<TIdVertex>,       IComparable, TValueVertex
@@ -89,57 +89,57 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #region Data
 
-        private readonly IVertexSerializer<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+        private readonly IGraphSerializer<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                            TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                            TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                           TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> VertexSerializer;
+                                           TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> GraphSerializer;
 
         #endregion
 
         #region Constructor(s)
 
-        #region VertexSerializerArrow(VertexSerializer)
+        #region GraphSerializerArrow(GraphSerializer)
 
         /// <summary>
-        /// Creates a new VertexSerializerArrow.
+        /// Creates a new GraphSerializerArrow.
         /// </summary>
-        /// <param name="VertexSerializer">A vertex serializer.</param>
-        public VertexSerializerArrow(IVertexSerializer<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                       TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                       TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                       TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> VertexSerializer)
+        /// <param name="GraphSerializer">A graph serializer.</param>
+        public GraphSerializerArrow(IGraphSerializer<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                     TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                     TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                     TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> GraphSerializer)
         {
 
             #region Initial checks
 
-            if (VertexSerializer == null)
-                throw new ArgumentNullException("VertexSerializer", "The given VertexSerializer must not be null!");
+            if (GraphSerializer == null)
+                throw new ArgumentNullException("GraphSerializer", "The given GraphSerializer must not be null!");
 
             #endregion
 
-            this.VertexSerializer = VertexSerializer;
+            this.GraphSerializer = GraphSerializer;
 
         }
 		
 		#endregion
 
-        #region VertexSerializerArrow(VertexSerializer, MessageRecipients.Recipient, params MessageRecipients.Recipients)
+        #region GraphSerializerArrow(GraphSerializer, MessageRecipients.Recipient, params MessageRecipients.Recipients)
 
         /// <summary>
         /// Creates a new AbstractArrow and adds the given recipients
         /// to the list of message recipients.
         /// </summary>
-        /// <param name="VertexSerializer">A vertex serializer.</param>
+        /// <param name="GraphSerializer">A vertex serializer.</param>
         /// <param name="Recipient">A recipient of the processed messages.</param>
         /// <param name="Recipients">The recipients of the processed messages.</param>
-        public VertexSerializerArrow(IVertexSerializer<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                       TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                       TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                       TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> VertexSerializer,
-                                     MessageRecipient<String> Recipient,
-                                     params MessageRecipient<String>[] Recipients)
+        public GraphSerializerArrow(IGraphSerializer<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                     TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                     TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                     TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> GraphSerializer,
+                                    MessageRecipient<String> Recipient,
+                                    params MessageRecipient<String>[] Recipients)
 
-            : this(VertexSerializer)
+            : this(GraphSerializer)
 
         {
 
@@ -161,23 +161,23 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #endregion
 
-        #region VertexSerializerArrow(VertexSerializer, IArrowReceiver.Recipient, params IArrowReceiver.Recipients)
+        #region GraphSerializerArrow(GraphSerializer, IArrowReceiver.Recipient, params IArrowReceiver.Recipients)
 
         /// <summary>
         /// Creates a new AbstractArrow and adds the given recipients
         /// to the list of message recipients.
         /// </summary>
-        /// <param name="VertexSerializer">A vertex serializer.</param>
+        /// <param name="GraphSerializer">A vertex serializer.</param>
         /// <param name="Recipient">A recipient of the processed messages.</param>
         /// <param name="Recipients">The recipients of the processed messages.</param>
-        public VertexSerializerArrow(IVertexSerializer<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                       TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                       TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                       TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> VertexSerializer,
-                                     IArrowReceiver<String> Recipient,
-                                     params IArrowReceiver<String>[] Recipients)
+        public GraphSerializerArrow(IGraphSerializer<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                     TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                     TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                     TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> GraphSerializer,
+                                    IArrowReceiver<String> Recipient,
+                                    params IArrowReceiver<String>[] Recipients)
 
-            : this(VertexSerializer)
+            : this(GraphSerializer)
 
         {
 
@@ -202,43 +202,37 @@ namespace de.ahzf.Vanaheimr.Balder
         #endregion
 
 
-        #region ReceiveMessage(Graph, Vertex)
+        #region ReceiveMessage(Graph)
 
         /// <summary>
-        /// Accepts a vertex from a graph for further processing
+        /// Accepts a graph for further processing
         /// and delivery to the subscribers.
         /// </summary>
         /// <param name="Graph">The sending graph.</param>
-        /// <param name="Vertex">The sent vertex.</param>
-        public void ReceiveMessage(IGenericPropertyGraph <TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                          TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                          TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                          TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> Graph,
-
-                                   IGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                          TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                          TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                          TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> Vertex)
+        public void ReceiveMessage(IGenericPropertyGraph<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                         TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                         TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                         TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> Graph)
         {
-            base.ReceiveMessage(Graph, Vertex);
+            base.ReceiveMessage(Graph, Graph);
         }
 
         #endregion
 
-        #region (protected) ProcessMessage(Vertex, out MessageOut)
+        #region (protected) ProcessMessage(Graph, out MessageOut)
 
         /// <summary>
-        /// Process the incoming vertex and return an outgoing message.
+        /// Process the incoming graph and return an outgoing message.
         /// </summary>
-        /// <param name="Vertex">The incoming vertex.</param>
+        /// <param name="Graph">The incoming graph.</param>
         /// <param name="MessageOut">The outgoing message.</param>
-        protected override Boolean ProcessMessage(IGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                         TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                         TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                         TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> Vertex,
+        protected override Boolean ProcessMessage(IGenericPropertyGraph<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                                        TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                                        TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                                        TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> Graph,
                                                   out String MessageOut)
         {
-            MessageOut = VertexSerializer.ToStringRepresentation(Vertex);
+            MessageOut = GraphSerializer.ToStringRepresentation(Graph);
             return true;
         }
 
