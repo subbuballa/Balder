@@ -25,6 +25,8 @@ using System.Collections.Generic;
 using de.ahzf.Blueprints.PropertyGraphs;
 using de.ahzf.Styx;
 
+using de.ahzf.Illias.Commons.Collections;
+
 #endregion
 
 namespace de.ahzf.Balder

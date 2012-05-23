@@ -20,12 +20,13 @@
 using System;
 using System.Collections.Generic;
 
-using de.ahzf.Blueprints;
-using de.ahzf.Blueprints.PropertyGraphs;
-
 using NUnit.Framework;
+
 using de.ahzf.Styx;
 using de.ahzf.Illias.Commons;
+using de.ahzf.Illias.Commons.Collections;
+using de.ahzf.Blueprints;
+using de.ahzf.Blueprints.PropertyGraphs;
 using de.ahzf.Blueprints.UnitTests;
 
 #endregion
