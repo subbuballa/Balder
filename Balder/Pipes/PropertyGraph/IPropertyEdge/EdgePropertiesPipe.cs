@@ -28,7 +28,7 @@ using de.ahzf.Illias.Commons.Collections;
 
 #endregion
 
-namespace de.ahzf.Balder
+namespace de.ahzf.Vanaheimr.Balder
 {
 
     /// <summary>

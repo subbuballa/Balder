@@ -22,7 +22,7 @@ using de.ahzf.Vanaheimr.Blueprints;
 
 #endregion
 
-namespace de.ahzf.Balder.Traverser
+namespace de.ahzf.Vanaheimr.Balder.Traverser
 {
 
     public static class IPropertyGraphTraverser

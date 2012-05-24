@@ -22,7 +22,7 @@ using System.Collections.Generic;
 
 #endregion
 
-namespace de.ahzf.Balder.UnitTests
+namespace de.ahzf.Vanaheimr.Balder.UnitTests
 {
     
     public static class BaseTest

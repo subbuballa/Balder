@@ -26,7 +26,7 @@ using de.ahzf.Vanaheimr.Blueprints.UnitTests;
 
 #endregion
 
-namespace de.ahzf.Balder.UnitTests.Blueprints
+namespace de.ahzf.Vanaheimr.Balder.UnitTests.Blueprints
 {
 
     [TestFixture]

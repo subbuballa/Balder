@@ -26,7 +26,7 @@ using NUnit.Framework;
 
 #endregion
 
-namespace de.ahzf.Balder.UnitTests.FilterPipes
+namespace de.ahzf.Vanaheimr.Balder.UnitTests.FilterPipes
 {
 
     [TestFixture]

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace de.ahzf.Balder.Traverser
+namespace de.ahzf.Vanaheimr.Balder.Traverser
 {
 
     /// <summary>

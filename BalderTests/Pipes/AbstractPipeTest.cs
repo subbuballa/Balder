@@ -29,7 +29,7 @@ using de.ahzf.Vanaheimr.Blueprints.UnitTests;
 
 #endregion
 
-namespace de.ahzf.Balder.UnitTests.Pipes
+namespace de.ahzf.Vanaheimr.Balder.UnitTests.Pipes
 {
 
     [TestFixture]
