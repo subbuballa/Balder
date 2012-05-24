@@ -21,13 +21,11 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-using de.ahzf.Blueprints;
-using de.ahzf.Blueprints.PropertyGraphs;
-
 using NUnit.Framework;
-using de.ahzf.Styx;
+using de.ahzf.Vanaheimr.Styx;
 using de.ahzf.Illias.Commons;
-using de.ahzf.Blueprints.UnitTests;
+using de.ahzf.Vanaheimr.Blueprints;
+using de.ahzf.Vanaheimr.Blueprints.UnitTests;
 
 #endregion
 

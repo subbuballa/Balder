@@ -23,11 +23,8 @@ using System.Collections.Generic;
 
 using NUnit.Framework;
 
-using de.ahzf.Blueprints;
-using de.ahzf.Blueprints.PropertyGraphs;
-
 using de.ahzf.Balder;
-using de.ahzf.Blueprints.UnitTests;
+using de.ahzf.Vanaheimr.Blueprints.UnitTests;
 
 #endregion
 

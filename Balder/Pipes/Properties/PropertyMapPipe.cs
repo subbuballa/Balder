@@ -20,8 +20,8 @@
 using System;
 using System.Collections.Generic;
 
-using de.ahzf.Styx;
-using de.ahzf.Blueprints.PropertyGraphs;
+using de.ahzf.Vanaheimr.Styx;
+using de.ahzf.Vanaheimr.Blueprints;
 using de.ahzf.Illias.Commons.Collections;
 
 #endregion

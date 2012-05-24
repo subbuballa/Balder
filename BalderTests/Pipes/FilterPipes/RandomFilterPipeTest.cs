@@ -19,7 +19,7 @@
 
 using System;
 
-using de.ahzf.Styx;
+using de.ahzf.Vanaheimr.Styx;
 
 using NUnit.Framework;
 

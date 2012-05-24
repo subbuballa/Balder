@@ -22,8 +22,8 @@ using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 
-using de.ahzf.Blueprints.PropertyGraphs;
-using de.ahzf.Styx;
+using de.ahzf.Vanaheimr.Blueprints;
+using de.ahzf.Vanaheimr.Styx;
 
 using de.ahzf.Illias.Commons.Collections;
 

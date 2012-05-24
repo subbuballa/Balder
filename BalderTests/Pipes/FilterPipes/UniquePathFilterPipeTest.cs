@@ -19,13 +19,11 @@
 
 using System;
 
-using de.ahzf.Blueprints;
-using de.ahzf.Blueprints.PropertyGraphs;
-
 using NUnit.Framework;
-using de.ahzf.Styx;
+using de.ahzf.Vanaheimr.Styx;
 using de.ahzf.Illias.Commons;
-using de.ahzf.Blueprints.UnitTests;
+using de.ahzf.Vanaheimr.Blueprints.UnitTests;
+using de.ahzf.Vanaheimr.Blueprints;
 
 #endregion
 
@@ -43,6 +41,7 @@ namespace de.ahzf.Balder.UnitTests.FilterPipes
         {
 	
             var _Graph      = TinkerGraphFactory.CreateTinkerGraph();
+
             var _Pipe1      = new OutEdgesPipe <UInt64, Int64, String, String, Object,
                                                 UInt64, Int64, String, String, Object,
                                                 UInt64, Int64, String, String, Object,

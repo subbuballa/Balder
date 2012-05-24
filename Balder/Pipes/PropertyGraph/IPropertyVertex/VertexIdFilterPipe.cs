@@ -19,9 +19,8 @@
 
 using System;
 
-using de.ahzf.Blueprints;
-using de.ahzf.Blueprints.PropertyGraphs;
-using de.ahzf.Styx;
+using de.ahzf.Vanaheimr.Blueprints;
+using de.ahzf.Vanaheimr.Styx;
 
 #endregion
 

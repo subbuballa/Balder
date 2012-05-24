@@ -18,7 +18,7 @@
 #region Usings
 
 using System;
-using de.ahzf.Blueprints.PropertyGraphs;
+using de.ahzf.Vanaheimr.Blueprints;
 
 #endregion
 
