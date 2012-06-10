@@ -53,10 +53,10 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Blueprints
                                                                        UInt64, Int64, String, String, Object>>(_Graph));
             
             var _Counter = 0;
-            var _Vertices = new HashSet<IGenericPropertyVertex<UInt64, Int64, String, String, Object,
-                                                               UInt64, Int64, String, String, Object,
-                                                               UInt64, Int64, String, String, Object,
-                                                               UInt64, Int64, String, String, Object>>();
+            var _Vertices = new HashSet<IReadOnlyGenericPropertyVertex<UInt64, Int64, String, String, Object,
+                                                                       UInt64, Int64, String, String, Object,
+                                                                       UInt64, Int64, String, String, Object,
+                                                                       UInt64, Int64, String, String, Object>>();
 
             while (_Pipe.MoveNext())
             {
@@ -91,10 +91,10 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Blueprints
                                                                        UInt64, Int64, String, String, Object>>(_Graph));
 
             var _Counter = 0;
-            var _Edges = new HashSet<IGenericPropertyEdge<UInt64, Int64, String, String, Object,
-                                                          UInt64, Int64, String, String, Object,
-                                                          UInt64, Int64, String, String, Object,
-                                                          UInt64, Int64, String, String, Object>>();
+            var _Edges = new HashSet<IReadOnlyGenericPropertyEdge<UInt64, Int64, String, String, Object,
+                                                                  UInt64, Int64, String, String, Object,
+                                                                  UInt64, Int64, String, String, Object,
+                                                                  UInt64, Int64, String, String, Object>>();
 
             while (_Pipe.MoveNext())
             {
@@ -129,10 +129,10 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Blueprints
                                                                      UInt64, Int64, String, String, Object>>() { _Graph, _Graph, _Graph });
             
             var _Counter = 0;
-            var _Edges = new HashSet<IGenericPropertyEdge<UInt64, Int64, String, String, Object,
-                                                          UInt64, Int64, String, String, Object,
-                                                          UInt64, Int64, String, String, Object,
-                                                          UInt64, Int64, String, String, Object>>();
+            var _Edges = new HashSet<IReadOnlyGenericPropertyEdge<UInt64, Int64, String, String, Object,
+                                                                  UInt64, Int64, String, String, Object,
+                                                                  UInt64, Int64, String, String, Object,
+                                                                  UInt64, Int64, String, String, Object>>();
 
             while (_Pipe.MoveNext())
             {

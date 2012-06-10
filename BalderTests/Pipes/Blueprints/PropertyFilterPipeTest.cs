@@ -56,10 +56,10 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Blueprints
                                              UInt64, Int64, String, String, Object,
                                              UInt64, Int64, String, String, Object>();
 
-            var _Pipe3    = new PropertyFilterPipe<UInt64, Int64, String, String, Object, IGenericPropertyVertex<UInt64, Int64, String, String, Object,
-                                                                                                                 UInt64, Int64, String, String, Object,
-                                                                                                                 UInt64, Int64, String, String, Object,
-                                                                                                                 UInt64, Int64, String, String, Object>, String>("lang", "java", ComparisonFilter.NOT_EQUAL);
+            var _Pipe3    = new VertexPropertyFilterPipe<UInt64, Int64, String, String, Object,
+                                                         UInt64, Int64, String, String, Object,
+                                                         UInt64, Int64, String, String, Object,
+                                                         UInt64, Int64, String, String, Object, String>("lang", v => v == "java");
 
             var _Pipeline = new Pipeline<IGenericPropertyVertex<UInt64, Int64, String, String, Object,
                                                                 UInt64, Int64, String, String, Object,

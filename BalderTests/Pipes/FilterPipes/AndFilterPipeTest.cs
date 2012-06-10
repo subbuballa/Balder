@@ -96,15 +96,15 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.FilterPipes
                                                    UInt64, Int64, String, String, Object,
                                                    UInt64, Int64, String, String, Object>();
 
-		    var _Pipe1 			= new LabelFilterPipe<UInt64, Int64, String, String, Object,
-                                                      UInt64, Int64, String, String, Object,
-                                                      UInt64, Int64, String, String, Object,
-                                                      UInt64, Int64, String, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
+		    var _Pipe1 			= new EdgeLabelFilterPipe<UInt64, Int64, String, String, Object,
+                                                          UInt64, Int64, String, String, Object,
+                                                          UInt64, Int64, String, String, Object,
+                                                          UInt64, Int64, String, String, Object>(v => v != "knows");
 
-		    var _Pipe2 			= new PropertyFilterPipe<UInt64, Int64, String, String, Object, IGenericPropertyEdge<UInt64, Int64, String, String, Object,
-                                                                                                                     UInt64, Int64, String, String, Object,
-                                                                                                                     UInt64, Int64, String, String, Object,
-                                                                                                                     UInt64, Int64, String, String, Object>, Double>("weight", 0.5, ComparisonFilter.LESS_THAN_EQUAL);
+		    var _Pipe2 			= new EdgePropertyFilterPipe<UInt64, Int64, String, String, Object,
+                                                             UInt64, Int64, String, String, Object,
+                                                             UInt64, Int64, String, String, Object,
+                                                             UInt64, Int64, String, String, Object, Double>("weight", v => v == 0.5);
 
 		    var _AndFilterPipe	= new AndFilterPipe<IGenericPropertyEdge<UInt64, Int64, String, String, Object,
                                                                          UInt64, Int64, String, String, Object,

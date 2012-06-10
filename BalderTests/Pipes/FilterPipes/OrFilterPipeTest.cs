@@ -80,15 +80,15 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.FilterPipes
                                                    UInt64, Int64, String, String, Object,
                                                    UInt64, Int64, String, String, Object>();
 	        
-            var _Pipe1 			= new LabelFilterPipe<UInt64, Int64, String, String, Object,
-                                                      UInt64, Int64, String, String, Object,
-                                                      UInt64, Int64, String, String, Object,
-                                                      UInt64, Int64, String, String, Object>("created", ComparisonFilter.NOT_EQUAL);
+            var _Pipe1 			= new EdgeLabelFilterPipe<UInt64, Int64, String, String, Object,
+                                                          UInt64, Int64, String, String, Object,
+                                                          UInt64, Int64, String, String, Object,
+                                                          UInt64, Int64, String, String, Object>(v => v != "created");
 
-            var _Pipe2 			= new PropertyFilterPipe<UInt64, Int64, String, String, Object, IGenericPropertyEdge<UInt64, Int64, String, String, Object,
-                                                                                                                     UInt64, Int64, String, String, Object,
-                                                                                                                     UInt64, Int64, String, String, Object,
-                                                                                                                     UInt64, Int64, String, String, Object>, Double>("weight", 0.5, ComparisonFilter.LESS_THAN_EQUAL);
+            var _Pipe2 			= new EdgePropertyFilterPipe<UInt64, Int64, String, String, Object,
+                                                             UInt64, Int64, String, String, Object,
+                                                             UInt64, Int64, String, String, Object,
+                                                             UInt64, Int64, String, String, Object, Double>("weight", v => v == 0.5);
 
             var _ORFilterPipe	= new OrFilterPipe<IGenericPropertyEdge<UInt64, Int64, String, String, Object,
                                                                         UInt64, Int64, String, String, Object,
@@ -151,20 +151,20 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.FilterPipes
                                                   UInt64, Int64, String, String, Object,
                                                   UInt64, Int64, String, String, Object>();
 
-	        var _PipeA 		= new LabelFilterPipe<UInt64, Int64, String, String, Object,
-                                                  UInt64, Int64, String, String, Object,
-                                                  UInt64, Int64, String, String, Object,
-                                                  UInt64, Int64, String, String, Object>("created", ComparisonFilter.NOT_EQUAL);
+	        var _PipeA 		= new EdgeLabelFilterPipe<UInt64, Int64, String, String, Object,
+                                                      UInt64, Int64, String, String, Object,
+                                                      UInt64, Int64, String, String, Object,
+                                                      UInt64, Int64, String, String, Object>(v => v != "created");
 
-	        var _PipeB 		= new LabelFilterPipe<UInt64, Int64, String, String, Object,
-                                                  UInt64, Int64, String, String, Object,
-                                                  UInt64, Int64, String, String, Object,
-                                                  UInt64, Int64, String, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
+	        var _PipeB 		= new EdgeLabelFilterPipe<UInt64, Int64, String, String, Object,
+                                                      UInt64, Int64, String, String, Object,
+                                                      UInt64, Int64, String, String, Object,
+                                                      UInt64, Int64, String, String, Object>(v => v != "knows");
 
-	        var _PipeC 		= new PropertyFilterPipe<UInt64, Int64, String, String, Object, IGenericPropertyEdge<UInt64, Int64, String, String, Object,
-                                                                                                                 UInt64, Int64, String, String, Object,
-                                                                                                                 UInt64, Int64, String, String, Object,
-                                                                                                                 UInt64, Int64, String, String, Object>, Double>("weight", 0.5, ComparisonFilter.LESS_THAN_EQUAL);
+	        var _PipeC 		= new EdgePropertyFilterPipe<UInt64, Int64, String, String, Object,
+                                                         UInt64, Int64, String, String, Object,
+                                                         UInt64, Int64, String, String, Object,
+                                                         UInt64, Int64, String, String, Object, Double>("weight", v => v == 0.5);
 
 	        var _PipeD 		= new AndFilterPipe<IGenericPropertyEdge<UInt64, Int64, String, String, Object,
                                                                      UInt64, Int64, String, String, Object,
@@ -267,20 +267,20 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.FilterPipes
                                                   UInt64, Int64, String, String, Object,
                                                   UInt64, Int64, String, String, Object>();
 
-            var _PipeB      = new LabelFilterPipe<UInt64, Int64, String, String, Object,
-                                                  UInt64, Int64, String, String, Object,
-                                                  UInt64, Int64, String, String, Object,
-                                                  UInt64, Int64, String, String, Object>("created", ComparisonFilter.NOT_EQUAL);
+            var _PipeB      = new EdgeLabelFilterPipe<UInt64, Int64, String, String, Object,
+                                                      UInt64, Int64, String, String, Object,
+                                                      UInt64, Int64, String, String, Object,
+                                                      UInt64, Int64, String, String, Object>(v => v != "created");
 
             var _PipeC      = new InVertexPipe   <UInt64, Int64, String, String, Object,
                                                   UInt64, Int64, String, String, Object,
                                                   UInt64, Int64, String, String, Object,
                                                   UInt64, Int64, String, String, Object>();
 
-            var _PipeD      = new PropertyFilterPipe<UInt64, Int64, String, String, Object, IGenericPropertyVertex<UInt64, Int64, String, String, Object,
-                                                                                                                   UInt64, Int64, String, String, Object,
-                                                                                                                   UInt64, Int64, String, String, Object,
-                                                                                                                   UInt64, Int64, String, String, Object>, String>("name", "lop", ComparisonFilter.NOT_EQUAL);
+            var _PipeD      = new VertexPropertyFilterPipe<UInt64, Int64, String, String, Object,
+                                                           UInt64, Int64, String, String, Object,
+                                                           UInt64, Int64, String, String, Object,
+                                                           UInt64, Int64, String, String, Object, String>("name", v => v == "lop");
 
             var _Pipe1      = new AndFilterPipe<IGenericPropertyVertex<UInt64, Int64, String, String, Object,
                                                                        UInt64, Int64, String, String, Object,
@@ -302,10 +302,7 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.FilterPipes
                                                                       UInt64, Int64, String, String, Object,
                                                                       UInt64, Int64, String, String, Object>>(_PipeA, _PipeB, _PipeC, _PipeD)));
             
-            var _Pipe2      = new PropertyPipe<UInt64, Int64, String, String, Object, IGenericPropertyVertex<UInt64, Int64, String, String, Object,
-                                                                                                             UInt64, Int64, String, String, Object,
-                                                                                                             UInt64, Int64, String, String, Object,
-                                                                                                             UInt64, Int64, String, String, Object>, String>("name");
+            var _Pipe2      = new PropertyPipe<String, Object>("name");
 
             var _Pipeline   = new Pipeline<IGenericPropertyVertex<UInt64, Int64, String, String, Object,
                                                                   UInt64, Int64, String, String, Object,
@@ -347,10 +344,10 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.FilterPipes
                                                UInt64, Int64, String, String, Object,
                                                UInt64, Int64, String, String, Object>();
             
-            var _PipeB      = new PropertyFilterPipe<UInt64, Int64, String, String, Object, IGenericPropertyEdge<UInt64, Int64, String, String, Object,
-                                                                                                                 UInt64, Int64, String, String, Object,
-                                                                                                                 UInt64, Int64, String, String, Object,
-                                                                                                                 UInt64, Int64, String, String, Object>, Double>("weight", 0.5, ComparisonFilter.LESS_THAN_EQUAL);
+            var _PipeB      = new EdgePropertyFilterPipe<UInt64, Int64, String, String, Object,
+                                                         UInt64, Int64, String, String, Object,
+                                                         UInt64, Int64, String, String, Object,
+                                                         UInt64, Int64, String, String, Object, Double>("weight", v => v == 0.5);
 
             var _PipeC      = new InVertexPipe<UInt64, Int64, String, String, Object,
                                                UInt64, Int64, String, String, Object,
@@ -387,10 +384,7 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.FilterPipes
                                                UInt64, Int64, String, String, Object,
                                                UInt64, Int64, String, String, Object>();
 
-            var _Pipe4      = new PropertyPipe<UInt64, Int64, String, String, Object, IGenericPropertyVertex<UInt64, Int64, String, String, Object,
-                                                                                                             UInt64, Int64, String, String, Object,
-                                                                                                             UInt64, Int64, String, String, Object,
-                                                                                                             UInt64, Int64, String, String, Object>, String>("name");
+            var _Pipe4      = new PropertyPipe<String, Object>("name");
 
             var _Pipeline   = new Pipeline<IGenericPropertyVertex<UInt64, Int64, String, String, Object,
                                                                   UInt64, Int64, String, String, Object,
@@ -482,10 +476,7 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.FilterPipes
                                                UInt64, Int64, String, String, Object,
                                                UInt64, Int64, String, String, Object>();
 
-            var _Pipe5      = new PropertyPipe<UInt64, Int64, String, String, Object, IGenericPropertyVertex<UInt64, Int64, String, String, Object,
-                                                                                                             UInt64, Int64, String, String, Object,
-                                                                                                             UInt64, Int64, String, String, Object,
-                                                                                                             UInt64, Int64, String, String, Object>, String>("name");
+            var _Pipe5      = new PropertyPipe<String, Object>("name");
 
             var _Pipeline   = new Pipeline<IGenericPropertyVertex<UInt64, Int64, String, String, Object,
                                                                   UInt64, Int64, String, String, Object,

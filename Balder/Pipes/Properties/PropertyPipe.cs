@@ -18,54 +18,122 @@
 #region Usings
 
 using System;
+using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 
-using de.ahzf.Vanaheimr.Blueprints;
-using de.ahzf.Vanaheimr.Styx;
 using de.ahzf.Illias.Commons.Collections;
+using de.ahzf.Vanaheimr.Styx;
 
 #endregion
 
 namespace de.ahzf.Vanaheimr.Balder
 {
 
+    #region PropertyPipeExtentions
+    
+    /// <summary>
+    /// Extention methods for the PropertyPipe.
+    /// </summary>
+    public static class PropertyPipeExtentions
+    {
+
+        #region P<TKey, TValue>(this IEnumerable<IReadOnlyProperties<...>>, Keys)
+
+        /// <summary>
+        /// The PropertyPipe returns the values for the given property keys.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the keys.</typeparam>
+        /// <typeparam name="TValue">The type of the values.</typeparam>
+        /// <param name="IEnumerable">A IReadOnlyProperties&lt;TKey, TValue&gt; enumerable.</param>
+        /// <param name="Keys">An array of property keys.</param>
+        public static PropertyPipe<TKey, TValue> P<TKey, TValue>(this IEnumerable<IReadOnlyProperties<TKey, TValue>> IEnumerable,
+                                                                 params TKey[] Keys)
+
+            where TKey : IEquatable<TKey>, IComparable<TKey>, IComparable
+
+        {
+            return new PropertyPipe<TKey, TValue>(IEnumerable: IEnumerable, Keys: Keys);
+        }
+
+        #endregion
+
+        #region P<TKey, TValue>(this IEnumerator<IReadOnlyProperties<...>>, Keys)
+
+        /// <summary>
+        /// The PropertyPipe returns the values for the given property keys.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the keys.</typeparam>
+        /// <typeparam name="TValue">The type of the values.</typeparam>
+        /// <param name="IEnumerator">A IReadOnlyProperties&lt;TKey, TValue&gt; enumerator.</param>
+        /// <param name="Keys">An array of property keys.</param>
+        public static PropertyPipe<TKey, TValue> P<TKey, TValue>(this IEnumerator<IReadOnlyProperties<TKey, TValue>> IEnumerator,
+                                                                 params TKey[] Keys)
+
+            where TKey : IEquatable<TKey>, IComparable<TKey>, IComparable
+
+        {
+            return new PropertyPipe<TKey, TValue>(IEnumerator: IEnumerator, Keys: Keys);
+        }
+
+        #endregion
+
+    }
+
+    #endregion
+
+    #region PropertyPipe<TKey, TValue>
+
     /// <summary>
     /// The PropertyPipe returns the property value of the
     /// Element identified by the provided key.
     /// </summary>
-    /// <typeparam name="TKey">The type of the property keys.</typeparam>
-    /// <typeparam name="S">The type of the consuming objects.</typeparam>
-    /// <typeparam name="E">The type of the emitting objects.</typeparam>
-    public class PropertyPipe<TId, TRevisionId, TLabel, TKey, TValue, S, E>
-                    : AbstractPipe<S, E>
+    /// <typeparam name="TKey">The type of the keys.</typeparam>
+    /// <typeparam name="TValue">The type of the values.</typeparam>
+    public class PropertyPipe<TKey, TValue> : AbstractPipe<IReadOnlyProperties<TKey, TValue>, TValue>
         
-        where TId            : IEquatable<TId>,         IComparable<TId>,         IComparable, TValue
-        where TRevisionId    : IEquatable<TRevisionId>, IComparable<TRevisionId>, IComparable, TValue
-        where TLabel         : IEquatable<TLabel>,      IComparable<TLabel>,      IComparable
-        where TKey           : IEquatable<TKey>,        IComparable<TKey>,        IComparable
-        where S              : IGraphElement<TId, TRevisionId, TLabel, TKey, TValue>
+        where TKey : IEquatable<TKey>, IComparable<TKey>, IComparable
 
     {
 
         #region Data
 
-        private readonly TKey[]            _Keys;
-        private          IEnumerator<TKey> _PropertyEnumerator;
+        private readonly TKey[] Keys;
+        private IEnumerator<TKey> TmpInterator;
 
         #endregion
 
         #region Constructor(s)
 
-        #region PropertyPipe(myKeys)
+        #region PropertyPipe(Keys)
 
         /// <summary>
         /// Creates a new PropertyPipe.
         /// </summary>
-        /// <param name="myKeys">The property keys.</param>
-        public PropertyPipe(params TKey[] myKeys)
+        /// <param name="Keys">The property keys.</param>
+        public PropertyPipe(params TKey[] Keys)
         {
-            _Keys = myKeys;
+            this.Keys = Keys;
+        }
+
+        #endregion
+
+        #region PropertyPipe(IEnumerable = null, IEnumerator = null, Keys)
+
+        /// <summary>
+        /// Creates a new PropertyPipe.
+        /// </summary>
+        /// <param name="IEnumerable">An optional IEnumerable&lt;IIdentifier&lt;TId&gt;&gt; as element source.</param>
+        /// <param name="IEnumerator">An optional IEnumerator&lt;IIdentifier&lt;TId&gt;&gt; as element source.</param>
+        /// <param name="Keys">The property keys.</param>
+        public PropertyPipe(IEnumerable<IReadOnlyProperties<TKey, TValue>> IEnumerable = null,
+                            IEnumerator<IReadOnlyProperties<TKey, TValue>> IEnumerator = null,
+                            params TKey[] Keys)
+
+            : base(IEnumerable, IEnumerator)
+
+        {
+            this.Keys = Keys;
         }
 
         #endregion
@@ -92,26 +160,28 @@ namespace de.ahzf.Vanaheimr.Balder
             while (true)
             {
 
-                // First set the property enumerator
-                if (_PropertyEnumerator == null)
+                if (TmpInterator == null)
                 {
 
                     if (_InternalEnumerator.MoveNext())
-                        _PropertyEnumerator = new List<TKey>(_Keys).GetEnumerator();
+                        TmpInterator = Keys.ToList().GetEnumerator();
 
                     else
                         return false;
 
                 }
 
-                // Second emit the properties
-                if (_PropertyEnumerator.MoveNext())
+                if (TmpInterator.MoveNext())
                 {
-                    _CurrentElement = (E) (Object) _InternalEnumerator.Current.GetProperty(_PropertyEnumerator.Current);
-                    return true;
+
+                    if (_InternalEnumerator.Current.TryGetProperty(TmpInterator.Current, out _CurrentElement))
+                        return true;
+
+                    return false;
+
                 }
 
-                _PropertyEnumerator = null;
+                TmpInterator = null;
 
             }
 
@@ -130,7 +200,7 @@ namespace de.ahzf.Vanaheimr.Balder
 
             var _StringBuilder = new StringBuilder();
 
-            foreach (var _Key in _Keys)
+            foreach (var _Key in Keys)
                 _StringBuilder.Append(_Key.ToString() + ", ");
 
             if (_StringBuilder.Length >= 2)
@@ -143,5 +213,7 @@ namespace de.ahzf.Vanaheimr.Balder
         #endregion
 
     }
+
+    #endregion
 
 }

@@ -39,19 +39,15 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Blueprints
         public void testLabels()
         {
 
-            var _Graph = TinkerGraphFactory.CreateTinkerGraph();
-            
-            var _Pipe  = new EdgeLabelPipe<UInt64, Int64, String, String, Object,
-                                           UInt64, Int64, String, String, Object,
-                                           UInt64, Int64, String, String, Object,
-                                           UInt64, Int64, String, String, Object>();
+            var _Graph     = TinkerGraphFactory.CreateTinkerGraph();
+            var _LabelPipe = new LabelPipe<UInt64, Int64, String, String, Object>();
 
-            _Pipe.SetSourceCollection(_Graph.VertexById(1).OutEdges());
+            _LabelPipe.SetSourceCollection(_Graph.VertexById(1).OutEdges());
 
             var _Counter = 0;
-            while (_Pipe.MoveNext())
+            while (_LabelPipe.MoveNext())
             {
-                String label = _Pipe.Current;
+                String label = _LabelPipe.Current;
                 Assert.IsTrue(label.Equals("knows") || label.Equals("created"));
                 _Counter++;
             }

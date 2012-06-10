@@ -101,10 +101,10 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.FilterPipes
                                                        UInt64, Int64, String, String, Object,
                                                        UInt64, Int64, String, String, Object>();
 
-            var _PropertyFilterPipe = new PropertyFilterPipe<UInt64, Int64, String, String, Object, IGenericPropertyVertex<UInt64, Int64, String, String, Object,
-                                                                                                                           UInt64, Int64, String, String, Object,
-                                                                                                                           UInt64, Int64, String, String, Object,
-                                                                                                                           UInt64, Int64, String, String, Object>, String>("name", "lop", ComparisonFilter.NOT_EQUAL);
+            var _PropertyFilterPipe = new VertexPropertyFilterPipe<UInt64, Int64, String, String, Object,
+                                                                   UInt64, Int64, String, String, Object,
+                                                                   UInt64, Int64, String, String, Object,
+                                                                   UInt64, Int64, String, String, Object, String>("name", v => v.Equals("lop"));
 
             var _FutureFilterPipe = new FutureFilterPipe<IGenericPropertyEdge<UInt64, Int64, String, String, Object,
                                                                               UInt64, Int64, String, String, Object,

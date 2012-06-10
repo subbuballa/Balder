@@ -42,10 +42,10 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Pipes
 
             var _ToyGraph = GenericDemoGraphFactory.Create();
 
-            var _AllEdges01 = _ToyGraph.V().OutE().ToList();
-            var _AllEdges02 = _ToyGraph.V().OutE("knows").ToList();
+            var _AllEdges01 = _ToyGraph.Vertices().OutE().ToList();
+            var _AllEdges02 = _ToyGraph.Vertices().OutE("knows").ToList();
 
-            var a = _ToyGraph.VertexById(3).OutE("knows");
+            var a = _ToyGraph.VerticesById(3).OutE("knows");
 
         }
 

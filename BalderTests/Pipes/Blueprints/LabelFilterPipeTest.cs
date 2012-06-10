@@ -44,10 +44,10 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Blueprints
 
             var _Marko = _Graph.VertexById(1);
 
-            var _LFP   = new LabelFilterPipe<UInt64, Int64, String, String, Object,
-                                             UInt64, Int64, String, String, Object,
-                                             UInt64, Int64, String, String, Object,
-                                             UInt64, Int64, String, String, Object>("knows", ComparisonFilter.NOT_EQUAL);
+            var _LFP   = new EdgeLabelFilterPipe<UInt64, Int64, String, String, Object,
+                                                 UInt64, Int64, String, String, Object,
+                                                 UInt64, Int64, String, String, Object,
+                                                 UInt64, Int64, String, String, Object>(v => v == "knows");
 
             _LFP.SetSourceCollection(_Marko.OutEdges());
 
@@ -63,10 +63,10 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Blueprints
             Assert.AreEqual(2, _Counter);
 
 
-            _LFP = new LabelFilterPipe<UInt64, Int64, String, String, Object,
-                                       UInt64, Int64, String, String, Object,
-                                       UInt64, Int64, String, String, Object,
-                                       UInt64, Int64, String, String, Object>("knows", ComparisonFilter.EQUAL);
+            _LFP = new EdgeLabelFilterPipe<UInt64, Int64, String, String, Object,
+                                           UInt64, Int64, String, String, Object,
+                                           UInt64, Int64, String, String, Object,
+                                           UInt64, Int64, String, String, Object>(v => v == "knows");
 
             _LFP.SetSourceCollection(_Marko.OutEdges());
 

@@ -59,7 +59,7 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Blueprints
             var _Pipe3    = new VertexIdFilterPipe<UInt64, Int64, String, String, Object,
                                                    UInt64, Int64, String, String, Object,
                                                    UInt64, Int64, String, String, Object,
-                                                   UInt64, Int64, String, String, Object>(3, ComparisonFilter.NOT_EQUAL);
+                                                   UInt64, Int64, String, String, Object>(v => v != 3);
 
             var _Pipeline = new Pipeline<IGenericPropertyVertex<UInt64, Int64, String, String, Object,
                                                                 UInt64, Int64, String, String, Object,
@@ -112,7 +112,7 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Blueprints
             var _Pipe3    = new VertexIdFilterPipe<UInt64, Int64, String, String, Object,
                                                    UInt64, Int64, String, String, Object,
                                                    UInt64, Int64, String, String, Object,
-                                                   UInt64, Int64, String, String, Object>(3, ComparisonFilter.EQUAL);
+                                                   UInt64, Int64, String, String, Object>(v => v == 3);
 
             var _Pipeline = new Pipeline<IGenericPropertyVertex<UInt64, Int64, String, String, Object,
                                                                 UInt64, Int64, String, String, Object,
