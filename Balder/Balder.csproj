@@ -50,8 +50,8 @@
     <Compile Include="Pipes\GenericPropertyGraph\IPropertyVertex\OutMultiEdgesPipe.cs" />
     <Compile Include="Pipes\GraphIO\N3\N3ImportPipe.cs" />
     <Compile Include="Pipes\Properties\APropertyFilterPipe.cs" />
-    <Compile Include="Pipes\GenericPropertyGraph\GraphElements\RevIdPipe.cs" />
-    <Compile Include="Pipes\GenericPropertyGraph\GraphElements\GraphElementFilterPipe.cs" />
+    <Compile Include="Pipes\GenericPropertyGraph\GraphElements\Properties\RevIdPipe.cs" />
+    <Compile Include="Pipes\GenericPropertyGraph\GraphElements\Filter\GraphElementFilterPipe.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\HigherOrderRelations\Foaf.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\HigherOrderRelations\IsComplicatedExtensions.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\IPropertyEdgeExtensions.cs" />
@@ -86,9 +86,9 @@
     <Compile Include="Traverser\TraverserFactory.cs" />
     <Compile Include="Traverser\IPropertyGraphTraverser.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\IPropertyVertexExtensions.cs" />
-    <Compile Include="Pipes\GenericPropertyGraph\GraphElements\IdPipe.cs" />
+    <Compile Include="Pipes\GenericPropertyGraph\GraphElements\Properties\IdPipe.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\IPropertyEdge\BothVerticesPipe.cs" />
-    <Compile Include="Pipes\GenericPropertyGraph\GraphElements\LabelPipe.cs" />
+    <Compile Include="Pipes\GenericPropertyGraph\GraphElements\Properties\LabelPipe.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\IPropertyGraph\IdEdgePipe.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\IPropertyEdge\InVertexPipe.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\IPropertyEdge\OutVertexPipe.cs" />
@@ -129,6 +129,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Arrows\GenericPropertyGraph\" />
     <Folder Include="Pipes\GenericPropertyGraph\IPropertyHyperEdge\Filters\" />
     <Folder Include="Pipes\GenericPropertyGraph\IPropertyMultiEdge\Filters\" />
     <Folder Include="Pipes\GraphIO\CSV\" />

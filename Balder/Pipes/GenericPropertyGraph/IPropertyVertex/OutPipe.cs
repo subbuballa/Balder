@@ -144,7 +144,7 @@ namespace de.ahzf.Vanaheimr.Balder
         /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
         /// <param name="IEnumerable">An enumeration of generic property vertices.</param>
         /// <param name="EdgeLabel">The label of the outgoing edges.</param>
-        /// <returns>The adjacent vertices of the given PropertyVertices reachable via outgoing edges having the given edge label.</returns>
+        /// <returns>The adjacent vertices of the given generic property vertices reachable via outgoing edges having the given edge label.</returns>
         public static OutPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                               TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                               TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
@@ -285,17 +285,17 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #endregion
 
-        #region OutPipe(Label, IEnumerable = null, IEnumerator = null)
+        #region OutPipe(EdgeLabel, IEnumerable = null, IEnumerator = null)
 
         /// <summary>
         /// Creates a new OutPipe emitting those vertices
         /// on the head of the outgoing edges of a vertex
         /// reachable via the given EdgeLabel.
         /// </summary>
-        /// <param name="Label">The EdgeLabel to traverse.</param>
+        /// <param name="EdgeLabel">The EdgeLabel to traverse.</param>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
-        public OutPipe(TEdgeLabel Label,
+        public OutPipe(TEdgeLabel EdgeLabel,
                        IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                   TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                   TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
@@ -306,7 +306,7 @@ namespace de.ahzf.Vanaheimr.Balder
                                                                   TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                                                   TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
 
-            : base(Label, IEnumerable, IEnumerator)
+            : base(EdgeLabel, IEnumerable, IEnumerator)
 
         { }
 

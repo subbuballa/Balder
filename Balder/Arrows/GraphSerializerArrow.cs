@@ -31,7 +31,7 @@ namespace de.ahzf.Vanaheimr.Balder
     #region IGraphSerializerExtentions
 
     /// <summary>
-    /// Extentions for the IGraphSerializer interface.
+    /// Extention methods for the IGraphSerializer interface.
     /// </summary>
     public static partial class IGraphSerializerExtentions
     {
