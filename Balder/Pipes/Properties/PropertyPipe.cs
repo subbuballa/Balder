@@ -47,13 +47,13 @@ namespace de.ahzf.Vanaheimr.Balder
         /// <typeparam name="TValue">The type of the values.</typeparam>
         /// <param name="IEnumerable">A IReadOnlyProperties&lt;TKey, TValue&gt; enumerable.</param>
         /// <param name="Keys">An array of property keys.</param>
-        public static PropertyPipe<TKey, TValue> P<TKey, TValue>(this IEnumerable<IReadOnlyProperties<TKey, TValue>> IEnumerable,
+        public static PropertyPipe<TKey, TValue> P<TKey, TValue>(this IReadOnlyProperties<TKey, TValue> Properties,
                                                                  params TKey[] Keys)
 
             where TKey : IEquatable<TKey>, IComparable<TKey>, IComparable
 
         {
-            return new PropertyPipe<TKey, TValue>(IEnumerable: IEnumerable, Keys: Keys);
+            return new PropertyPipe<TKey, TValue>(IEnumerable: new IReadOnlyProperties<TKey, TValue>[1] { Properties }, Keys: Keys);
         }
 
         #endregion
