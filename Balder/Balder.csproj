@@ -131,6 +131,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Arrows\GenericPropertyGraph\" />
+    <Folder Include="Pipes\GenericPropertyGraph\IPropertyGraph\Filters\" />
+    <Folder Include="Pipes\GenericPropertyGraph\IPropertyGraph\Properties\" />
     <Folder Include="Pipes\GenericPropertyGraph\IPropertyHyperEdge\Filters\" />
     <Folder Include="Pipes\GenericPropertyGraph\IPropertyMultiEdge\Filters\" />
     <Folder Include="Pipes\GraphIO\CSV\" />

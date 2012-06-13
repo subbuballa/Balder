@@ -95,7 +95,7 @@ namespace de.ahzf.Vanaheimr.Balder
         /// </summary>
         /// <param name="ComparisonFilter">The comparison filter to use.</param>
         public VertexLabelFilterPipe(ComparisonFilter<TVertexLabel> ComparisonFilter)
-            : base(_ => _.Label, ComparisonFilter)
+            : base(vertex => vertex.Label, ComparisonFilter)
         { }
 
         #endregion

@@ -448,7 +448,7 @@ namespace de.ahzf.Vanaheimr.Balder
                                                                             TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                                                             TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
 
-            : base(_ => _.Label, EdgeFilter, IEnumerable, IEnumerator)
+            : base(edge => edge.Label, EdgeFilter, IEnumerable, IEnumerator)
 
         { }
 
