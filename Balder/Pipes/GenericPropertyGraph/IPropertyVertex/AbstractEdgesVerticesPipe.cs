@@ -18,6 +18,7 @@
 #region Usings
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using de.ahzf.Vanaheimr.Blueprints;
@@ -29,7 +30,8 @@ namespace de.ahzf.Vanaheimr.Balder
 {
 
     /// <summary>
-    /// AbstractEdgeVerticesPipe.
+    /// Emit the adjacent vertices of the given generic property vertices
+    /// reachable via incoming and/or outgoing edges (OR-logic).
     /// </summary>
     /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
     /// <typeparam name="TRevIdVertex">The type of the vertex revision identifiers.</typeparam>
@@ -95,15 +97,9 @@ namespace de.ahzf.Vanaheimr.Balder
         #region Data
 
         /// <summary>
-        /// The label of the edge(s) to follow.
+        /// The labels of the edge(s) to follow (OR-logic).
         /// </summary>
-        protected TEdgeLabel _EdgeLabel;
-
-        /// <summary>
-        /// If the EdgeLabel is in use, as _Label is always at least default(TEdgeLabel)!
-        /// </summary>
-        protected Boolean _UseEdgeLabel;
-
+        protected readonly TEdgeLabel[] EdgeLabels;
 
         /// <summary>
         /// Edges to be traversed next...
@@ -117,14 +113,16 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #region Constructor(s)
 
-        #region AbstractEdgesVerticesPipe(IEnumerable, IEnumerator)
+        #region AbstractEdgesVerticesPipe(IEnumerable, IEnumerator, params EdgeLabels)
 
         /// <summary>
-        /// Creates a new AbstractEdgesVerticesPipe.
+        /// Emit the adjacent vertices of the given generic property vertices
+        /// reachable via incoming and/or outgoing edges (OR-logic).
         /// </summary>
         /// <param name="IEnumerable">An IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An IEnumerator&lt;...&gt; as element source.</param>
-        public AbstractEdgesVerticesPipe(IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+        /// <param name="EdgeLabels">An optional array of edge labels to traverse (OR-logic).</param>
+        public AbstractEdgesVerticesPipe(IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex, TRevIdVertex, TVertexLabel, TKeyVertex, TValueVertex,
                                                                                     TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                                     TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                                                                     TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable,
@@ -132,42 +130,14 @@ namespace de.ahzf.Vanaheimr.Balder
                                          IEnumerator<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                                     TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                                     TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                                    TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator)
+                                                                                    TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator,
+            
+                                         params TEdgeLabel[] EdgeLabels)
 
             : base(IEnumerable, IEnumerator)
 
         {
-            _EdgeLabel    = default(TEdgeLabel);
-            _UseEdgeLabel = false;
-        }
-
-        #endregion
-
-        #region AbstractEdgesVerticesPipe(Label, IEnumerable, IEnumerator)
-
-        /// <summary>
-        /// Creates a new AbstractEdgesVerticesPipe for traversing all
-        /// edges having the given EdgeLabel.
-        /// </summary>
-        /// <param name="Label">The EdgeLabel to traverse.</param>
-        /// <param name="IEnumerable">An IEnumerable&lt;...&gt; as element source.</param>
-        /// <param name="IEnumerator">An IEnumerator&lt;...&gt; as element source.</param>
-        public AbstractEdgesVerticesPipe(TEdgeLabel Label,
-                                         IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                                    TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                                    TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                                    TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable,
-
-                                         IEnumerator<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                                    TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                                    TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                                    TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator)
-
-            : base(IEnumerable, IEnumerator)
-
-        {
-            _EdgeLabel    = Label;
-            _UseEdgeLabel = true;
+            this.EdgeLabels = EdgeLabels;
         }
 
         #endregion
@@ -195,9 +165,9 @@ namespace de.ahzf.Vanaheimr.Balder
         /// </summary>
         public override String ToString()
         {
-
-            if (_UseEdgeLabel)
-                return base.ToString() + "(" + _EdgeLabel + ")";
+            
+            if (EdgeLabels != null)
+                return base.ToString() + " (" + EdgeLabels.Aggregate("", (a, b) => a.ToString() + " " + b.ToString()) + ")";
 
             return base.ToString();
 

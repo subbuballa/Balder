@@ -35,10 +35,11 @@ namespace de.ahzf.Vanaheimr.Balder
     public static class OutHyperEdgesPipeExtensions
     {
 
-        #region OutHE(this IEnumerable<IReadOnlyGenericPropertyVertex<...>>)
+        #region OutHE(this IReadOnlyGenericPropertyVertex<...>, params HyperEdgeLabels)
 
         /// <summary>
-        /// Emit the outgoing hyperedges of the given generic property vertices.
+        /// Emit the outgoing hyperedges of the given generic property vertex
+        /// having the given hyperedge labels (OR-logic).
         /// </summary>
         /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
         /// <typeparam name="TRevIdVertex">The type of the vertex revision identifiers.</typeparam>
@@ -63,8 +64,9 @@ namespace de.ahzf.Vanaheimr.Balder
         /// <typeparam name="THyperEdgeLabel">The type of the hyperedge label.</typeparam>
         /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
         /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
-        /// <param name="IEnumerable">An enumeration of generic property vertices.</param>
-        /// <returns>The outgoing hyperedges of the given generic property vertices.</returns>
+        /// <param name="Vertex">A generic property vertex.</param>
+        /// <param name="HyperEdgeLabels">An optional array of hyperedge labels to traverse (OR-logic).</param>
+        /// <returns>The outgoing hyperedges of the given generic property vertex having the given hyperedge labels.</returns>
         public static OutHyperEdgesPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                         TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                         TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
@@ -75,10 +77,12 @@ namespace de.ahzf.Vanaheimr.Balder
                                               TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                               TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(
 
-                                            this IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                                            TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                                            TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                                            TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable)
+                                        this IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                                            TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                                            TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                                            TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> Vertex,
+
+                                        params THyperEdgeLabel[] HyperEdgeLabels)
 
 
             where TIdVertex        : IEquatable<TIdVertex>,       IComparable<TIdVertex>,       IComparable, TValueVertex
@@ -106,17 +110,24 @@ namespace de.ahzf.Vanaheimr.Balder
             return new OutHyperEdgesPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                          TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                          TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                         TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(IEnumerable);
+                                         TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(
+
+                                         new IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                                            TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                                            TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                                            TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>[1] { Vertex },
+
+                                         HyperEdgeLabels: HyperEdgeLabels);
 
         }
 
         #endregion
 
-        #region OutHE(this IEnumerable<IReadOnlyGenericPropertyVertex<...>>, HyperEdgeLabel)
+        #region OutHE(this IEnumerable<IReadOnlyGenericPropertyVertex<...>>, params HyperEdgeLabels)
 
         /// <summary>
         /// Emit the outgoing hyperedges of the given generic property vertices
-        /// having the given HyperEdgeLabel.
+        /// having the given hyperedge labels (OR-logic).
         /// </summary>
         /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
         /// <typeparam name="TRevIdVertex">The type of the vertex revision identifiers.</typeparam>
@@ -142,8 +153,8 @@ namespace de.ahzf.Vanaheimr.Balder
         /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
         /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
         /// <param name="IEnumerable">An enumeration of generic property vertices.</param>
-        /// <param name="HyperEdgeLabel">The label of the outgoing hyperedges.</param>
-        /// <returns>The outgoing hyperedges of the given generic property vertices having the given hyperedge label.</returns>
+        /// <param name="HyperEdgeLabels">An optional array of hyperedge labels to traverse (OR-logic).</param>
+        /// <returns>The outgoing hyperedges of the given generic property vertex having the given hyperedge labels.</returns>
         public static OutHyperEdgesPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                         TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                         TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
@@ -158,7 +169,8 @@ namespace de.ahzf.Vanaheimr.Balder
                                                                                               TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                                               TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                                                                               TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable,
-                                              THyperEdgeLabel HyperEdgeLabel)
+
+                                              params THyperEdgeLabel[] HyperEdgeLabels)
 
 
             where TIdVertex        : IEquatable<TIdVertex>,       IComparable<TIdVertex>,       IComparable, TValueVertex
@@ -186,7 +198,7 @@ namespace de.ahzf.Vanaheimr.Balder
             return new OutHyperEdgesPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                          TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                          TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                         TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(HyperEdgeLabel, IEnumerable);
+                                         TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(IEnumerable, HyperEdgeLabels: HyperEdgeLabels);
 
         }
 
@@ -199,7 +211,8 @@ namespace de.ahzf.Vanaheimr.Balder
     #region OutHyperEdgesPipe()
 
     /// <summary>
-    /// Emit the outgoing hyperedges of the given generic property vertices.
+    /// Emit the outgoing hyperedges of the given generic property vertices
+    /// having the given hyperedge labels (OR-logic).
     /// </summary>
     /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
     /// <typeparam name="TRevIdVertex">The type of the vertex revision identifiers.</typeparam>
@@ -257,15 +270,15 @@ namespace de.ahzf.Vanaheimr.Balder
 
     {
 
-        #region Constructor(s)
-
-        #region OutHyperEdgesPipe(IEnumerable = null, IEnumerator = null)
+        #region OutHyperEdgesPipe(IEnumerable = null, IEnumerator = null, params HyperEdgeLabels)
 
         /// <summary>
-        /// Emit the outgoing hyperedges of the given generic property vertices.
+        /// Emit the outgoing hyperedges of the given generic property vertices
+        /// having the given hyperedge labels (OR-logic).
         /// </summary>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
+        /// <param name="HyperEdgeLabels">An optional array of hyperedge labels to traverse (OR-logic).</param>
         public OutHyperEdgesPipe(IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                             TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                             TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
@@ -274,42 +287,15 @@ namespace de.ahzf.Vanaheimr.Balder
                                  IEnumerator<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                             TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                             TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                            TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
+                                                                            TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null,
 
-            : base(IEnumerable, IEnumerator)
+                                 params THyperEdgeLabel[] HyperEdgeLabels)
 
-        { }
-
-        #endregion
-
-        #region OutHyperEdgesPipe(HyperEdgeLabel, IEnumerable = null, IEnumerator = null)
-
-        /// <summary>
-        /// Emit the outgoing hyperedges of the given generic property vertices
-        /// having the given HyperEdgeLabel.
-        /// </summary>
-        /// <param name="HyperEdgeLabel">The HyperEdgeLabel to traverse.</param>
-        /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
-        /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
-        public OutHyperEdgesPipe(THyperEdgeLabel HyperEdgeLabel,
-                                 IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                            TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                            TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                            TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable = null,
-
-                                 IEnumerator<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                            TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                            TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                            TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
-
-            : base(HyperEdgeLabel, IEnumerable, IEnumerator)
+            : base(IEnumerable, IEnumerator, HyperEdgeLabels)
 
         { }
 
         #endregion
-
-        #endregion
-
 
         #region MoveNext()
 
@@ -337,14 +323,7 @@ namespace de.ahzf.Vanaheimr.Balder
                 }
 
                 else if (_InternalEnumerator.MoveNext())
-                {
-
-                    if (_UseLabel)
-                        _NextHyperEdges = _InternalEnumerator.Current.HyperEdges(_Label).GetEnumerator();
-                    else
-                        _NextHyperEdges = _InternalEnumerator.Current.HyperEdges().GetEnumerator();
-
-                }
+                    _NextHyperEdges = _InternalEnumerator.Current.HyperEdges(HyperEdgeLabels).GetEnumerator();
 
                 else
                     return false;

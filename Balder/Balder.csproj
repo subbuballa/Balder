@@ -44,6 +44,7 @@
     <Compile Include="Arrows\GraphSerializerArrow.cs" />
     <Compile Include="Arrows\EdgeSerializerArrow.cs" />
     <Compile Include="Arrows\VertexSerializerArrow.cs" />
+    <Compile Include="Pipes\GenericPropertyGraph\IPropertyEdge\AVertexPipe.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\IPropertyVertex\AbstractMultiEdgesPipe.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\IPropertyVertex\AbstractHyperEdgesVerticesPipe.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\IPropertyVertex\OutHPipe.cs" />

@@ -18,6 +18,7 @@
 #region Usings
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using de.ahzf.Vanaheimr.Blueprints;
@@ -29,7 +30,8 @@ namespace de.ahzf.Vanaheimr.Balder
 {
 
     /// <summary>
-    /// AbstractMultiEdgesPipe.
+    /// Emit the incoming and/or outgoing multiedges of the given generic property vertices
+    /// having the given multiedge labels (OR-logic).
     /// </summary>
     /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
     /// <typeparam name="TRevIdVertex">The type of the vertex revision identifiers.</typeparam>
@@ -95,15 +97,9 @@ namespace de.ahzf.Vanaheimr.Balder
         #region Data
 
         /// <summary>
-        /// The label of the multiedge to follow.
+        /// The labels of the multiedges to follow (OR-logic).
         /// </summary>
-        protected TMultiEdgeLabel _Label;
-
-        /// <summary>
-        /// If the MultiEdgeLabel is in use, as _Label is always at least default(TMultiEdgeLabel)!
-        /// </summary>
-        protected Boolean _UseLabel;
-
+        protected TMultiEdgeLabel[] MultiEdgeLabels;
 
         /// <summary>
         /// MultiEdges to be traversed next...
@@ -117,13 +113,15 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #region Constructor(s)
 
-        #region AbstractMultiEdgesPipe(IEnumerable, IEnumerator)
+        #region AbstractMultiEdgesPipe(IEnumerable, IEnumerator, params MultiEdgeLabels)
 
         /// <summary>
-        /// Creates a new AbstractMultiEdgesPipe.
+        /// Emit the incoming and/or outgoing multiedges of the given generic property vertices
+        /// having the given edge labels (OR-logic).
         /// </summary>
         /// <param name="IEnumerable">An IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An IEnumerator&lt;...&gt; as element source.</param>
+        /// <param name="MultiEdgeLabels">An optional array of multiedge labels to traverse (OR-logic).</param>
         public AbstractMultiEdgesPipe(IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                                  TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                                  TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
@@ -132,42 +130,14 @@ namespace de.ahzf.Vanaheimr.Balder
                                       IEnumerator<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                                  TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                                  TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                                 TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator)
+                                                                                 TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator,
+
+                                 params TMultiEdgeLabel[] MultiEdgeLabels)
 
             : base(IEnumerable, IEnumerator)
 
         {
-            _Label    = default(TMultiEdgeLabel);
-            _UseLabel = false;
-        }
-
-        #endregion
-
-        #region AbstractMultiEdgesPipe(Label, IEnumerable, IEnumerator)
-
-        /// <summary>
-        /// Creates a new AbstractMultiEdgesPipe for traversing all
-        /// multiedges having the given MultiEdgeLabel.
-        /// </summary>
-        /// <param name="Label">The MultiEdgeLabel to traverse.</param>
-        /// <param name="IEnumerable">An IEnumerable&lt;...&gt; as element source.</param>
-        /// <param name="IEnumerator">An IEnumerator&lt;...&gt; as element source.</param>
-        public AbstractMultiEdgesPipe(TMultiEdgeLabel Label,
-                                      IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                                 TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                                 TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                                 TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable,
-
-                                      IEnumerator<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                                 TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                                 TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                                 TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator)
-
-            : base(IEnumerable, IEnumerator)
-
-        {
-            _Label    = Label;
-            _UseLabel = true;
+            this.MultiEdgeLabels = MultiEdgeLabels;
         }
 
         #endregion
@@ -195,9 +165,9 @@ namespace de.ahzf.Vanaheimr.Balder
         /// </summary>
         public override String ToString()
         {
-
-            if (_UseLabel)
-                return base.ToString() + "(" + _Label + ")";
+            
+            if (MultiEdgeLabels != null)
+                return base.ToString() + " (" + MultiEdgeLabels.Aggregate("", (a, b) => a.ToString() + " " + b.ToString()) + ")";
 
             return base.ToString();
 

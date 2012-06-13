@@ -18,6 +18,7 @@
 #region Usings
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using de.ahzf.Vanaheimr.Blueprints;
@@ -29,7 +30,8 @@ namespace de.ahzf.Vanaheimr.Balder
 {
 
     /// <summary>
-    /// AbstractHyperEdgesPipe.
+    /// Emit the incoming and/or outgoing hyperedges of the given generic property vertices
+    /// having the given hyperedge labels (OR-logic).
     /// </summary>
     /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
     /// <typeparam name="TRevIdVertex">The type of the vertex revision identifiers.</typeparam>
@@ -95,15 +97,9 @@ namespace de.ahzf.Vanaheimr.Balder
         #region Data
 
         /// <summary>
-        /// The label of the hyperedge to follow.
+        /// The labels of the hyperedges to follow (OR-logic).
         /// </summary>
-        protected THyperEdgeLabel _Label;
-
-        /// <summary>
-        /// If the HyperEdgeLabel is in use, as _Label is always at least default(THyperEdgeLabel)!
-        /// </summary>
-        protected Boolean _UseLabel;
-
+        protected readonly THyperEdgeLabel[] HyperEdgeLabels;
 
         /// <summary>
         /// HyperEdges to be traversed next...
@@ -117,14 +113,16 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #region Constructor(s)
 
-        #region AbstractHyperEdgesPipe(IEnumerable, IEnumerator)
+        #region AbstractHyperEdgesPipe(IEnumerable, IEnumerator, params HyperEdgeLabels)
 
         /// <summary>
-        /// Creates a new AbstractHyperEdgesPipe.
+        /// Emit the incoming and/or outgoing hyperedges of the given generic property vertices
+        /// having the given hyperedge labels (OR-logic).
         /// </summary>
         /// <param name="IEnumerable">An IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An IEnumerator&lt;...&gt; as element source.</param>
-        public AbstractHyperEdgesPipe(IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+        /// <param name="HyperEdgeLabels">An optional array of hyperedge labels to traverse (OR-logic).</param>
+        public AbstractHyperEdgesPipe(IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex, TRevIdVertex, TVertexLabel, TKeyVertex, TValueVertex,
                                                                                  TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                                  TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                                                                  TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable,
@@ -132,42 +130,14 @@ namespace de.ahzf.Vanaheimr.Balder
                                       IEnumerator<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                                  TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                                  TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                                 TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator)
+                                                                                 TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator,
+
+                                      params THyperEdgeLabel[] HyperEdgeLabels)
 
             : base(IEnumerable, IEnumerator)
 
         {
-            _Label    = default(THyperEdgeLabel);
-            _UseLabel = false;
-        }
-
-        #endregion
-
-        #region AbstractHyperEdgesPipe(Label, IEnumerable, IEnumerator)
-
-        /// <summary>
-        /// Creates a new AbstractHyperEdgesPipe for traversing all
-        /// hyperedges having the given HyperEdgeLabel.
-        /// </summary>
-        /// <param name="Label">The HyperEdgeLabel to traverse.</param>
-        /// <param name="IEnumerable">An IEnumerable&lt;...&gt; as element source.</param>
-        /// <param name="IEnumerator">An IEnumerator&lt;...&gt; as element source.</param>
-        public AbstractHyperEdgesPipe(THyperEdgeLabel Label,
-                                      IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                                 TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                                 TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                                 TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable,
-
-                                      IEnumerator<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                                 TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                                 TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                                 TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator)
-
-            : base(IEnumerable, IEnumerator)
-
-        {
-            _Label    = Label;
-            _UseLabel = true;
+            this.HyperEdgeLabels = HyperEdgeLabels;
         }
 
         #endregion
@@ -196,8 +166,8 @@ namespace de.ahzf.Vanaheimr.Balder
         public override String ToString()
         {
 
-            if (_UseLabel)
-                return base.ToString() + "(" + _Label + ")";
+            if (HyperEdgeLabels != null)
+                return base.ToString() + " (" + HyperEdgeLabels.Aggregate("", (a, b) => a.ToString() + " " + b.ToString()) + ")";
 
             return base.ToString();
 
