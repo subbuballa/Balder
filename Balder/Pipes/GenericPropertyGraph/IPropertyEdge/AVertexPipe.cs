@@ -29,8 +29,11 @@ using de.ahzf.Vanaheimr.Styx;
 namespace de.ahzf.Vanaheimr.Balder
 {
 
-    #region EdgeTraversalDirection
+    #region (internal) EdgeTraversalDirection
 
+    /// <summary>
+    /// The edge to vertex traversal direction.
+    /// </summary>
     internal enum EdgeTraversalDirection
     {
         Out,
@@ -40,7 +43,7 @@ namespace de.ahzf.Vanaheimr.Balder
 
     #endregion
 
-    #region AVertexPipe
+    #region (internal) AVertexPipe()
 
     /// <summary>
     /// Emits the vertices of the given generic property edges.
@@ -139,7 +142,7 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #region Constructor(s)
 
-        #region AVertexPipe(EdgeTraversalDirection, IEnumerable = null, IEnumerator = null, params VertexLabels)
+        #region (internal) AVertexPipe(EdgeTraversalDirection, IEnumerable = null, IEnumerator = null, params VertexLabels)
 
         /// <summary>
         /// Emits the vertices of the given generic property edges
@@ -178,7 +181,7 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #endregion
 
-        #region AVertexPipe(EdgeTraversalDirection, VertexFilter = null, IEnumerable = null, IEnumerator = null)
+        #region (internal) AVertexPipe(EdgeTraversalDirection, VertexFilter = null, IEnumerable = null, IEnumerator = null)
 
         /// <summary>
         /// Emits the vertices of the given generic property edges
