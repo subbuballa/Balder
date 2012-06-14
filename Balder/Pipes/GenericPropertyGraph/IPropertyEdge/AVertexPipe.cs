@@ -268,10 +268,9 @@ namespace de.ahzf.Vanaheimr.Balder
             if (_InternalEnumerator == null)
                 return false;
 
-            while (_InternalEnumerator.MoveNext())
+            if (VertexLabels != null)
             {
-
-                if (VertexLabels.Any())
+                while (_InternalEnumerator.MoveNext())
                 {
                     if (VertexLabels.Any(VertexLabel => Edge2VertexDelegate(_InternalEnumerator.Current).Label.Equals(VertexLabel)))
                     {
@@ -279,8 +278,11 @@ namespace de.ahzf.Vanaheimr.Balder
                         return true;
                     }
                 }
+            }
 
-                else if (VertexFilter != null)
+            else if (VertexFilter != null)
+            {
+                while (_InternalEnumerator.MoveNext())
                 {
                     if (VertexFilter(_CurrentElement))
                     {
@@ -288,13 +290,15 @@ namespace de.ahzf.Vanaheimr.Balder
                         return true;
                     }
                 }
+            }
 
-                else
+            else
+            {
+                while (_InternalEnumerator.MoveNext())
                 {
                     _CurrentElement = Edge2VertexDelegate(_InternalEnumerator.Current);
                     return true;
                 }
-
             }
 
             return false;

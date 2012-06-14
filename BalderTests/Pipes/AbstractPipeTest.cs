@@ -91,7 +91,7 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Pipes
                                           UInt64, Int64, String, String, Object,
                                           UInt64, Int64, String, String, Object>();
 
-            var _Pipe3 = new PropertyPipe<String, Object>("name");
+            var _Pipe3 = new PropertyPipe<String, Object>(Keys: "name");
 
             _Pipe3.SetSource(_Pipe2);
             _Pipe2.SetSource(_Pipe1);

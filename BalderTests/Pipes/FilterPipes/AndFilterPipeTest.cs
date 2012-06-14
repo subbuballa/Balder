@@ -104,7 +104,7 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.FilterPipes
 		    var _Pipe2 			= new EdgePropertyFilterPipe<UInt64, Int64, String, String, Object,
                                                              UInt64, Int64, String, String, Object,
                                                              UInt64, Int64, String, String, Object,
-                                                             UInt64, Int64, String, String, Object, Double>("weight", v => v == 0.5);
+                                                             UInt64, Int64, String, String, Object>("weight", v => (0.5).Equals(v));
 
 		    var _AndFilterPipe	= new AndFilterPipe<IGenericPropertyEdge<UInt64, Int64, String, String, Object,
                                                                          UInt64, Int64, String, String, Object,

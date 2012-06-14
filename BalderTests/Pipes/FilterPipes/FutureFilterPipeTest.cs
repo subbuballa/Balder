@@ -104,7 +104,7 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.FilterPipes
             var _PropertyFilterPipe = new VertexPropertyFilterPipe<UInt64, Int64, String, String, Object,
                                                                    UInt64, Int64, String, String, Object,
                                                                    UInt64, Int64, String, String, Object,
-                                                                   UInt64, Int64, String, String, Object, String>("name", v => v.Equals("lop"));
+                                                                   UInt64, Int64, String, String, Object>("name", v => v.Equals("lop"));
 
             var _FutureFilterPipe = new FutureFilterPipe<IGenericPropertyEdge<UInt64, Int64, String, String, Object,
                                                                               UInt64, Int64, String, String, Object,

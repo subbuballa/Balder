@@ -184,7 +184,7 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.FilterPipes
                                                UInt64, Int64, String, String, Object,
                                                UInt64, Int64, String, String, Object>();
             
-            var _Pipe4      = new PropertyPipe<String, Object>("name");
+            var _Pipe4      = new PropertyPipe<String, Object>(Keys: "name");
 
             var _Pipeline   = new Pipeline<IGenericPropertyVertex<UInt64, Int64, String, String, Object,
                                                                   UInt64, Int64, String, String, Object,
