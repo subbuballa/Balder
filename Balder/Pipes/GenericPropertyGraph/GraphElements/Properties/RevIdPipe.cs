@@ -36,19 +36,35 @@ namespace de.ahzf.Vanaheimr.Balder
     public static class RevIdPipeExtensions
     {
 
-        #region RevIds<TRevId>(this IEnumerable)
+        #region RevIds<TRevId>(this IRevisionId)
 
         /// <summary>
-        /// The RevIdPipe will return the RevIds of the
-        /// given revision identifiable objects.
+        /// Emits the revision identification of the given revision identifiable object.
         /// </summary>
-        /// <typeparam name="TRevId">The type of the RevIds.</typeparam>
-        /// <param name="IEnumerable">An enumeration of revision identifiable objects.</param>
-        /// <returns>An enumeration of RevIds.</returns>
-        public static RevIdPipe<TRevId> RevIds<TRevId>(this IEnumerable<IRevisionId<TRevId>> IEnumerable)
+        /// <typeparam name="TRevId">The type of the revision identification.</typeparam>
+        /// <param name="IRevisionId">A revision identifiable object.</param>
+        /// <returns>A revision identification.</returns>
+        public static RevIdPipe<TRevId> RevIds<TRevId>(this IRevisionId<TRevId> IRevisionId)
 
             where TRevId : IEquatable<TRevId>, IComparable<TRevId>, IComparable
 
+        {
+            return new RevIdPipe<TRevId>(new IRevisionId<TRevId>[1] { IRevisionId });
+        }
+
+        #endregion
+
+        #region RevIds<TRevId>(this IEnumerable)
+
+        /// <summary>
+        /// Emits the revision identifications of the given revision identifiable objects.
+        /// </summary>
+        /// <typeparam name="TRevId">The type of the revision identifications.</typeparam>
+        /// <param name="IEnumerable">An enumeration of revision identifiable objects.</param>
+        /// <returns>An enumeration of revision identifications.</returns>
+        public static RevIdPipe<TRevId> RevIds<TRevId>(this IEnumerable<IRevisionId<TRevId>> IEnumerable)
+
+            where TRevId : IEquatable<TRevId>, IComparable<TRevId>, IComparable
         {
             return new RevIdPipe<TRevId>(IEnumerable);
         }
@@ -62,8 +78,7 @@ namespace de.ahzf.Vanaheimr.Balder
     #region RevIdPipe<TId>
 
     /// <summary>
-    /// The RevIdPipe will return the RevIds of the
-    /// given revision identifiable objects.
+    /// Emits the revision identifications of the given revision identifiable objects.
     /// </summary>
     public class RevIdPipe<TRevId> : AbstractPipe<IRevisionId<TRevId>, TRevId>
         
@@ -76,8 +91,7 @@ namespace de.ahzf.Vanaheimr.Balder
         #region RevIdPipe(IEnumerable = null, IEnumerator = null)
 
         /// <summary>
-        /// Creates a new RevIdPipe emitting the RevIds of the
-        /// given revision identifiable objects.
+        /// Emits the revision identifications of the given revision identifiable objects.
         /// </summary>
         /// <param name="IEnumerable">An optional IEnumerable&lt;IIdentifier&lt;TId&gt;&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;IIdentifier&lt;TId&gt;&gt; as element source.</param>
@@ -92,7 +106,6 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #endregion
 
-
         #region MoveNext()
 
         /// <summary>
@@ -106,31 +119,18 @@ namespace de.ahzf.Vanaheimr.Balder
         public override Boolean MoveNext()
         {
 
-            if (_InternalEnumerator == null)
+            if (_InputEnumerator == null)
                 return false;
 
-            if (_InternalEnumerator.MoveNext())
+            if (_InputEnumerator.MoveNext())
             {
-                _CurrentElement = _InternalEnumerator.Current.RevId;
+                _CurrentElement = _InputEnumerator.Current.RevId;
                 return true;
             }
 
             else
                 return false;
 
-        }
-
-        #endregion
-
-
-        #region ToString()
-
-        /// <summary>
-        /// A string representation of this pipe.
-        /// </summary>
-        public override String ToString()
-        {
-            return base.ToString() + "<" + _InternalEnumerator.Current + ">";
         }
 
         #endregion

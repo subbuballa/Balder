@@ -36,10 +36,40 @@ namespace de.ahzf.Vanaheimr.Balder
     public static class LabelPipeExtensions
     {
 
+        #region Label(this IReadOnlyGraphElement<...>)
+
+        /// <summary>
+        /// Emits the label of the given graph element.
+        /// </summary>
+        /// <typeparam name="TId">The type of the identifiers.</typeparam>
+        /// <typeparam name="TRevId">The type of the revision identifiers.</typeparam>
+        /// <typeparam name="TLabel">The taype of the labels.</typeparam>
+        /// <typeparam name="TKey">The type of the property keys.</typeparam>
+        /// <typeparam name="TValue">The type of the property values.</typeparam>
+        /// <param name="IEnumerable">An enumeration of graph elements.</param>
+        /// <returns>The the labels of the given graph elements.</returns>
+        public static LabelPipe<TId, TRevId, TLabel, TKey, TValue>
+
+                          Label<TId, TRevId, TLabel, TKey, TValue>(this IReadOnlyGraphElement<TId, TRevId, TLabel, TKey, TValue> IReadOnlyGraphElement)
+
+            where TId     : IEquatable<TId>,    IComparable<TId>,    IComparable, TValue
+            where TRevId  : IEquatable<TRevId>, IComparable<TRevId>, IComparable, TValue
+            where TLabel  : IEquatable<TLabel>, IComparable<TLabel>, IComparable
+            where TKey    : IEquatable<TKey>,   IComparable<TKey>,   IComparable
+
+        {
+
+            return new LabelPipe<TId, TRevId, TLabel, TKey, TValue>(
+                new IReadOnlyGraphElement<TId, TRevId, TLabel, TKey, TValue>[1] { IReadOnlyGraphElement });
+
+        }
+
+        #endregion
+
         #region Label(this IEnumerable<IReadOnlyGraphElement<...>>)
 
         /// <summary>
-        /// Returns the labels of the given graph elements.
+        /// Emits the labels of the given graph elements.
         /// </summary>
         /// <typeparam name="TId">The type of the identifiers.</typeparam>
         /// <typeparam name="TRevId">The type of the revision identifiers.</typeparam>
@@ -70,7 +100,7 @@ namespace de.ahzf.Vanaheimr.Balder
     #region LabelPipe()
 
     /// <summary>
-    /// The LabelPipe will return the labels of the given graph elements.
+    /// Emits the labels of the given graph elements.
     /// </summary>
     /// <typeparam name="TId">The type of the identifiers.</typeparam>
     /// <typeparam name="TRevId">The type of the revision identifiers.</typeparam>
@@ -93,7 +123,7 @@ namespace de.ahzf.Vanaheimr.Balder
         #region LabelPipe(IEnumerable = null, IEnumerator = null)
 
         /// <summary>
-        /// Creates a new LabelPipe emitting the labels of the given edges.
+        /// Emits the labels of the given graph elements.
         /// </summary>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
@@ -108,7 +138,6 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #endregion
 
-
         #region MoveNext()
 
         /// <summary>
@@ -122,30 +151,17 @@ namespace de.ahzf.Vanaheimr.Balder
         public override Boolean MoveNext()
         {
 
-            if (_InternalEnumerator == null)
+            if (_InputEnumerator == null)
                 return false;
 
-            while (_InternalEnumerator.MoveNext())
+            while (_InputEnumerator.MoveNext())
             {
-                _CurrentElement = _InternalEnumerator.Current.Label;
+                _CurrentElement = _InputEnumerator.Current.Label;
                 return true;
             }
 
             return false;
 
-        }
-
-        #endregion
-
-
-        #region ToString()
-
-        /// <summary>
-        /// A string representation of this pipe.
-        /// </summary>
-        public override String ToString()
-        {
-            return base.ToString() + "<" + _InternalEnumerator.Current + ">";
         }
 
         #endregion

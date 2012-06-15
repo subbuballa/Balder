@@ -18,11 +18,10 @@
 #region Usings
 
 using System;
+using System.Collections.Generic;
 
 using de.ahzf.Vanaheimr.Styx;
-using de.ahzf.Illias.Commons.Collections;
 using de.ahzf.Vanaheimr.Blueprints;
-using System.Collections.Generic;
 
 #endregion
 
@@ -37,27 +36,27 @@ namespace de.ahzf.Vanaheimr.Balder
     public static class GraphElementFilterPipeExtensions
     {
 
-        #region GraphElementFilter(this IEnumerable<S>, KeySelector, ComparisonFilter)
+        #region GraphElementFilter(this IReadOnlyGraphElement, KeySelector, ComparisonFilter)
 
         /// <summary>
-        /// 
+        /// Filters graph elements based on their properties.
         /// </summary>
-        /// <typeparam name="TId"></typeparam>
-        /// <typeparam name="TRevId"></typeparam>
-        /// <typeparam name="TLabel"></typeparam>
-        /// <typeparam name="TKey"></typeparam>
-        /// <typeparam name="TValue"></typeparam>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="S"></typeparam>
-        /// <param name="IEnumerable"></param>
-        /// <param name="KeySelector"></param>
-        /// <param name="ComparisonFilter"></param>
-        /// <returns></returns>
+        /// <typeparam name="TId">The type of the identifiers.</typeparam>
+        /// <typeparam name="TRevId">The type of the revision identifiers.</typeparam>
+        /// <typeparam name="TLabel">The taype of the labels.</typeparam>
+        /// <typeparam name="TKey">The type of the property keys.</typeparam>
+        /// <typeparam name="TValue">The type of the property values.</typeparam>
+        /// <typeparam name="T">The type of the property to filter on.</typeparam>
+        /// <typeparam name="S">A type derived from IReadOnlyGraphElement&lt;...&gt;.</typeparam>
+        /// <param name="IReadOnlyGraphElement">An object derived from IReadOnlyGraphElement&lt;...&gt; as element source.</param>
+        /// <param name="KeySelector">A delegate for key selection.</param>
+        /// <param name="ComparisonFilter">The comparison filter to use.</param>
+        /// <returns>A filtered enumeration of graph elements.</returns>
         public static GraphElementFilterPipe<TId, TRevId, TLabel, TKey, TValue, T, S>
 
-                              GraphElementFilter<TId, TRevId, TLabel, TKey, TValue, T, S>(this IEnumerable<S>  IEnumerable,
-                                                                                          Func<S, T>           KeySelector,
-                                                                                          ComparisonFilter<T>  ComparisonFilter)
+                              GraphElementFilter<TId, TRevId, TLabel, TKey, TValue, T, S>(this S              IReadOnlyGraphElement,
+                                                                                          Func<S, T>          KeySelector,
+                                                                                          ComparisonFilter<T> ComparisonFilter)
 
             where TId     : IEquatable<TId>,    IComparable<TId>,    IComparable, TValue
             where TRevId  : IEquatable<TRevId>, IComparable<TRevId>, IComparable, TValue
@@ -66,7 +65,52 @@ namespace de.ahzf.Vanaheimr.Balder
             where S       : IReadOnlyGraphElement<TId, TRevId, TLabel, TKey, TValue>
 
         {
-            return new GraphElementFilterPipe<TId, TRevId, TLabel, TKey, TValue, T, S>(KeySelector, ComparisonFilter, IEnumerable);
+
+            return new GraphElementFilterPipe<TId, TRevId, TLabel, TKey, TValue, T, S>(
+                KeySelector,
+                ComparisonFilter,
+                new S[1] { IReadOnlyGraphElement });
+
+        }
+
+        #endregion
+
+        #region GraphElementFilter(this IEnumerable<S>, KeySelector, ComparisonFilter)
+
+        /// <summary>
+        /// Filters graph elements based on their properties.
+        /// </summary>
+        /// <typeparam name="TId">The type of the identifiers.</typeparam>
+        /// <typeparam name="TRevId">The type of the revision identifiers.</typeparam>
+        /// <typeparam name="TLabel">The taype of the labels.</typeparam>
+        /// <typeparam name="TKey">The type of the property keys.</typeparam>
+        /// <typeparam name="TValue">The type of the property values.</typeparam>
+        /// <typeparam name="T">The type of the property to filter on.</typeparam>
+        /// <typeparam name="S">A type derived from IReadOnlyGraphElement&lt;...&gt;.</typeparam>
+        /// <param name="IEnumerable">An IEnumerable&lt;S&gt; as element source.</param>
+        /// <param name="KeySelector">A delegate for key selection.</param>
+        /// <param name="ComparisonFilter">The comparison filter to use.</param>
+        /// <returns>A filtered enumeration of graph elements.</returns>
+        public static GraphElementFilterPipe<TId, TRevId, TLabel, TKey, TValue, T, S>
+
+                          GraphElementFilter<TId, TRevId, TLabel, TKey, TValue, T, S>(this IEnumerable<S>  IEnumerable,
+                                                                                      Func<S, T>           KeySelector,
+                                                                                      ComparisonFilter<T>  ComparisonFilter)
+
+
+            where TId     : IEquatable<TId>,    IComparable<TId>,    IComparable, TValue
+            where TRevId  : IEquatable<TRevId>, IComparable<TRevId>, IComparable, TValue
+            where TLabel  : IEquatable<TLabel>, IComparable<TLabel>, IComparable
+            where TKey    : IEquatable<TKey>,   IComparable<TKey>,   IComparable
+            where S       : IReadOnlyGraphElement<TId, TRevId, TLabel, TKey, TValue>
+
+        {
+
+            return new GraphElementFilterPipe<TId, TRevId, TLabel, TKey, TValue, T, S>(
+                KeySelector,
+                ComparisonFilter,
+                IEnumerable);
+
         }
 
         #endregion
@@ -78,8 +122,7 @@ namespace de.ahzf.Vanaheimr.Balder
     #region GraphElementFilterPipe<...>
 
     /// <summary>
-    /// The GraphElementFilterPipe either allows or disallows all Elements
-    /// that have the provided value for a particular key.
+    /// Filters graph elements based on their properties.
     /// </summary>
     /// <typeparam name="TId">The type of the identifiers.</typeparam>
     /// <typeparam name="TRevId">The type of the revision identifiers.</typeparam>
@@ -112,7 +155,7 @@ namespace de.ahzf.Vanaheimr.Balder
         #region GraphElementFilterPipe(KeySelector, ComparisonFilter, IEnumerable = null, IEnumerator = null)
 
         /// <summary>
-        /// Creates a new PropertyFilterPipe.
+        /// Filters graph elements based on their properties.
         /// </summary>
         /// <param name="KeySelector">A delegate for key selection.</param>
         /// <param name="ComparisonFilter">The comparison filter to use.</param>
@@ -160,15 +203,15 @@ namespace de.ahzf.Vanaheimr.Balder
         public override Boolean MoveNext()
         {
 
-            if (_InternalEnumerator == null)
+            if (_InputEnumerator == null)
                 return false;
 
-            while (_InternalEnumerator.MoveNext())
+            while (_InputEnumerator.MoveNext())
             {
 
-                if (ComparisonFilter(KeySelector(_InternalEnumerator.Current)))
+                if (ComparisonFilter(KeySelector(_InputEnumerator.Current)))
                 {
-                    _CurrentElement = _InternalEnumerator.Current;
+                    _CurrentElement = _InputEnumerator.Current;
                     return true;
                 }
 

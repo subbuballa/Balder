@@ -36,18 +36,35 @@ namespace de.ahzf.Vanaheimr.Balder
     public static class IdPipeExtensions
     {
 
-        #region Ids<TId>(this IEnumerable)
+        #region Ids<TId>(this IIdentifier)
 
         /// <summary>
-        /// The IdPipe will return the Ids of the given identifiable objects.
+        /// Emits the identification of the given identifiable object.
         /// </summary>
-        /// <typeparam name="TId">The type of the ids.</typeparam>
-        /// <param name="IEnumerable">An enumeration of identifiable objects.</param>
-        /// <returns>An enumeration of ids.</returns>
-        public static IdPipe<TId> Ids<TId>(this IEnumerable<IIdentifier<TId>> IEnumerable)
+        /// <typeparam name="TId">The type of the identifications.</typeparam>
+        /// <param name="IIdentifier">An identifiable object.</param>
+        /// <returns>An identification.</returns>
+        public static IdPipe<TId> Ids<TId>(this IIdentifier<TId> IIdentifier)
 
             where TId : IEquatable<TId>, IComparable<TId>, IComparable
 
+        {
+            return new IdPipe<TId>(new IIdentifier<TId>[1] { IIdentifier });
+        }
+
+        #endregion
+
+        #region Ids<TId>(this IEnumerable)
+
+        /// <summary>
+        /// Emits the identifications of the given identifiable objects.
+        /// </summary>
+        /// <typeparam name="TId">The type of the identifications.</typeparam>
+        /// <param name="IEnumerable">An enumeration of identifiable objects.</param>
+        /// <returns>An enumeration of identifications.</returns>
+        public static IdPipe<TId> Ids<TId>(this IEnumerable<IIdentifier<TId>> IEnumerable)
+
+            where TId : IEquatable<TId>, IComparable<TId>, IComparable
         {
             return new IdPipe<TId>(IEnumerable);
         }
@@ -61,8 +78,9 @@ namespace de.ahzf.Vanaheimr.Balder
     #region IdPipe<TId>
 
     /// <summary>
-    /// The IdPipe will return the Ids of the given identifiable objects.
+    /// Emits the identifications of the given identifiable objects.
     /// </summary>
+    /// <typeparam name="TId">The type of the identifications.</typeparam>
     public class IdPipe<TId> : AbstractPipe<IIdentifier<TId>, TId>
         
         where TId : IEquatable<TId>, IComparable<TId>, IComparable
@@ -74,7 +92,7 @@ namespace de.ahzf.Vanaheimr.Balder
         #region IdPipe(IEnumerable = null, IEnumerator = null)
 
         /// <summary>
-        /// Creates a new IdPipe emitting the Ids of the given identifiable objects.
+        /// Emits the identifications of the given identifiable objects.
         /// </summary>
         /// <param name="IEnumerable">An optional IEnumerable&lt;IIdentifier&lt;TId&gt;&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;IIdentifier&lt;TId&gt;&gt; as element source.</param>
@@ -89,7 +107,6 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #endregion
 
-
         #region MoveNext()
 
         /// <summary>
@@ -103,31 +120,18 @@ namespace de.ahzf.Vanaheimr.Balder
         public override Boolean MoveNext()
         {
 
-            if (_InternalEnumerator == null)
+            if (_InputEnumerator == null)
                 return false;
 
-            if (_InternalEnumerator.MoveNext())
+            if (_InputEnumerator.MoveNext())
             {
-                _CurrentElement = _InternalEnumerator.Current.Id;
+                _CurrentElement = _InputEnumerator.Current.Id;
                 return true;
             }
 
             else
                 return false;
 
-        }
-
-        #endregion
-
-
-        #region ToString()
-
-        /// <summary>
-        /// A string representation of this pipe.
-        /// </summary>
-        public override String ToString()
-        {
-            return base.ToString() + "<" + _InternalEnumerator.Current + ">";
         }
 
         #endregion

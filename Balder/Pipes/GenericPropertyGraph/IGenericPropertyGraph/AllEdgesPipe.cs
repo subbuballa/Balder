@@ -28,23 +28,21 @@ using de.ahzf.Vanaheimr.Styx;
 namespace de.ahzf.Vanaheimr.Balder
 {
 
-    #region BothPipeExtensions
+    #region AllEdgesPipeExtensions
 
     /// <summary>
-    /// Extension methods for the BothPipe.
+    /// Extension methods for the AllEdgesPipe.
     /// </summary>
-    public static class BothPipeExtensions
+    public static class AllEdgesPipeExtensions
     {
 
-        #region Both(this IReadOnlyGenericPropertyVertex<...>, params EdgeLabels)
+        #region E(this IReadOnlyGenericPropertyGraph<...>, EdgeFilter = null)
 
         /// <summary>
-        /// Emit the adjacent vertices of the given generic property vertex
-        /// reachable via incoming and outgoing edges having the given edge labels (OR-logic).
+        /// Emits all edges of a the given generic property graph.
         /// </summary>
         /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
         /// <typeparam name="TRevIdVertex">The type of the vertex revision identifiers.</typeparam>
-        /// <typeparam name="TVertexLabel">The type of the vertex type.</typeparam>
         /// <typeparam name="TKeyVertex">The type of the vertex property keys.</typeparam>
         /// <typeparam name="TValueVertex">The type of the vertex property values.</typeparam>
         /// 
@@ -54,36 +52,33 @@ namespace de.ahzf.Vanaheimr.Balder
         /// <typeparam name="TKeyEdge">The type of the edge property keys.</typeparam>
         /// <typeparam name="TValueEdge">The type of the edge property values.</typeparam>
         /// 
-        /// <typeparam name="TIdMultiEdge">The type of the multiedge identifiers.</typeparam>
-        /// <typeparam name="TRevIdMultiEdge">The type of the multiedge revision identifiers.</typeparam>
-        /// <typeparam name="TMultiEdgeLabel">The type of the multiedge label.</typeparam>
-        /// <typeparam name="TKeyMultiEdge">The type of the multiedge property keys.</typeparam>
-        /// <typeparam name="TValueMultiEdge">The type of the multiedge property values.</typeparam>
-        /// 
         /// <typeparam name="TIdHyperEdge">The type of the hyperedge identifiers.</typeparam>
         /// <typeparam name="TRevIdHyperEdge">The type of the hyperedge revision identifiers.</typeparam>
         /// <typeparam name="THyperEdgeLabel">The type of the hyperedge label.</typeparam>
         /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
         /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
-        /// <param name="Vertex">A generic property vertex.</param>
-        /// <param name="EdgeLabels">An optional array of edge labels to traverse (OR-logic).</param>
-        /// <returns>The adjacent vertices of the given generic property vertex reachable via incoming and outgoing edges having the given edge labels (OR-logic).</returns>
-        public static BothPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                               TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                               TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                               TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
+        /// <param name="Graph">A generic property graphs.</param>
+        /// <param name="EdgeFilter">An optional delegate for edge filtering.</param>
+        /// <returns>All edges of a the given generic property graph.</returns>
+        public static AllEdgesPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                   TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                   TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                   TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
 
-                               Both<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                    TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                    TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                    TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(
+                                   E<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                     TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                     TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                     TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(
 
-                                    this IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                     this IReadOnlyGenericPropertyGraph<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                         TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                         TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                        TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> Vertex,
+                                                                        TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> Graph,
 
-                                    params TEdgeLabel[] EdgeLabels)
+                                     EdgeFilter<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> EdgeFilter = null)
 
 
             where TIdVertex        : IEquatable<TIdVertex>,       IComparable<TIdVertex>,       IComparable, TValueVertex
@@ -108,31 +103,28 @@ namespace de.ahzf.Vanaheimr.Balder
 
         {
 
-            return new BothPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(
+            return new AllEdgesPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                    TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                    TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                    TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(
 
-                                new IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                   TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                   TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                   TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>[1] { Vertex },
-
-                                EdgeLabels: EdgeLabels);
+                                    EdgeFilter,
+                                    new IReadOnlyGenericPropertyGraph<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                                      TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                                      TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                                      TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>[1] { Graph });
 
         }
 
         #endregion
 
-        #region Both(this IEnumerable<IReadOnlyGenericPropertyVertex<...>>, params EdgeLabels)
+        #region E(this IEnumerable<IReadOnlyGenericPropertyGraph<...>>, EdgeFilter = null)
 
         /// <summary>
-        /// Emit the adjacent vertices of the given generic property vertices
-        /// reachable via incoming and outgoing edges having the given edge labels (OR-logic).
+        /// Emits all edges of a the given enumeration of generic property graphs.
         /// </summary>
         /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
         /// <typeparam name="TRevIdVertex">The type of the vertex revision identifiers.</typeparam>
-        /// <typeparam name="TVertexLabel">The type of the vertex type.</typeparam>
         /// <typeparam name="TKeyVertex">The type of the vertex property keys.</typeparam>
         /// <typeparam name="TValueVertex">The type of the vertex property values.</typeparam>
         /// 
@@ -142,36 +134,33 @@ namespace de.ahzf.Vanaheimr.Balder
         /// <typeparam name="TKeyEdge">The type of the edge property keys.</typeparam>
         /// <typeparam name="TValueEdge">The type of the edge property values.</typeparam>
         /// 
-        /// <typeparam name="TIdMultiEdge">The type of the multiedge identifiers.</typeparam>
-        /// <typeparam name="TRevIdMultiEdge">The type of the multiedge revision identifiers.</typeparam>
-        /// <typeparam name="TMultiEdgeLabel">The type of the multiedge label.</typeparam>
-        /// <typeparam name="TKeyMultiEdge">The type of the multiedge property keys.</typeparam>
-        /// <typeparam name="TValueMultiEdge">The type of the multiedge property values.</typeparam>
-        /// 
         /// <typeparam name="TIdHyperEdge">The type of the hyperedge identifiers.</typeparam>
         /// <typeparam name="TRevIdHyperEdge">The type of the hyperedge revision identifiers.</typeparam>
         /// <typeparam name="THyperEdgeLabel">The type of the hyperedge label.</typeparam>
         /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
         /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
-        /// <param name="IEnumerable">An enumeration of generic property vertices.</param>
-        /// <param name="EdgeLabels">An optional array of edge labels to traverse (OR-logic).</param>
-        /// <returns>The adjacent vertices of the given generic property vertices reachable via incoming and outgoing edges having the given edge labels (OR-logic).</returns>
-        public static BothPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                               TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                               TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                               TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
+        /// <param name="IEnumerable">An enumeration of generic property graphs.</param>
+        /// <param name="EdgeFilter">An optional delegate for edge filtering.</param>
+        /// <returns>All edges of a the given generic property graphs.</returns>
+        public static AllEdgesPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                   TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                   TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                   TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
 
-                               Both<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                    TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                    TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                    TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(
+                                   E<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                     TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                     TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                     TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(
 
-                                    this IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                     this IEnumerable<IReadOnlyGenericPropertyGraph<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                                     TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                                                     TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                                                                     TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable,
 
-                                    params TEdgeLabel[] EdgeLabels)
+                                     EdgeFilter<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> EdgeFilter = null)
 
 
             where TIdVertex        : IEquatable<TIdVertex>,       IComparable<TIdVertex>,       IComparable, TValueVertex
@@ -196,10 +185,10 @@ namespace de.ahzf.Vanaheimr.Balder
 
         {
 
-            return new BothPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(IEnumerable, EdgeLabels: EdgeLabels);
+            return new AllEdgesPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                    TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                    TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                    TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>(EdgeFilter, IEnumerable);
 
         }
 
@@ -209,11 +198,10 @@ namespace de.ahzf.Vanaheimr.Balder
 
     #endregion
 
-    #region BothPipe()
+    #region AllVerticesPipe<...>
 
     /// <summary>
-    /// Emit the adjacent vertices of the given generic property vertices
-    /// reachable via incoming and outgoing edges having the given edge labels (OR-logic).
+    /// Emits all edges of a the given enumeration of generic property graphs.
     /// </summary>
     /// <typeparam name="TIdVertex">The type of the vertex identifiers.</typeparam>
     /// <typeparam name="TRevIdVertex">The type of the vertex revision identifiers.</typeparam>
@@ -238,15 +226,20 @@ namespace de.ahzf.Vanaheimr.Balder
     /// <typeparam name="THyperEdgeLabel">The type of the hyperedge label.</typeparam>
     /// <typeparam name="TKeyHyperEdge">The type of the hyperedge property keys.</typeparam>
     /// <typeparam name="TValueHyperEdge">The type of the hyperedge property values.</typeparam>
-    public class BothPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                          TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                          TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                          TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
+    public class AllEdgesPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                              TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                              TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                              TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
 
-                          : AEdgesVerticesPipe<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                               TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                               TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                               TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>
+                 : AbstractPipe<IReadOnlyGenericPropertyGraph<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                              TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                              TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                              TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>,
+
+                                IReadOnlyGenericPropertyEdge <TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                              TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                              TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                              TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
 
 
         where TIdVertex        : IEquatable<TIdVertex>,       IComparable<TIdVertex>,       IComparable, TValueVertex
@@ -273,44 +266,52 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #region Data
 
-        private IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                               TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                               TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                               TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> _StartVertex;
+        private readonly EdgeFilter<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                    TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                    TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                    TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> EdgeFilter;
+
+        private IEnumerator<IReadOnlyGenericPropertyEdge<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                         TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                         TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                         TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> _EdgeIterator;
 
         #endregion
 
         #region Constructor(s)
 
-        #region BothPipe(IEnumerable = null, IEnumerator = null, params EdgeLabels)
+        #region AllEdgesPipe(EdgeFilter = null, IEnumerable = null, IEnumerator = null)
 
         /// <summary>
-        /// Emit the adjacent vertices of the given generic property vertices
-        /// reachable via incoming and outgoing edges having the given edge labels (OR-logic).
+        /// Emits all edges of a the given enumeration of generic property graphs.
         /// </summary>
+        /// <param name="EdgeFilter">A optional delegate for edge filtering.</param>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
-        /// <param name="EdgeLabels">An optional array of edge labels to traverse (OR-logic).</param>
-        public BothPipe(IEnumerable<IReadOnlyGenericPropertyVertex<TIdVertex, TRevIdVertex, TVertexLabel, TKeyVertex, TValueVertex,
-                                                                   TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                   TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                   TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable = null,
+        public AllEdgesPipe(EdgeFilter<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                       TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                       TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                       TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge> EdgeFilter = null,
 
-                        IEnumerator<IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                   TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                   TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                   TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null,
-            
-                        params TEdgeLabel[] EdgeLabels)
+                            IEnumerable<IReadOnlyGenericPropertyGraph<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                                      TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                                      TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                                      TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerable = null,
 
-            : base(IEnumerable, IEnumerator, EdgeLabels)
+                            IEnumerator<IReadOnlyGenericPropertyGraph<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
+                                                                      TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
+                                                                      TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
+                                                                      TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>> IEnumerator = null)
 
-        { }
+            : base(IEnumerable, IEnumerator)
+
+        {
+            this.EdgeFilter = EdgeFilter;
+        }
 
         #endregion
 
         #endregion
-
 
         #region MoveNext()
 
@@ -325,70 +326,26 @@ namespace de.ahzf.Vanaheimr.Balder
         public override Boolean MoveNext()
         {
 
-            if (_InternalEnumerator == null)
+            if (_InputEnumerator == null)
                 return false;
 
             while (true)
             {
 
-                if (_NextEdges != null && _NextEdges.MoveNext())
+                if (_EdgeIterator != null && _EdgeIterator.MoveNext())
                 {
-                    
-                    var _TmpOut = _NextEdges.Current.OutVertex;
-                    var _TmpIn  = _NextEdges.Current.InVertex;
-
-                    if (_TmpOut.Equals(_TmpIn))
-                    {
-                        _CurrentElement = _TmpIn;
-                        return true;
-                    }
-
-                    else if (_TmpOut.Equals(_StartVertex))
-                    {
-                        _CurrentElement = _TmpIn;
-                        return true;
-                    }
-                    
-                    else
-                    {
-                        _CurrentElement = _TmpOut;
-                        return true;
-                    }
-                    
+                    _CurrentElement = _EdgeIterator.Current;
+                    return true;
                 }
 
-                else if (_InternalEnumerator.MoveNext())
-                {
-
-                    _StartVertex = _InternalEnumerator.Current;
-                    _NextEdges   = new MultiEnumerator<IReadOnlyGenericPropertyEdge<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
-                                                                                    TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
-                                                                                    TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
-                                                                                    TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>>
-                                       (_InternalEnumerator.Current.InEdges (EdgeLabels).GetEnumerator(),
-                                        _InternalEnumerator.Current.OutEdges(EdgeLabels).GetEnumerator());
-
-                }
+                else if (_InputEnumerator.MoveNext())
+                    _EdgeIterator = _InputEnumerator.Current.Edges(EdgeFilter).GetEnumerator();
 
                 else
                     return false;
 
             }
 
-        }
-
-        #endregion
-
-
-        #region Reset()
-
-        /// <summary>
-        /// A pipe may maintain state. Reset is used to remove state.
-        /// </summary>
-        public override void Reset()
-        {
-            _StartVertex = null;
-            base.Reset();
         }
 
         #endregion

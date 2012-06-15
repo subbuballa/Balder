@@ -159,7 +159,7 @@ namespace de.ahzf.Vanaheimr.Balder
         public override Boolean MoveNext()
         {
 
-            if (_InternalEnumerator == null)
+            if (_InputEnumerator == null)
                 return false;
 
             while (true)
@@ -171,13 +171,13 @@ namespace de.ahzf.Vanaheimr.Balder
                     return true;
                 }
 
-                else if (_InternalEnumerator.MoveNext())
+                else if (_InputEnumerator.MoveNext())
                 {
 
                     if (_UseEdgeLabel)
-                        _NextEdges = _InternalEnumerator.Current.EdgesByLabel(_EdgeLabel).GetEnumerator();
+                        _NextEdges = _InputEnumerator.Current.EdgesByLabel(_EdgeLabel).GetEnumerator();
                     else
-                        _NextEdges = _InternalEnumerator.Current.Edges().GetEnumerator();
+                        _NextEdges = _InputEnumerator.Current.Edges().GetEnumerator();
 
                 }
 

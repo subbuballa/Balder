@@ -29,22 +29,6 @@ using de.ahzf.Vanaheimr.Styx;
 namespace de.ahzf.Vanaheimr.Balder
 {
 
-    #region (internal) EdgeTraversalDirection
-
-    /// <summary>
-    /// The edge to vertex traversal direction.
-    /// </summary>
-    internal enum EdgeTraversalDirection
-    {
-        Out,
-        In,
-        Both
-    }
-
-    #endregion
-
-    #region (internal) AVertexPipe()
-
     /// <summary>
     /// Emits the vertices of the given generic property edges.
     /// </summary>
@@ -115,6 +99,7 @@ namespace de.ahzf.Vanaheimr.Balder
                                                              TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                              TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
                                                              TIdHyperEdge, TRevIdHyperEdge, THyperEdgeLabel, TKeyHyperEdge, TValueHyperEdge>,
+
                               IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                              TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                                              TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
@@ -142,7 +127,7 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #region Constructor(s)
 
-        #region (internal) AVertexPipe(EdgeTraversalDirection, IEnumerable = null, IEnumerator = null, params VertexLabels)
+        #region (internal) AVertexPipe(TraversalDirection, IEnumerable = null, IEnumerator = null, params VertexLabels)
 
         /// <summary>
         /// Emits the vertices of the given generic property edges
@@ -151,7 +136,7 @@ namespace de.ahzf.Vanaheimr.Balder
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
         /// <param name="VertexLabels">An optional array of vertex labels to traverse (OR-logic).</param>
-        internal AVertexPipe(EdgeTraversalDirection EdgeTraversalDirection,
+        internal AVertexPipe(TraversalDirection TraversalDirection,
 
                              IEnumerable<IReadOnlyGenericPropertyEdge<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                                       TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
@@ -169,19 +154,20 @@ namespace de.ahzf.Vanaheimr.Balder
 
         {
 
-            switch (EdgeTraversalDirection)
+            switch (TraversalDirection)
             {
-                case Balder.EdgeTraversalDirection.Out:  this.Edge2VertexDelegate = edge => edge.OutVertex; break;
-                case Balder.EdgeTraversalDirection.In:   this.Edge2VertexDelegate = edge => edge.InVertex;  break;
-                case Balder.EdgeTraversalDirection.Both: this.Edge2VertexDelegate = Edge2BothVertices;      break;
+                case Balder.TraversalDirection.Out:  Edge2VertexDelegate = edge => edge.OutVertex; break;
+                case Balder.TraversalDirection.In:   Edge2VertexDelegate = edge => edge.InVertex;  break;
+                case Balder.TraversalDirection.Both: Edge2VertexDelegate = Edge2BothVertices;      break;
             }
 
             this.VertexLabels           = VertexLabels;
+
         }
 
         #endregion
 
-        #region (internal) AVertexPipe(EdgeTraversalDirection, VertexFilter = null, IEnumerable = null, IEnumerator = null)
+        #region (internal) AVertexPipe(TraversalDirection, VertexFilter = null, IEnumerable = null, IEnumerator = null)
 
         /// <summary>
         /// Emits the vertices of the given generic property edges
@@ -191,8 +177,8 @@ namespace de.ahzf.Vanaheimr.Balder
         /// <param name="VertexFilter">An optional delegate for vertex filtering.</param>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
-        internal AVertexPipe(EdgeTraversalDirection EdgeTraversalDirection,
-            
+        internal AVertexPipe(TraversalDirection TraversalDirection,
+
                              VertexFilter<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                           TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
                                           TIdMultiEdge, TRevIdMultiEdge, TMultiEdgeLabel, TKeyMultiEdge, TValueMultiEdge,
@@ -211,14 +197,14 @@ namespace de.ahzf.Vanaheimr.Balder
             : base(IEnumerable, IEnumerator)
         {
 
-            switch (EdgeTraversalDirection)
+            switch (TraversalDirection)
             {
-                case Balder.EdgeTraversalDirection.Out:  this.Edge2VertexDelegate = edge => edge.OutVertex; break;
-                case Balder.EdgeTraversalDirection.In:   this.Edge2VertexDelegate = edge => edge.InVertex;  break;
-                case Balder.EdgeTraversalDirection.Both: this.Edge2VertexDelegate = Edge2BothVertices;      break;
+                case Balder.TraversalDirection.Out:  Edge2VertexDelegate = edge => edge.OutVertex; break;
+                case Balder.TraversalDirection.In:   Edge2VertexDelegate = edge => edge.InVertex;  break;
+                case Balder.TraversalDirection.Both: Edge2VertexDelegate = Edge2BothVertices;      break;
             }
 
-            this.VertexFilter        = (VertexFilter != null) ? VertexFilter : v => true;
+            this.VertexFilter = (VertexFilter != null) ? VertexFilter : v => true;
 
         }
 
@@ -226,8 +212,8 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #endregion
 
-        
-        #region (private) Edge2BothVertices
+
+        #region (private) Edge2BothVertices(Edge)
 
         private IReadOnlyGenericPropertyVertex<TIdVertex,    TRevIdVertex,    TVertexLabel,    TKeyVertex,    TValueVertex,
                                                TIdEdge,      TRevIdEdge,      TEdgeLabel,      TKeyEdge,      TValueEdge,
@@ -243,8 +229,8 @@ namespace de.ahzf.Vanaheimr.Balder
 
             if (_NextVertex == null)
             {
-                _NextVertex = _InternalEnumerator.Current.OutVertex;
-                return _InternalEnumerator.Current.InVertex;
+                _NextVertex = _InputEnumerator.Current.OutVertex;
+                return _InputEnumerator.Current.InVertex;
             }
             
             _NextVertex = null;
@@ -268,16 +254,16 @@ namespace de.ahzf.Vanaheimr.Balder
         public override Boolean MoveNext()
         {
 
-            if (_InternalEnumerator == null)
+            if (_InputEnumerator == null)
                 return false;
 
             if (VertexLabels != null)
             {
-                while (_InternalEnumerator.MoveNext())
+                while (_InputEnumerator.MoveNext())
                 {
-                    if (VertexLabels.Any(VertexLabel => Edge2VertexDelegate(_InternalEnumerator.Current).Label.Equals(VertexLabel)))
+                    if (VertexLabels.Any(VertexLabel => Edge2VertexDelegate(_InputEnumerator.Current).Label.Equals(VertexLabel)))
                     {
-                        _CurrentElement = Edge2VertexDelegate(_InternalEnumerator.Current);
+                        _CurrentElement = Edge2VertexDelegate(_InputEnumerator.Current);
                         return true;
                     }
                 }
@@ -285,11 +271,11 @@ namespace de.ahzf.Vanaheimr.Balder
 
             else if (VertexFilter != null)
             {
-                while (_InternalEnumerator.MoveNext())
+                while (_InputEnumerator.MoveNext())
                 {
                     if (VertexFilter(_CurrentElement))
                     {
-                        _CurrentElement = Edge2VertexDelegate(_InternalEnumerator.Current);
+                        _CurrentElement = Edge2VertexDelegate(_InputEnumerator.Current);
                         return true;
                     }
                 }
@@ -297,9 +283,9 @@ namespace de.ahzf.Vanaheimr.Balder
 
             else
             {
-                while (_InternalEnumerator.MoveNext())
+                while (_InputEnumerator.MoveNext())
                 {
-                    _CurrentElement = Edge2VertexDelegate(_InternalEnumerator.Current);
+                    _CurrentElement = Edge2VertexDelegate(_InputEnumerator.Current);
                     return true;
                 }
             }
@@ -311,7 +297,5 @@ namespace de.ahzf.Vanaheimr.Balder
         #endregion
 
     }
-
-    #endregion
 
 }
