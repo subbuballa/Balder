@@ -143,13 +143,13 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #region Constructor(s)
 
-        #region (internal) AEdgesVerticesPipe(IEnumerable, IEnumerator, params EdgeLabels)
+        #region (internal) AEdgesVerticesPipe(TraversalDirection, IEnumerable, IEnumerator, params EdgeLabels)
 
         /// <summary>
         /// Emit the adjacent vertices of the given generic property vertices
         /// reachable via incoming and/or outgoing edges (OR-logic).
         /// </summary>
-        /// <param name="TraversalDirection">A delegate to get generic property edge from a generic property vertex.</param>
+        /// <param name="TraversalDirection">The next edges to visit.</param>
         /// <param name="IEnumerable">An IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An IEnumerator&lt;...&gt; as element source.</param>
         /// <param name="EdgeLabels">An optional array of edge labels to traverse (OR-logic).</param>
@@ -186,19 +186,19 @@ namespace de.ahzf.Vanaheimr.Balder
 
             }
 
-            this.EdgeLabels = EdgeLabels;
+            this.EdgeLabels = EdgeLabels.Any() ? EdgeLabels : null;
 
         }
 
         #endregion
 
-        #region (internal) AbstractEdgesVerticesPipe(EdgeFilter, Enumerable, IEnumerator)
+        #region (internal) AEdgesVerticesPipe(TraversalDirection, EdgeFilter, Enumerable, IEnumerator)
 
         /// <summary>
         /// Emit the adjacent vertices of the given generic property vertices
         /// filtered by the given edge filter.
         /// </summary>
-        /// <param name="TraversalDirection">A delegate to get generic property edge from a generic property vertex.</param>
+        /// <param name="TraversalDirection">The next edges to visit.</param>
         /// <param name="EdgeFilter">An optional delegate for edge filtering.</param>
         /// <param name="IEnumerable">An IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An IEnumerator&lt;...&gt; as element source.</param>

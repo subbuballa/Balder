@@ -133,6 +133,7 @@ namespace de.ahzf.Vanaheimr.Balder
         /// Emits the vertices of the given generic property edges
         /// having the given vertex labels.
         /// </summary>
+        /// <param name="TraversalDirection">The next vertices to visit.</param>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>
         /// <param name="VertexLabels">An optional array of vertex labels to traverse (OR-logic).</param>
@@ -161,7 +162,7 @@ namespace de.ahzf.Vanaheimr.Balder
                 case Balder.TraversalDirection.Both: Edge2VertexDelegate = Edge2BothVertices;      break;
             }
 
-            this.VertexLabels           = VertexLabels;
+            this.VertexLabels = VertexLabels.Any() ? VertexLabels : null;
 
         }
 
@@ -173,7 +174,7 @@ namespace de.ahzf.Vanaheimr.Balder
         /// Emits the vertices of the given generic property edges
         /// filtered by the given vertex filter delegate.
         /// </summary>
-        /// <param name="Edge2VertexDelegate">A delegate to get generic property vertex from a generic property edge.</param>
+        /// <param name="TraversalDirection">The next vertices to visit.</param>
         /// <param name="VertexFilter">An optional delegate for vertex filtering.</param>
         /// <param name="IEnumerable">An optional IEnumerable&lt;...&gt; as element source.</param>
         /// <param name="IEnumerator">An optional IEnumerator&lt;...&gt; as element source.</param>

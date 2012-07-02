@@ -123,7 +123,7 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #endregion
 
-        #region InV(this IEnumerable<IReadOnlyGenericPropertyEdge<...>>, params VertexLabels)
+        #region InV(this IEnumerable<IReadOnlyGenericPropertyEdge<...>>, params VertexLabels)   // InV()!
 
         /// <summary>
         /// Emits the incoming/head/target vertex of the given generic property edges

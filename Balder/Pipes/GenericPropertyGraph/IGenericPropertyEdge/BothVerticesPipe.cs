@@ -125,7 +125,7 @@ namespace de.ahzf.Vanaheimr.Balder
 
         #endregion
 
-        #region BothV(this IEnumerable<IReadOnlyGenericPropertyEdge<...>>, params VertexLabels)
+        #region BothV(this IEnumerable<IReadOnlyGenericPropertyEdge<...>>, params VertexLabels)   // BothV()!
 
         /// <summary>
         /// Emits the incoming/head/target vertex of the given generic property edges

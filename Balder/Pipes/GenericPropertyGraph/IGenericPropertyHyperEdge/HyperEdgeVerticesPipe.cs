@@ -18,6 +18,7 @@
 #region Usings
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using de.ahzf.Vanaheimr.Blueprints;
@@ -291,7 +292,7 @@ namespace de.ahzf.Vanaheimr.Balder
             : base(IEnumerable, IEnumerator)
 
         {
-            this.HyperEdgeLabels = HyperEdgeLabels;
+            this.HyperEdgeLabels = HyperEdgeLabels.Any() ? HyperEdgeLabels : null;
         }
 
         #endregion
