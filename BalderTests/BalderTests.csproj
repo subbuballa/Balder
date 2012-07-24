@@ -53,7 +53,6 @@
     <Compile Include="Pipes\FilterPipes\FutureFilterPipeTest.cs" />
     <Compile Include="Pipes\FilterPipes\OrFilterPipeTest.cs" />
     <Compile Include="Pipes\FilterPipes\RandomFilterPipeTest.cs" />
-    <Compile Include="Pipes\FilterPipes\RangeFilterPipeTest.cs" />
     <Compile Include="Pipes\FilterPipes\UniquePathFilterPipeTest.cs" />
     <Compile Include="Pipes\Blueprints\GraphElementPipeTest.cs" />
     <Compile Include="Pipes\Blueprints\IdEdgePipeTest.cs" />
