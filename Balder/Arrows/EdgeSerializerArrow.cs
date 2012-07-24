@@ -31,7 +31,7 @@ namespace de.ahzf.Vanaheimr.Balder
     #region IEdgeSerializerExtentions
 
     /// <summary>
-    /// Extentions for the IEdgeSerializer interface.
+    /// Extention methods for the IEdgeSerializer interface.
     /// </summary>
     public static partial class IEdgeSerializerExtentions
     {

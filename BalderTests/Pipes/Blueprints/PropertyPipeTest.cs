@@ -44,7 +44,7 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Blueprints
             var _Graph = TinkerGraphFactory.CreateTinkerGraph();
             var _Marko = _Graph.VertexById(1);
 
-            var _PPipe = new PropertyPipe<String, Object>("name");
+            var _PPipe = new PropertyPipe<String, Object>(Keys: "name");
 
             _PPipe.SetSource(new List<IGenericPropertyVertex<UInt64, Int64, String, String, Object,
                                                              UInt64, Int64, String, String, Object,
@@ -77,7 +77,7 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Blueprints
                                              UInt64, Int64, String, String, Object,
                                              UInt64, Int64, String, String, Object>();
 
-            var _PPipe    = new PropertyPipe<String, Object>("name");
+            var _PPipe    = new PropertyPipe<String, Object>(Keys: "name");
 
             var _Pipeline = new Pipeline<IGenericPropertyEdge<UInt64, Int64, String, String, Object,
                                                               UInt64, Int64, String, String, Object,
@@ -110,7 +110,7 @@ namespace de.ahzf.Vanaheimr.Balder.UnitTests.Blueprints
             var _Marko    = _Graph.VertexById(1);
             var _Vadas    = _Graph.VertexById(2);
 
-            var _Pipe = new PropertyPipe<String, Object>("name");
+            var _Pipe = new PropertyPipe<String, Object>(Keys: "name");
 
             var _Pipeline = new Pipeline<IGenericPropertyVertex<UInt64, Int64, String, String, Object,
                                                                 UInt64, Int64, String, String, Object,

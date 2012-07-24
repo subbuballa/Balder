@@ -31,7 +31,7 @@ namespace de.ahzf.Vanaheimr.Balder
     #region IVertexSerializerExtentions
 
     /// <summary>
-    /// Extentions for the IVertexSerializer interface.
+    /// Extention methods for the IVertexSerializer interface.
     /// </summary>
     public static partial class IVertexSerializerExtentions
     {
