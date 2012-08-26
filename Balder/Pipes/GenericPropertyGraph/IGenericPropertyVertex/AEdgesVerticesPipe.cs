@@ -292,7 +292,7 @@ namespace de.ahzf.Vanaheimr.Balder
         /// </summary>
         public override void Reset()
         {            
-            _NextEdges = null;
+            //_NextEdges = null;
             base.Reset();
         }
 
