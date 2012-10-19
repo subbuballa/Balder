@@ -41,9 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arrows\GraphSerializerArrow.cs" />
-    <Compile Include="Arrows\EdgeSerializerArrow.cs" />
-    <Compile Include="Arrows\VertexSerializerArrow.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\IGenericPropertyEdge\AVertexPipe.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\EdgeTraversalDirection.cs" />
     <Compile Include="Pipes\GenericPropertyGraph\IGenericPropertyEdge\Filters\EdgeIdFilterPipe.cs" />
@@ -103,13 +100,9 @@
       <Project>{3949790D-8591-4101-9E4D-CE7A758E7409}</Project>
       <Name>Styx</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Walkyr\Walkyr\Walkyr.csproj">
-      <Project>{A3507C2E-1A82-4342-BD42-F544275D6959}</Project>
-      <Name>Walkyr %28Dependencies\Walkyr\Walkyr%29</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Arrows\GenericPropertyGraph\" />
+    <Folder Include="Arrows\" />
     <Folder Include="Pipes\GraphIO\CSV\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
