@@ -102,7 +102,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Arrows\GenericPropertyGraph\" />
+    <Folder Include="Arrows\" />
     <Folder Include="Pipes\GraphIO\CSV\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
